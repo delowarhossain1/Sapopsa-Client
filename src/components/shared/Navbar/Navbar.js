@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Link} from "react-router-dom";
 import logo from "../../../images/sapopsa.png";
 import close from "../../../images/close.svg";
@@ -8,6 +8,11 @@ import love from "../../../icons/love.png";
 import bag from "../../../icons/bag.png";
 
 const Navbar = () => {
+   
+    const toggleNav = () =>{
+
+    }
+
     return (
         <header className="header">
             <Link to='/'>
@@ -16,7 +21,7 @@ const Navbar = () => {
                 </div>
             </Link>
             <div className="header-main">
-                <div className="openMenu">
+                <div className="openMenu" onClick={toggleNav}>
                     <i className="fa-solid fa-bars"></i>
                 </div>
                 <div className="logo">
