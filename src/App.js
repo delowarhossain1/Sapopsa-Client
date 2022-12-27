@@ -1,4 +1,5 @@
 import './App.css';
+import Home from './components/pages/Home/Home';
 import Navbar from './components/shared/Navbar/Navbar';
 import "./css/about.css";
 import "./css/buy-now.css";
@@ -16,7 +17,7 @@ import "./fonts/specimen_italic/stylesheet.css";
 function App() {
   return (
     <div>
-        <Navbar />
+        <Home />
     </div>
   );
 }
