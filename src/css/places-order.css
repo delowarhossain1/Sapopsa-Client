@@ -1,0 +1,115 @@
+:root {
+	---primary-color: orange;
+	---back-3-color: #CEF7F1;
+	---title-color: #1D9688;
+	---text-color: #000;
+	---back-color: #F5F5F5;
+	---color-3: #555;
+	---btn-color: #2bb673;
+
+}
+.checkoutInfo {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+.cInf{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.checkFrom input{
+    outline: none;
+    border: 1px solid #ddd;
+    padding: 10px 3px;
+    border-radius: 4px;
+    transition: 0.5s;
+}
+.checkFrom input:hover{
+    border: 1px solid #2EAEED;
+}
+.maxWidht{
+    width: 100%;
+   
+}
+.minWidht input{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+select#district {
+    border: 1px solid #ddd;
+    padding: 10px 3px;
+    border-radius: 4px;
+    font-size: 1rem;
+    line-height: 1.25;
+    width: 100%;
+    color: #55595c;
+    outline: none;
+}
+.minWidht input:first-child{
+    margin-right: 10px;
+}
+.payment-method-selector {
+    margin-left: 0px;
+    padding-left: 0px;
+    margin-top: 10px;
+    line-height: 60px;
+    width: 190px;
+    padding: 5px;
+    border-radius: 5px;
+    height: 75px;
+    border: 1px solid #ffffff;
+    transition: .3s ease;
+    box-shadow: 0px 0px 5px 0px #9f9f9f;
+    max-width: 48%;
+}
+.form-check-inline {
+    position: relative;
+    display: inline-block;
+    padding-left: 1.25rem;
+    margin-bottom: 0;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.payment-method-logo {
+    position: absolute;
+    width: 80%;
+    top: calc(50% - 22px);
+    left: 45px;
+    cursor: pointer;
+}
+.payment-method-selector:hover{
+    border: 1px solid #295D2D;
+}
+.btN{
+    width: 100%;
+    border: none;
+    padding: 7px 0;
+    background-color: var(---btn-color);
+    color: var(---back-color);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.5s ease;
+}
+.btN:hover{
+    color: #ddd;
+}
+.checkFrom2 a{
+    background-color: var(---btn-color);
+    color: var(---back-color);
+    padding: 7px 20px;
+}
+@media (max-width: 991px) {
+    .maxWidht {
+        flex-basis: 100%;
+    }
+    .checkIn {
+        flex-basis: 100%;
+    }
+    .payment-method-logo {
+        width: 71%;
+        top: calc(50% - 20px);
+    }
+}

@@ -1,0 +1,138 @@
+:root {
+	---primary-color: orange;
+	---back-3-color: #CEF7F1;
+	---title-color: #1D9688;
+	---text-color: #000;
+	---back-color: #F5F5F5;
+	---color-3: #555;
+
+}
+.logInFrom{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 150px;
+    margin-bottom: 50px;
+}
+.login{
+    width: 400px;
+    box-shadow: 0px 0px 5px 3px #efefef;
+    padding: 20px;
+}
+.login h3{
+    text-align: left;
+    margin: 20px 0;
+    font-size: 25px;
+    color: var(---text-color);
+}
+.logBox{
+    position: relative;
+    margin-bottom: 10px;
+}
+.logBox span{
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    font-size: 1em;
+    pointer-events: none;
+    transition: 0.5s;
+    color: var(---color-3);
+}
+.logBox input{
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    outline: none;
+    border: 1px solid var(---color-3);
+    background-color: transparent;
+    color: var(---text-color);
+}
+.logBox input:valid ~ span,
+.logBox input:focus ~ span{
+    transform: translateX(10px) translateY(-7px);
+    background-color: #FFFFFF;
+    font-size: 0.65em;
+    padding: 0 10px;
+}
+
+
+.logLog button{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border: none;
+    background-color:var(---text-color);
+    color: var(---back-color);
+    transition: all 0.5s ease;
+}
+.logLog button:hover{
+    color:#555;
+}
+.Logicon{
+    text-align: center;
+}
+.logIcon{
+    width: 60px;
+    height: 60px;
+}
+.facebock {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+.facebock img{
+    width: 100%;
+    height: 100%;
+}
+.loginWith{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loginWith button{
+    flex-basis: 45%;
+    padding: 5px 20px;
+    margin-right: 10px;
+    font-size: 15px;
+    background-color: transparent;
+    color: var(---back-color);
+    cursor: pointer;
+    border: none;
+    outline: none;
+    width: 100%;
+    margin-bottom: 30px;
+    border: 1px solid var(---text-color);
+}
+.loginWith p{
+    font-size: 15px;
+    font-weight: 500;
+}
+.loginWith button:last-child{
+    background-color: transparent;
+    color: var(---color-3);
+    font-size: 15px;
+    font-weight: 500;
+}
+.Logg input:last-child{
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    background-color: var(---primary-color);
+    color: var(---back-color);
+    letter-spacing: 1px;
+}
+@media (max-width: 991px) {
+    .logInFrom{
+        margin-top: 150px;
+    }
+  
+}

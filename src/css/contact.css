@@ -1,0 +1,53 @@
+:root {
+	---primary-color: orange;
+	---back-3-color: #CEF7F1;
+	---title-color: #1D9688;
+	---text-color: #000;
+	---back-color: #F5F5F5;
+	---color-3: #555;
+
+}
+.conRow{
+    flex-basis: 55%;
+    margin-bottom: 20px;
+}
+.conRow:last-child{
+    flex-basis: 40%;
+}
+.conRow input{
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    outline: none;
+}
+.conRow textarea{
+    width: 100%;
+    outline: none;
+    border: 1px solid #ddd;
+}
+.subSub input{
+    border: none;
+    background-color: var(---text-color);
+    color: var(---back-color);
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.5s ease;
+}
+.subSub input:hover{
+    color: var(---color-3);
+}
+.conTdes{
+    margin-bottom: 200px;
+}
+@media (max-width: 991px) {
+    .conRow{
+        flex-basis: 100%;
+        margin-bottom: 20px;
+    }
+    .conRow:last-child{
+        flex-basis: 100%;
+    }
+}

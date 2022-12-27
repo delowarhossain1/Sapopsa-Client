@@ -1,0 +1,105 @@
+/* =================Buy Now==================== */
+
+:root {
+	---primary-color: orange;
+	---back-3-color: #CEF7F1;
+	---title-color: #1D9688;
+	---text-color: #000;
+	---back-color: #F5F5F5;
+	---cream-color: #ECE7E3;
+	---color-3: #555;
+
+}
+.marginTop{
+	margin-top: 170px;
+}
+.buyNo{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.buyNowpage{
+	margin-bottom: 40px;
+	width: 600px;
+	height: 400px;
+	box-shadow: 0px 0px 5px 3px #efefef;
+}
+.buyTitle{
+	text-align: center;
+	background-color: #41B676;
+	color: #FFF;
+	padding: 10px 0;
+}
+.leBy img{
+	width: 100px;
+}
+.buywrap{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding: 0 30px;
+	border-bottom: 1px solid #ddd;
+}
+.leBy{
+	flex-basis: 30%;
+	border-right: 1px solid #ddd;
+}
+.reBy {
+    flex-basis: 70%;
+    height: 100%;
+    margin-bottom: 50px;
+    text-align: center;
+}
+.reBy  p{
+	font-weight: 600;
+}
+.reBy input{
+	margin-top: 10px;
+	padding: 5px 20px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	cursor: pointer;
+	transition: all 0.5s ease;
+}
+.reBy input:hover{
+	background-color: #41B676;
+	color: #FFF;
+}
+.byBtn{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 0;
+}
+.byBtn button{
+	padding: 7px 20px;
+	cursor: pointer;
+	transition: all 0.5s ease;
+}
+.byBtn button:first-child{
+	background-color: #CF5255;
+	color: #FFF;
+	border: none;
+}
+.byBtn button:last-child{
+	background-color: #41B676;
+	color: #FFF;
+	border: none;
+}
+.byBtn button:hover{
+	color: #ddd;
+}
+@media (max-width: 991px) {
+    
+  .reBy{
+	flex-basis: 100%;
+  }
+  .leBy{
+	padding: 5px 0;
+	flex-basis: 100%;
+	display: flex;
+	justify-content: space-between;
+	border-right: none;
+  }
+}

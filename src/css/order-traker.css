@@ -1,0 +1,50 @@
+
+:root {
+	---primary-color: orange;
+	---back-3-color: #CEF7F1;
+	---title-color: #1D9688;
+	---text-color: #000;
+	---back-color: #F5F5F5;
+	---color-3: #555;
+
+}
+
+.findOrder{
+    width: 60%;
+    margin-bottom: 50px;
+}
+.findOrder input{
+    width: 100%;
+    padding: 20px;
+    margin: 5px 0;
+    outline: none;
+    border: 1px solid var(---color-3);
+    font-size: 16px;
+}
+.findOrder input:last-child{
+    width: 30%;
+    border: none;
+    background-color: var(---text-color);
+    color: var(---back-color);
+    font-size: 20px;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+.findOrder input:last-child:hover{
+    color: var(---color-3);
+}
+
+@media(max-width: 991px){
+    .aboutTitle {
+        font-size: 30px;
+    }
+    .findOrder{
+        width: 100%;
+    }
+    .findOrder input{
+        width: 100%;
+    }
+    .findOrder input:last-child{
+        width: 100%;
+    }
+}
