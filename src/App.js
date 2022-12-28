@@ -1,7 +1,6 @@
 import './App.css';
 import Home from './components/pages/Home/Home';
 import Footer from './components/shared/Footer/Footer';
-import Navbar from './components/shared/Navbar/Navbar';
 import "./css/about.css";
 import "./css/buy-now.css";
 import "./css/contact.css";
