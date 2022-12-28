@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../../images/sapopsa.png";
 import close from "../../../images/close.svg";
 import search from "../../../icons/search.png";
@@ -8,9 +8,28 @@ import love from "../../../icons/love.png";
 import bag from "../../../icons/bag.png";
 
 const Navbar = () => {
-   
-    const toggleNav = () =>{
+    const [toggleClass, setToggleClass] = useState(false);
+    const mediaSize = 991;
 
+    const toggleNav = () => {
+        setToggleClass(!toggleClass);
+    }
+
+    const navMenu = (event) => {
+        if (event.target.hasAttribute("data-toggle") &&
+            window.innerWidth <= mediaSize) {
+            // prevent default anchor click behavior
+            event.preventDefault();
+            const menuItemHasChildren = event.target.parentElement;
+            // if menuItemHasChildren is already expanded, collapse it
+
+            if(menuItemHasChildren.classList.contains("active")){
+
+            }
+            else{
+
+            }
+        }
     }
 
     return (
@@ -28,12 +47,13 @@ const Navbar = () => {
                     <Link to='/'><img src={logo} alt="" /></Link>
                 </div>
 
-                <div className="menu-overlay">
+                <div className={`menu-overlay ${toggleClass ? 'active' : ''}`} onClick={toggleNav}>
                 </div>
                 {/* <!-- navigation menu start --> */}
-                <nav className="nav-menu">
-                    <div className="closeNavMenu">
-                        <img src={close} alt="close"/>
+                <nav className={`nav-menu ${toggleClass ? 'open' : ''}`} onClick={(e) => navMenu(e)}>
+
+                    <div className="closeNavMenu" onClick={toggleNav}>
+                        <img src={close} alt="close" />
                     </div>
                     <ul className="menu">
                         <li className="menuItem menuitemHasChildren">
@@ -92,33 +112,33 @@ const Navbar = () => {
                 {/* <!-- navigation menu end --> */}
                 <div className="from">
                     <div className="search">
-                        <input type="checkbox" id="check"/>
-                            <div className="usersNotify box user">
-                                <label for="check">
-                                    <img src={search} alt=""/>
-                                </label>
-                            </div>
+                        <input type="checkbox" id="check" />
+                        <div className="usersNotify box user">
+                            <label for="check">
+                                <img src={search} alt="" />
+                            </label>
+                        </div>
 
 
-                            <div className="seacrhBox">
-                                <input className="input" type="search" placeholder="search..."/>
-                                    <label for="" className="searchBtn">
-                                        <img type="submit" className="search" src={search}/>
-                                    </label>
+                        <div className="seacrhBox">
+                            <input className="input" type="search" placeholder="search..." />
+                            <label for="" className="searchBtn">
+                                <img type="submit" className="search" src={search} />
+                            </label>
 
-                            </div>
+                        </div>
 
 
-                            <div className="usersNotify user">
-                                <a href="login.html"><img src={user} alt=""/><span className="notificaTion">1</span></a>
-                            </div>
-                            <div className="usersNotify love">
-                                <a href="#"><img src={love} alt=""/><span className="notificaTion">1</span></a>
-                            </div>
+                        <div className="usersNotify user">
+                            <a href="login.html"><img src={user} alt="" /><span className="notificaTion">1</span></a>
+                        </div>
+                        <div className="usersNotify love">
+                            <a href="#"><img src={love} alt="" /><span className="notificaTion">1</span></a>
+                        </div>
 
-                            <div className="usersNotify">
-                                <a href="cart.html"><img src={bag} alt=""/><span className="notificaTion">1</span></a>
-                            </div>
+                        <div className="usersNotify">
+                            <a href="cart.html"><img src={bag} alt="" /><span className="notificaTion">1</span></a>
+                        </div>
                     </div>
                 </div>
             </div>
