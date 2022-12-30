@@ -134,7 +134,7 @@ const Navbar = () => {
                         </div>
 
                         <div className="usersNotify love">
-                            <Link to='/login'><img src={love} alt="" /><span className="notificaTion">1</span></Link>
+                            <Link to='/love'><img src={love} alt="" /><span className="notificaTion">1</span></Link>
                         </div>
 
                         <div className="usersNotify">

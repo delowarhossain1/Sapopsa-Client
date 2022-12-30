@@ -18,23 +18,28 @@ import Login from './components/pages/Login/Login';
 import Dashboard from './components/pages/Dashboard/Dashboard';
 import Report from './components/pages/Dashboard/Admin/Report/Report';
 import Loading from './components/shared/Loading/Loading';
+import RequiredAuth from './components/shared/Required/RequiredAuth/RequiredAuth';
 
 function App() {
   return (
     <div>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/loading' element={<Loading />} />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/loading' element={<Loading />} />
 
 
-          {/* Dashboard route */}
-          <Route path='/dashboard' element={< Dashboard/>}> 
-              <Route index element={<Report />} />
-          </Route>
-        </Routes>
+        {/* Dashboard route */}
+        <Route path='/dashboard' element={
+          <RequiredAuth>
+            < Dashboard />
+          </RequiredAuth>}>
 
-        <Footer />
+          <Route index element={<Report />} />
+        </Route>
+      </Routes>
+
+      <Footer />
     </div>
   );
 }

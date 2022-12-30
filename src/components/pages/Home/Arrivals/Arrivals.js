@@ -5,25 +5,25 @@ import img2 from '../../../../images/2.jpg'
 const Arrivals = () => {
     return (
         <div>
-            <div class="design-cats">
+            <div className="design-cats">
                 {/* <!-- FIND YOUR THING --> */}
                 <div style={{ width: '100%', margin: '0 auto', overflowX: 'auto' }}>
-                    <div class="body-menu">
-                        <div class="body-menu-item">
-                            <div class="new">
-                                <a class="noStyle" href="#">
+                    <div className="body-menu">
+                        <div className="body-menu-item">
+                            <div className="new">
+                                <a className="noStyle" href="#">
                                     <img src={logo} alt="" />
                                 </a>
                             </div>
                         </div>
-                        <div class="body-menu-item">
-                            <a class="noStyleLink" href="#">MENS</a>
+                        <div className="body-menu-item">
+                            <a className="noStyleLink" href="#">MENS</a>
                         </div>
-                        <div class="body-menu-item">
-                            <a class="noStyleLink" href="#">Women</a>
+                        <div className="body-menu-item">
+                            <a className="noStyleLink" href="#">Women</a>
                         </div>
-                        <div class="body-menu-item">
-                            <a class="noStyleLink" href="#">Sports</a>
+                        <div className="body-menu-item">
+                            <a className="noStyleLink" href="#">Sports</a>
                         </div>
                     </div>
                 </div>
@@ -32,46 +32,46 @@ const Arrivals = () => {
 
 
 
-            <div class="container">
-                <div class="newArrivals">
+            <div className="container">
+                <div className="newArrivals">
                     <hr/>
                         <div style={{width: '100%', margin: '0 auto', overflowX: 'auto'}}>
-                            <div class="btnWrap">
-                                <div class="btnDiv">
-                                    <button class="btn">New Arrivals</button>
+                            <div className="btnWrap">
+                                <div className="btnDiv">
+                                    <button className="btn">New Arrivals</button>
                                 </div>
-                                <div class="btnDiv">
-                                    <button class="btn">WHAT'S TRENDING</button>
+                                <div className="btnDiv">
+                                    <button className="btn">WHAT'S TRENDING</button>
                                 </div>
-                                <div class="btnDiv">
-                                    <button class="btn">MAMBER EXCLUSIVES</button>
+                                <div className="btnDiv">
+                                    <button className="btn">MAMBER EXCLUSIVES</button>
                                 </div>
                             </div>
                         </div>
                         <hr/>
                         </div>
-                        <div class="row">
-                            <div class="col2">
-                                <div class="CartImg">
+                        <div className="row">
+                            <div className="col2">
+                                <div className="CartImg">
                                     <a href="#"> <img src={img2} alt=""/></a>
-                                    <div class="prices">$98</div>
+                                    <div className="prices">$98</div>
                                 </div>
-                                <div class="ProDatils">
-                                    <p class="productName">Beckenbauer Track Jacket</p>
-                                    <p class="productStatus">Men's Originals</p>
-                                    <p class="productStatus">early access black friday</p>
+                                <div className="ProDatils">
+                                    <p className="productName">Beckenbauer Track Jacket</p>
+                                    <p className="productStatus">Men's Originals</p>
+                                    <p className="productStatus">early access black friday</p>
                                 </div>
                             </div>
 
-                            <div class="col2">
-                                <div class="CartImg">
+                            <div className="col2">
+                                <div className="CartImg">
                                     <a href="#"> <img src={img2} alt=""/></a>
-                                    <div class="prices">$98</div>
+                                    <div className="prices">$98</div>
                                 </div>
-                                <div class="ProDatils">
-                                    <p class="productName">Beckenbauer Track Jacket</p>
-                                    <p class="productStatus">Men's Originals</p>
-                                    <p class="productStatus">early access black friday</p>
+                                <div className="ProDatils">
+                                    <p className="productName">Beckenbauer Track Jacket</p>
+                                    <p className="productStatus">Men's Originals</p>
+                                    <p className="productStatus">early access black friday</p>
                                 </div>
                             </div>
 

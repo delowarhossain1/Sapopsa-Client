@@ -65,7 +65,7 @@ const Dashboard = ({children}) => {
                 </div>
                 {
                     menuItem.map((item, index) => (
-                        <NavLink to={item.path} key={index} className={css.link }activeclassName="active">
+                        <NavLink to={item.path} key={index} className={css.link }>
                             <div className={css.icon}>{item.icon}</div>
                             <div style={{ display: isOpen ? "block" : "none" }} className={css.link_text}>{item.name}</div>
                         </NavLink>
