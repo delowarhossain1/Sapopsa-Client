@@ -17,6 +17,7 @@ import "./fonts/specimen_italic/stylesheet.css";
 import Login from './components/pages/Login/Login';
 import Dashboard from './components/pages/Dashboard/Dashboard';
 import Report from './components/pages/Dashboard/Admin/Report/Report';
+import Loading from './components/shared/Loading/Loading';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/loading' element={<Loading />} />
 
 
           {/* Dashboard route */}
