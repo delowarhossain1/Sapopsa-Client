@@ -74,8 +74,6 @@ const Dashboard = ({children}) => {
             </div>
 
             <main>
-                <DashboardTitle />
-
                 <Outlet />
             </main>
         </div>

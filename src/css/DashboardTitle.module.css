@@ -1,5 +1,11 @@
 .dashboardTitle{
-    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.dashboardTitle > span{
+    font-size: 20px;
+    margin-left: 5px;
 }
 .head{
     display: flex;
@@ -27,4 +33,8 @@
     height: 30px;
     border-radius: 50%;
     border: 2px solid black;
+}
+
+.titleIcon{
+    font-size: 25px;
 }

@@ -1,6 +1,7 @@
 import React from 'react';  
 import { FaHome } from 'react-icons/fa';
 import { AiOutlineLogout } from 'react-icons/ai';
+import { RiDashboardLine } from 'react-icons/ri';
 import css from "../../../css/DashboardTitle.module.css";
 import { Link } from 'react-router-dom';
 import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
@@ -17,7 +18,10 @@ const DashboardTitle = ({title = 'Title here...'}) => {
 
     return (
         <div className={css.head}>
-            <h2 className={css.dashboardTitle}>{title}</h2>
+            <h2 className={css.dashboardTitle}>
+                <RiDashboardLine className={css.titleIcon}/>
+                <span>{title}</span>
+            </h2>
 
             <div className={css.icon}>
                 <Link to='/' title='Home page' className={css.homeIcon}><FaHome /></Link>
