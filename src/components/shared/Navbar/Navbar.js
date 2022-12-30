@@ -130,10 +130,11 @@ const Navbar = () => {
 
 
                         <div className="usersNotify user">
-                            <a href="login.html"><img src={user} alt="" /><span className="notificaTion">1</span></a>
+                            <Link to='/dashboard'><img src={user} alt="" /></Link>
                         </div>
+
                         <div className="usersNotify love">
-                            <a href="#"><img src={love} alt="" /><span className="notificaTion">1</span></a>
+                            <Link to='/login'><img src={love} alt="" /><span className="notificaTion">1</span></Link>
                         </div>
 
                         <div className="usersNotify">

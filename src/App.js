@@ -1,3 +1,4 @@
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './components/pages/Home/Home';
 import Footer from './components/shared/Footer/Footer';
@@ -13,13 +14,23 @@ import "./css/single-product.css";
 import "./css/style.css";
 import "./fonts/specimen_bold/stylesheet.css";
 import "./fonts/specimen_italic/stylesheet.css";
+import Login from './components/pages/Login/Login';
+import Dashboard from './components/pages/Dashboard/Dashboard';
+import Report from './components/pages/Dashboard/Admin/Report/Report';
 
 function App() {
   return (
     <div>
-        <Home />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
 
 
+          {/* Dashboard route */}
+          <Route path='/dashboard' element={< Dashboard/>}> 
+              <Route index element={<Report />} />
+          </Route>
+        </Routes>
 
         <Footer />
     </div>
