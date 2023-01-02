@@ -8,14 +8,18 @@ import {FiShoppingBag, FiUsers} from "react-icons/fi";
 import {BsCardHeading} from "react-icons/bs";
 import {RiUserSettingsFill} from "react-icons/ri";
 import {BiCategoryAlt} from "react-icons/bi";
+import {CgDisplayFullwidth} from "react-icons/cg";
 import { NavLink, Outlet } from 'react-router-dom';
 import css from "../../../css/Dashboard.module.css";
-import DashboardTitle from './DashboardTitle';
+import { AiOutlineLogout } from 'react-icons/ai';
+import { useSignOut } from 'react-firebase-hooks/auth';
+import auth from './../../../firebase.init';
+import Loading from '../../shared/Loading/Loading';
 
 const Dashboard = ({children}) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
-
+    const [signOut, signOutLoading] = useSignOut(auth);
 
     const menuItem = [
         {
@@ -24,36 +28,45 @@ const Dashboard = ({children}) => {
             icon: <FaTh />
         },
         {
-            path: "/orders",
+            path: "manage-orders",
             name: "Orders",
             icon: <FiShoppingBag />
         },
         {
-            path: "/categories",
-            name: "Categories",
-            icon: <BiCategoryAlt/>
-        },
-        {
-            path: "/product",
+            path: "manage-products",
             name: "Product",
             icon: <FaShoppingBag />
         },
         {
-            path: "/customers",
+            path: "manage-categories",
+            name: "Categories",
+            icon: <BiCategoryAlt/>
+        },
+        {
+            path: "manage-slider",
+            name: "Slider",
+            icon: <CgDisplayFullwidth/>
+        },
+        {
+            path: "manage-heading",
             name: "Heading",
             icon: <BsCardHeading />
         },
         {
-            path: "/customers",
+            path: "customers",
             name: "Customers",
             icon: <FiUsers />
         },
         {
-            path: "/admin",
+            path: "admins",
             name: "Admin",
             icon: <RiUserSettingsFill />
         },
     ]
+
+    if(signOutLoading){
+        return <Loading />
+    }
 
     return (
         <div className={css.container}>
@@ -76,6 +89,13 @@ const Dashboard = ({children}) => {
                         </NavLink>
                     ))
                 }
+
+                {/* Log out button */}
+                <div className={css.link}  onClick={() => signOut()} style={{cursor : "pointer"}}>
+                    <div className={css.icon}><AiOutlineLogout /></div>
+                    <div style={{ display: isOpen ? "block" : "none" }} className={css.link_text}>Log out</div> 
+                </div>
+
             </div>
 
             <main>

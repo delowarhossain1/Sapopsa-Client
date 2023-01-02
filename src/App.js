@@ -19,6 +19,14 @@ import Dashboard from './components/pages/Dashboard/Dashboard';
 import Report from './components/pages/Dashboard/Admin/Report/Report';
 import Loading from './components/shared/Loading/Loading';
 import RequiredAuth from './components/shared/Required/RequiredAuth/RequiredAuth';
+import Slider from './components/pages/Home/Slider/Slider';
+import SliderManage from './components/pages/Dashboard/Admin/SliderManage/SliderManage';
+import ManageOrders from './components/pages/Dashboard/Admin/ManageOrders/ManageOrders';
+import ManageProducts from './components/pages/Dashboard/Admin/ManageProducts/ManageProducts';
+import ManageCategories from './components/pages/Dashboard/Admin/ManageCategories/ManageCategories';
+import ManageHeading from './components/pages/Dashboard/Admin/ManageHeading/ManageHeading';
+import Customers from './components/pages/Dashboard/Admin/Customers/Customers';
+import Admins from './components/pages/Dashboard/Admin/Admins/Admins';
 
 function App() {
   return (
@@ -33,9 +41,18 @@ function App() {
         <Route path='/dashboard' element={
           <RequiredAuth>
             < Dashboard />
-          </RequiredAuth>}>
+          </RequiredAuth>
+        }>
 
           <Route index element={<Report />} />
+          <Route path='manage-orders' element={<ManageOrders />} /> 
+          <Route path='manage-products' element={<ManageProducts />} /> 
+          <Route path='manage-categories' element={<ManageCategories />} /> 
+          <Route path='manage-slider' element={<SliderManage />} /> 
+          <Route path='manage-heading' element={<ManageHeading/>} /> 
+          <Route path='customers' element={<Customers/>} /> 
+          <Route path='admins' element={<Admins/>} /> 
+
         </Route>
       </Routes>
 
