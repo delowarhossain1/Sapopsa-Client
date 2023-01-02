@@ -2,6 +2,7 @@ import React from 'react';
 import { FaHome } from 'react-icons/fa';
 import { AiOutlineLogout } from 'react-icons/ai';
 import { RiDashboardLine } from 'react-icons/ri';
+import { BiCategoryAlt } from 'react-icons/bi';
 import css from "../../../css/DashboardTitle.module.css";
 import { Link } from 'react-router-dom';
 import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';

@@ -1,0 +1,25 @@
+.reportDisplay{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+    align-items: center;
+}
+
+.reportDisplay > div{
+    background-color: #ddd;
+    padding: 7px;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+.displayIcon{
+    font-size: 30px;
+}
+.displayNumber{
+    font-size: 40px;
+}

@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import {
     FaTh,
     FaBars,
-    FaUserAlt,
-    FaRegChartBar,
-    FaCommentAlt,
     FaShoppingBag,
-    FaThList
 } from "react-icons/fa";
+import {FiShoppingBag, FiUsers} from "react-icons/fi";
+import {BsCardHeading} from "react-icons/bs";
+import {RiUserSettingsFill} from "react-icons/ri";
+import {BiCategoryAlt} from "react-icons/bi";
 import { NavLink, Outlet } from 'react-router-dom';
 import css from "../../../css/Dashboard.module.css";
 import DashboardTitle from './DashboardTitle';
@@ -24,19 +24,14 @@ const Dashboard = ({children}) => {
             icon: <FaTh />
         },
         {
-            path: "/about",
-            name: "About",
-            icon: <FaUserAlt />
+            path: "/orders",
+            name: "Orders",
+            icon: <FiShoppingBag />
         },
         {
-            path: "/analytics",
-            name: "Analytics",
-            icon: <FaRegChartBar />
-        },
-        {
-            path: "/comment",
-            name: "Comment",
-            icon: <FaCommentAlt />
+            path: "/categories",
+            name: "Categories",
+            icon: <BiCategoryAlt/>
         },
         {
             path: "/product",
@@ -44,10 +39,20 @@ const Dashboard = ({children}) => {
             icon: <FaShoppingBag />
         },
         {
-            path: "/productList",
-            name: "Product List",
-            icon: <FaThList />
-        }
+            path: "/customers",
+            name: "Heading",
+            icon: <BsCardHeading />
+        },
+        {
+            path: "/customers",
+            name: "Customers",
+            icon: <FiUsers />
+        },
+        {
+            path: "/admin",
+            name: "Admin",
+            icon: <RiUserSettingsFill />
+        },
     ]
 
     return (
