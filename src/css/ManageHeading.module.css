@@ -1,0 +1,22 @@
+.form{
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.form textarea{
+    max-width: 400px;
+    min-width: 400px;
+    outline: none;
+    padding: 5px;
+    font-size: 18px;
+
+}
+
+.form button{
+    display: block;
+    width: 400px;
+    padding: 5px;
+    font-size: 17px;
+    cursor: pointer;
+}

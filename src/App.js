@@ -19,7 +19,6 @@ import Dashboard from './components/pages/Dashboard/Dashboard';
 import Report from './components/pages/Dashboard/Admin/Report/Report';
 import Loading from './components/shared/Loading/Loading';
 import RequiredAuth from './components/shared/Required/RequiredAuth/RequiredAuth';
-import Slider from './components/pages/Home/Slider/Slider';
 import ManageSlider from './components/pages/Dashboard/Admin/ManageSlider/ManageSlider';
 import ManageOrders from './components/pages/Dashboard/Admin/ManageOrders/ManageOrders';
 import ManageProducts from './components/pages/Dashboard/Admin/ManageProducts/ManageProducts';
@@ -57,6 +56,7 @@ function App() {
 
           <Route path='manage-categories/add-new-category' element={<AddNewCategori />} />
           <Route path='manage-slider/add-new-slider' element={<AddNewSlider />} />
+          
         </Route>
       </Routes>
 
