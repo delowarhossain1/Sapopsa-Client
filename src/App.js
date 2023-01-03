@@ -27,6 +27,7 @@ import ManageCategories from './components/pages/Dashboard/Admin/ManageCategorie
 import ManageHeading from './components/pages/Dashboard/Admin/ManageHeading/ManageHeading';
 import Customers from './components/pages/Dashboard/Admin/Customers/Customers';
 import Admins from './components/pages/Dashboard/Admin/Admins/Admins';
+import AddNewCategori from './components/pages/Dashboard/Admin/ManageCategories/AddNewCategori';
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
           <Route path='customers' element={<Customers/>} /> 
           <Route path='admins' element={<Admins/>} /> 
 
+          <Route path='manage-categories/add-new-category' element={<AddNewCategori />} />
         </Route>
       </Routes>
 
