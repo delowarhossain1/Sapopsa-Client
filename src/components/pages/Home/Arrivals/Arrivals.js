@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import logo from "../../../../images/1.png";
-import img2 from '../../../../images/2.jpg'
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import LatestProductCard from './LatestProductCard';
 
 const Arrivals = () => {

@@ -23,8 +23,12 @@ const Categories = () => {
 
                     {
                         categories?.map(category => (
-                            <div className="col" style={{ border: '1px solid #ddd', borderRadius: "2px", cursor: 'pointer' }} 
-                            onClick={() => navigate(`/category/${category.title}`)}>
+                            <div
+                                className="col"
+                                style={{ border: '1px solid #ddd', borderRadius: "2px", cursor: 'pointer' }}
+                                onClick={() => navigate(`/category/${category.title}`)}
+                                key={category?._id}
+                            >
 
                                 <img src={category?.img} alt="category" />
                                 <div className="productBtn">

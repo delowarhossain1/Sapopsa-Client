@@ -7,14 +7,12 @@ import "swiper/css/pagination";
 const Slider = () => {
     const [sliders, setSliders] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         fetch('http://localhost:5000/sliders')
-        .then(res => res.json())
-        .then(res => setSliders(res));
+            .then(res => res.json())
+            .then(res => setSliders(res));
 
     }, []);
-
-    console.log(sliders);
 
     return (
         <div className='slider'>
@@ -34,7 +32,10 @@ const Slider = () => {
 
                 {
                     sliders?.map(slider => (
-                        <SwiperSlide><img src={slider?.img} alt="slider" /></SwiperSlide>
+                        <SwiperSlide
+                         key={slider?._id}>
+                            <img src={slider?.img} alt="slider" />
+                        </SwiperSlide>
                     ))
                 }
 
