@@ -1,9 +1,16 @@
-import React from 'react';
-import img1 from "../../../../images/1.jpg";
-import img2 from "../../../../images/2.jpg";
-import img3 from "../../../../images/3.jpg";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Categories = () => {
+    const navigate = useNavigate();
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/categories')
+            .then(res => res.json())
+            .then(res => setCategories(res));
+    }, []);
+
     return (
         <div>
             {/* <!-- home section end --> */}
@@ -13,30 +20,19 @@ const Categories = () => {
 
             <div className="container conTainer">
                 <div className="row">
-                    <div className="col">
-                        <a href="manst t-shirt.html"> <img src={img1} alt=""/>
-                        </a>
-                        <div className="productBtn">
-                            <a href="manst t-shirt.html">Men Polo Shirt</a>
-                        </div>
-                    </div>
 
-                    <div className="col">
-                        <a href="manst t-shirt.html"> <img src={img2} alt=""/>
-                        </a>
-                        <div className="productBtn">
-                            <a href="#">Men t-Shirt</a>
-                        </div>
-                    </div>
+                    {
+                        categories?.map(category => (
+                            <div className="col" style={{ border: '1px solid #ddd', borderRadius: "2px", cursor: 'pointer' }} 
+                            onClick={() => navigate(`/category/${category.title}`)}>
 
-                    <div className="col">
-                        <a href="manst t-shirt.html"> <img src={img3} alt=""/>
-                        </a>
-                        <div className="productBtn">
-                            <a href="#">hoodie</a>
-                        </div>
-                    </div>
-
+                                <img src={category?.img} alt="category" />
+                                <div className="productBtn">
+                                    <span>Men Polo Shirt</span>
+                                </div>
+                            </div>
+                        ))
+                    }
 
                 </div>
             </div>

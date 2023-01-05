@@ -412,12 +412,12 @@ img.search {
 }
 
 
-.productBtn a:hover {
+.productBtn span:hover {
 	background-color: var(---primary-color);
 	color: var(---back-color);
 }
 
-.productBtn a {
+.productBtn span {
 	text-transform: capitalize;
 	padding: 4px 10px;
     background: #fff;
@@ -867,7 +867,7 @@ table.cartTable {
 		margin-top: -1px;
 	}
 
-	.productBtn a {
+	.productBtn span {
 		font-size: 12px;
 		font-weight: 600;
 	}
