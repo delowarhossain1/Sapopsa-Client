@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 
 const Slider = () => {
+    const [sliders, setSliders] = useState([]);
+
+    useEffect(()=>{
+        fetch('http://localhost:5000/sliders')
+        .then(res => res.json())
+        .then(res => setSliders(res));
+
+    }, []);
+
+    console.log(sliders);
+
     return (
         <div className='slider'>
             <Swiper
@@ -20,13 +31,12 @@ const Slider = () => {
                 modules={[Pagination, Autoplay]}
                 className="mySwiper"
             >
-                <SwiperSlide>
-                    <img src='https://icms-image.slatic.net/images/ims-web/a3fcc2d3-83f1-461e-96b6-03167a629cb8.jpg' />
-                </SwiperSlide>
 
-                <SwiperSlide><img src="https://icms-image.slatic.net/images/ims-web/c6b67328-9d5c-4e87-b4a0-90775f4d755b.jpg" alt="" /></SwiperSlide>
-
-                <SwiperSlide><img src="https://icms-image.slatic.net/images/ims-web/95847e2d-7548-4ec9-9a8a-5c49c0f7e23b.jpg" alt="" /></SwiperSlide>
+                {
+                    sliders?.map(slider => (
+                        <SwiperSlide><img src={slider?.img} alt="slider" /></SwiperSlide>
+                    ))
+                }
 
             </Swiper>
         </div>
