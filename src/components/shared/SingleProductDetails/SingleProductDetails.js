@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Loading from '../Loading/Loading';
 import Navbar from '../Navbar/Navbar';
@@ -10,6 +10,7 @@ const SingleProductDetails = () => {
     const [loading, setLoading] = useState(true);
     const [changeImg, setChangeImg] = useState('');
     const [selectedSize, setSelectedSize] = useState('');
+    const quantityRef = useRef();
 
     useEffect(() => {
         fetch(`http://localhost:5000/get-product/${id}`)
@@ -21,17 +22,22 @@ const SingleProductDetails = () => {
 
     }, [id]);
 
-    // Product size change handeler
-    const sizeChangeHandelar = (e, size) => {
-        console.log(e)
-        console.log(e, size);
-    }
-
     if (loading) {
         return <Loading />
     }
 
     const { img, title, size, price, description, spacification, displayIMG } = product;
+
+    const addToCardHandeler = () => {
+        const quantity = quantityRef.current.value;
+
+        const info = {
+            img,
+            title,
+            size: selectedSize,
+            quantity,
+        }
+    }
 
     return (
         <>
@@ -157,14 +163,17 @@ const SingleProductDetails = () => {
                                         }
 
                                     </div>
+
+
                                     <div class="quantiBtn">
                                         Quantity
-                                        <input type="number" name="" id="" />
+                                        <input type="number" name="quantity" min='1' ref={quantityRef} />
                                     </div>
                                     <div class="filedWrap">
                                         <span class="pricesFiled"> <del>${price + 98}</del> ${price}</span>
                                     </div>
-                                    <button class="buyNow">Add To Cart</button>
+                                    <button class="buyNow" onClick={addToCardHandeler}>Add To Cart</button>
+
                                 </div>
                             </div>
                         </div>

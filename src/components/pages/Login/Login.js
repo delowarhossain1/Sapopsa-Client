@@ -7,24 +7,49 @@ import auth from './../../../firebase.init';
 import { useSignInWithGoogle } from "react-firebase-hooks/auth"
 import { useLocation, useNavigate } from 'react-router-dom';
 import Loading from '../../shared/Loading/Loading';
+import {setAccessToken} from "../../../utilites/setAndGetAccessToken";
 
 const Login = () => {
-    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+    const [signInWithGoogle, user, loading] = useSignInWithGoogle(auth);
 
     // After login 
     const location = useLocation();
     const navigate = useNavigate();
     let from = location.state?.from?.pathname || "/";
 
+
     if(user){
-        navigate(from);
+
+        const userInfo = {
+            name : user?.user?.displayName,
+            email : user?.user?.email,
+            role : 'user'
+        }
+
+        fetch('http://localhost:5000/user', {
+            method : 'PUT',
+            headers : {
+                'content-type' : 'application/json'
+            },
+            body : JSON.stringify(userInfo)
+        })
+        .then(res => res.json())
+        .then(res => {
+            
+            if(res?.token){
+                setAccessToken(res.token);
+                navigate(from);
+            }
+        });
+
     }
+
+
 
     if(loading){
         return <Loading />
     }
 
-    console.log(user)
     return (
         <div>
             <Navbar />
