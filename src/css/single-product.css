@@ -36,7 +36,7 @@
 
 .samollPic {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 }
 
 .small {
@@ -97,6 +97,7 @@ table, td, th {
 .sizeWrap {
 	display: flex;
 	align-items: center;
+	margin-bottom: 20px;
 }
 
 .sizeSelector {

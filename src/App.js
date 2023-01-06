@@ -28,6 +28,7 @@ import Customers from './components/pages/Dashboard/Admin/Customers/Customers';
 import Admins from './components/pages/Dashboard/Admin/Admins/Admins';
 import AddNewCategori from './components/pages/Dashboard/Admin/ManageCategories/AddNewCategori';
 import AddNewSlider from './components/pages/Dashboard/Admin/ManageSlider/AddNewSlider';
+import SingleProductDetails from './components/shared/SingleProductDetails/SingleProductDetails';
 
 function App() {
   return (
@@ -35,10 +36,11 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/loading' element={<Loading />} />
+        <Route path='/product-details/:id' element={<SingleProductDetails />} />
 
 
-        {/* Dashboard route */}
+        {/********* Dashboard route ************/}
+
         <Route path='/dashboard' element={
           <RequiredAuth>
             < Dashboard />
@@ -56,7 +58,7 @@ function App() {
 
           <Route path='manage-categories/add-new-category' element={<AddNewCategori />} />
           <Route path='manage-slider/add-new-slider' element={<AddNewSlider />} />
-          
+
         </Route>
       </Routes>
 
