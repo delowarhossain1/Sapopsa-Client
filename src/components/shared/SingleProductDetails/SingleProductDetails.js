@@ -37,6 +37,7 @@ const SingleProductDetails = () => {
             size: selectedSize,
             quantity,
         }
+        
     }
 
     return (

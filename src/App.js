@@ -29,8 +29,12 @@ import Admins from './components/pages/Dashboard/Admin/Admins/Admins';
 import AddNewCategori from './components/pages/Dashboard/Admin/ManageCategories/AddNewCategori';
 import AddNewSlider from './components/pages/Dashboard/Admin/ManageSlider/AddNewSlider';
 import SingleProductDetails from './components/shared/SingleProductDetails/SingleProductDetails';
+import useAdmin from './hooks/useAdmin';
+import MyOrders from './components/pages/Dashboard/User/MyOrders/MyOrders';
 
 function App() {
+  const [isAdmin] = useAdmin();
+
   return (
     <div>
       <Routes>
@@ -46,8 +50,14 @@ function App() {
             < Dashboard />
           </RequiredAuth>
         }>
+          {/* Index route */}
+          {
+            ! isAdmin ? 
+            <Route index element={<MyOrders />} />
+            :
+            <Route index element={<Report />} />
+          }
 
-          <Route index element={<Report />} />
           <Route path='manage-orders' element={<ManageOrders />} /> 
           <Route path='manage-products' element={<ManageProducts />} /> 
           <Route path='manage-categories' element={<ManageCategories />} /> 

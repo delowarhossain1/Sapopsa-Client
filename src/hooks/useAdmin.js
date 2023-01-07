@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from './../firebase.init';
 
-const useAdmin = (user) => {
+const useAdmin = () => {
+    const [user, userLoading] = useAuthState(auth);
     const [admin, setAdmin] = useState(false);
     const [loading, setLoading] = useState(true);
-
+    
     useEffect(()=>{
         if(user){
             const email = user?.email;
