@@ -32,3 +32,22 @@
 .newBtn button a{
     color: black;
 }
+
+.deleteBtn{
+    background-color: #fb5200;
+    padding: 7px 15px;
+    color: white;
+    border: none;
+    font-size: 17px;
+    border-radius: 3px;
+}
+
+.categoryImg{
+    width: 50px;
+}
+
+.btn{
+    padding: 5px;
+    font-size: 17px;
+    cursor: pointer;
+}

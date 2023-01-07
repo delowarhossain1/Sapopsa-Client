@@ -2,7 +2,9 @@ import React from 'react';
 import DashboardTitle from '../../DashboardTitle';
 import PageTitle from '../../../../shared/PageTitle/PageTitle';
 import css from "../../../../../css/ManageSlider.module.css";
+import css2 from "../../../../../css/Table.module.css";
 import { Link } from 'react-router-dom';
+import img1 from "../../../../../images/1.jpg";
 
 const ManageSlider = () => {
     return (
@@ -27,11 +29,12 @@ const ManageSlider = () => {
 
                     <tr>
                         <th>01</th>
-                        <th>01</th>
+                        <th>
+                            <img src={img1} className={css2.categoryImg} alt="" />
+                        </th>
                         <th>This is a title.</th>
                         <th>
-                            <button className={css.deleteBtn}>Delete</button>
-                            <button className={css.editBtn}>Edit</button>
+                            <button className={css2.deleteBtn}>Delete</button>
                         </th>
                     </tr>
                 </table>
