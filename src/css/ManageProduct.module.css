@@ -1,0 +1,84 @@
+.addNewBtn{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.addNewBtn button{
+    padding: 5px;
+    cursor: pointer;
+}
+
+.deleteBtn{
+    background-color: #fb5200;
+    padding: 8px 15px;
+    font-size: 17px;
+    border: none;
+    color: wheat;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+input{
+    padding: 5px;
+    outline: none;
+    font-size: 18px;
+}
+
+.row1 input{
+    width: 100%;
+    margin-right: 10px;
+}
+
+select{
+    font-size: 18px;
+    padding: 5px;
+    margin-left: 10px;
+    outline: none;
+}
+
+.row2{
+    margin: 20px 0px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.sizeBtn input{
+    margin-top: 5px;
+}
+.sizeBtn button{
+    padding: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.row3{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.row3 textarea{
+    height: 150px;
+    padding: 5px;
+    outline: none;
+    font-size: 18px;
+    min-width: 45%;
+    max-width: 45%;
+    min-height: 200px;
+}
+
+.submitBtn{
+    padding: 5px;
+    width: 150px;
+    margin-top: 30px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.displayImg{
+    width: 50px;
+    height: 50px;
+}

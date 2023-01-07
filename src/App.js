@@ -31,6 +31,7 @@ import AddNewSlider from './components/pages/Dashboard/Admin/ManageSlider/AddNew
 import SingleProductDetails from './components/shared/SingleProductDetails/SingleProductDetails';
 import useAdmin from './hooks/useAdmin';
 import MyOrders from './components/pages/Dashboard/User/MyOrders/MyOrders';
+import AddNewProduct from './components/pages/Dashboard/Admin/ManageProducts/AddNewProduct';
 
 function App() {
   const [isAdmin] = useAdmin();
@@ -60,6 +61,7 @@ function App() {
 
           <Route path='manage-orders' element={<ManageOrders />} /> 
           <Route path='manage-products' element={<ManageProducts />} /> 
+          <Route path='manage-products/add-new-product' element={<AddNewProduct />} /> 
           <Route path='manage-categories' element={<ManageCategories />} /> 
           <Route path='manage-slider' element={<ManageSlider />} /> 
           <Route path='manage-heading' element={<ManageHeading/>} /> 
