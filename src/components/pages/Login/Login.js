@@ -23,7 +23,6 @@ const Login = () => {
         const userInfo = {
             name : user?.user?.displayName,
             email : user?.user?.email,
-            role : 'user'
         }
 
         fetch('http://localhost:5000/user', {

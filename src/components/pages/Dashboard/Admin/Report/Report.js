@@ -33,7 +33,7 @@ const Report = () => {
 
             </div>
 
-            <div>
+            <div className={css}>
                 <div>Recent orders</div>
 
                 <div>Recent reviews</div>
