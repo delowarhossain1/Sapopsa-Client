@@ -4,11 +4,11 @@ import DashboardTitle from '../../DashboardTitle';
 import css from "../../../../../css/Table.module.css";
 import css2 from "../../../../../css/ManageProduct.module.css";
 import { useNavigate } from 'react-router-dom';
-import img1 from "../../../../../images/1.jpg";
 import { getAccessToken } from "../../../../../utilites/setAndGetAccessToken";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../../../firebase.init';
 import useModal from './../../../../../hooks/useModal';
+import Loading from '../../../../shared/Loading/Loading';
 
 const ManageProducts = () => {
     const navigate = useNavigate();
@@ -31,6 +31,10 @@ const ManageProducts = () => {
     // Delete product
     const deleteProduct = (id) => {
         deleteModal()
+    }
+
+    if(userLoading){
+        return <Loading />
     }
 
     return (
