@@ -8,9 +8,11 @@ import img1 from "../../../../../images/1.jpg";
 import { getAccessToken } from "../../../../../utilites/setAndGetAccessToken";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../../../firebase.init';
+import useModal from './../../../../../hooks/useModal';
 
 const ManageProducts = () => {
     const navigate = useNavigate();
+    const {deleteModal} = useModal();
     const [user, userLoading] = useAuthState(auth);
     const [products, setProducts] = useState([]);
 
@@ -24,6 +26,12 @@ const ManageProducts = () => {
             .then(res => setProducts(res));
 
     }, [user]);
+
+
+    // Delete product
+    const deleteProduct = (id) => {
+        deleteModal()
+    }
 
     return (
         <div>
@@ -55,7 +63,10 @@ const ManageProducts = () => {
                                     <th>${product?.price}</th>
                                     <th>{product?.title}</th>
                                     <th>
-                                        <button className={css2.deleteBtn}>Delete</button>
+                                        <button 
+                                        className={css2.deleteBtn}
+                                            onClick={()=> deleteProduct(product._id)}
+                                        >Delete</button>
                                     </th>
                                 </tr>
                             ))
