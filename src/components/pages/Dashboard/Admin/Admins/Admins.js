@@ -1,9 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import DashboardTitle from '../../DashboardTitle';
 import css from "../../../../../css/Table.module.css";
 import PageTitle from '../../../../shared/PageTitle/PageTitle';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../../../firebase.init';
+import { getAccessToken } from '../../../../../utilites/setAndGetAccessToken';
+import Loading from '../../../../shared/Loading/Loading';
 
 const Admins = () => {
+    const [user, loading] = useAuthState(auth);
+    const [admins, setAdmins] = useState([]);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/admins?email=${user?.email}`, {
+            headers: {
+                auth: `Bearer ${getAccessToken()}`
+            }
+        })
+            .then(res => res.json())
+            .then(res => setAdmins(res));
+
+    }, [user]);
+
+    if(loading){
+        return <Loading />
+    }
+
     return (
         <div>
             <DashboardTitle title='Admins' />
@@ -18,14 +40,19 @@ const Admins = () => {
                         <th>Action</th>
                     </tr>
 
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th>
-                            <button className={css.btn}>Delete Admin</button>
-                        </th>
-                    </tr>
+
+                    {
+                        admins?.map((admin, i) => (
+                            <tr key={admin._id}>
+                                <th>{ i + 1}</th>
+                                <th>{admin?.name}</th>
+                                <th>{admin?.email}</th>
+                                <th>
+                                    <button className={css.btn}>Delete Admin</button>
+                                </th>
+                            </tr>
+                        ))
+                    }
                 </table>
             </div>
         </div>

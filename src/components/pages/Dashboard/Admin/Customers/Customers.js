@@ -13,8 +13,8 @@ const Customers = () => {
 
     useEffect(() => {
         fetch(`http://localhost:5000/customers?email=${user?.email}`, {
-            headers : {
-                auth : `Bearer ${getAccessToken()}`
+            headers: {
+                auth: `Bearer ${getAccessToken()}`
             }
         })
             .then(res => res.json())
@@ -22,8 +22,25 @@ const Customers = () => {
 
     }, [user]);
 
+    // Make admin
+    const makeAdmin = (email) => {
+        if (user?.email) {
 
-    if(loading){
+            fetch(`http://localhost:5000/make-admin?email=${user?.email}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    auth: `Bearer ${getAccessToken()}`
+                },
+                body: JSON.stringify(email)
+            })
+                .then(res => res.json())
+                .then(res => console.log(res));
+        }
+    }
+
+    if (loading) {
         return <Loading />
     }
 
@@ -48,10 +65,12 @@ const Customers = () => {
                                 <th>{u?.name}</th>
                                 <th>{u?.email}</th>
                                 <th>
-                                    <button 
+                                    <button
                                         className={css.btn}
-                                        disabled= {u?.role === 'admin'}
-                                        >Make Admin</button>
+                                        disabled={u?.role === 'admin'}
+                                        onClick={() => makeAdmin(u?.email)}
+                                    >Make Admin
+                                    </button>
                                 </th>
                             </tr>
                         ))
