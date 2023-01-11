@@ -12,7 +12,8 @@ import Loading from '../../../../shared/Loading/Loading';
 
 const ManageProducts = () => {
     const navigate = useNavigate();
-    const {deleteModal} = useModal();
+    const { deleteModal, successFullModal } = useModal();
+    const [reFetch, setRefacth] = useState(false);
     const [user, userLoading] = useAuthState(auth);
     const [products, setProducts] = useState([]);
 
@@ -25,15 +26,32 @@ const ManageProducts = () => {
             .then(res => res.json())
             .then(res => setProducts(res));
 
-    }, [user]);
+    }, [user, reFetch]);
 
 
     // Delete product
     const deleteProduct = (id) => {
-        deleteModal()
+        if (user) {
+            deleteModal(() => {
+                fetch(`http://localhost:5000/product/${id}?email=${user?.email}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        auth: `Bearer ${getAccessToken()}`
+                    }
+                })
+                    .then(res => res.json())
+                    .then(res => {
+                        if (res?.deletedCount) {
+                            successFullModal();
+                            setRefacth(true);
+                        }
+                    })
+            });
+        }
     }
 
-    if(userLoading){
+    if (userLoading) {
         return <Loading />
     }
 
@@ -67,9 +85,9 @@ const ManageProducts = () => {
                                     <th>${product?.price}</th>
                                     <th>{product?.title}</th>
                                     <th>
-                                        <button 
-                                        className={css2.deleteBtn}
-                                            onClick={()=> deleteProduct(product._id)}
+                                        <button
+                                            className={css2.deleteBtn}
+                                            onClick={() => deleteProduct(product._id)}
                                         >Delete</button>
                                     </th>
                                 </tr>

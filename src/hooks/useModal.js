@@ -13,7 +13,7 @@ const useModal = () => {
     }
 
 
-    const deleteModal = () => {
+    const deleteModal = (cb) => {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -24,11 +24,7 @@ const useModal = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
+                cb();
             }
         })
     }
