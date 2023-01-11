@@ -6,24 +6,49 @@ import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../../../firebase.init';
 import Loading from '../../../../shared/Loading/Loading';
-import {getAccessToken} from "../../../../../utilites/setAndGetAccessToken";
+import { getAccessToken } from "../../../../../utilites/setAndGetAccessToken";
 import useModal from './../../../../../hooks/useModal';
 
 const ManageCategories = () => {
     const [user, userLoading] = useAuthState(auth);
-    const {deleteModal} = useModal();
+    const [reFetch, setReFetch] = useState(false);
+    const { deleteModal, successFullModal } = useModal();
     const [allCategory, setAllCategory] = useState([]);
 
     useEffect(() => {
         fetch(`http://localhost:5000/all-categories?email=${user?.email}`, {
-            headers : {
-                auth : `Bearer ${getAccessToken()}`
+            headers: {
+                auth: `Bearer ${getAccessToken()}`
             }
         })
             .then(res => res.json())
             .then(res => setAllCategory(res))
 
-    }, [user]);
+    }, [user, reFetch]);
+
+    // delete category
+    const deleteCategory = (id) => {
+
+        deleteModal(() => {
+            if (user && id) {
+                fetch(`http://localhost:5000/category/${id}?email=${user?.email}`, {
+                    method: 'DELETE',
+                    headers: {
+                        "Content-Type": "application/json",
+                        auth: `Bearer ${getAccessToken()}`
+                    }
+                })
+                    .then(res => res.json())
+                    .then(res => {
+                        if (res?.deletedCount) {
+                            successFullModal();
+                            setReFetch(true);
+                        }
+                    })
+            }
+        });
+
+    }
 
     if (userLoading) {
         return <Loading />
@@ -58,9 +83,9 @@ const ManageCategories = () => {
                                 </th>
                                 <th>{c?.title}</th>
                                 <th>
-                                    <button 
-                                    className={css2.deleteBtn}
-                                    onClick={()=> deleteModal()}
+                                    <button
+                                        className={css2.deleteBtn}
+                                        onClick={() => deleteCategory(c?._id)}
                                     >Delete</button>
                                 </th>
                             </tr>
