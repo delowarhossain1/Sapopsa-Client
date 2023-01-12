@@ -28,8 +28,8 @@ const ManageHeading = () => {
             fetch(`http://localhost:5000/web-heading?email=${user?.email}`, {
                 method: 'PUT',
                 headers: {
-                    "content-type": "application/json",
-                    auth: getAccessToken()
+                    "Content-Type": "application/json",
+                    auth: `Bearer ${getAccessToken()}`
                 },
                 body: JSON.stringify(heading)
             })

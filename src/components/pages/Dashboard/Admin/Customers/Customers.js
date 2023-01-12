@@ -6,8 +6,11 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../../../firebase.init';
 import { getAccessToken } from '../../../../../utilites/setAndGetAccessToken';
 import Loading from '../../../../shared/Loading/Loading';
+import useModal from './../../../../../hooks/useModal';
 
 const Customers = () => {
+    const [refatch, setRefatch] = useState(false);
+    const { simpleAlertWithConfirmBtn, successFullModal } = useModal();
     const [user, loading] = useAuthState(auth);
     const [allUsers, setAllUsers] = useState([]);
 
@@ -20,24 +23,35 @@ const Customers = () => {
             .then(res => res.json())
             .then(res => setAllUsers(res));
 
-    }, [user]);
+    }, [user, refatch]);
 
     // Make admin
     const makeAdmin = (email) => {
-        if (user?.email) {
-
-            fetch(`http://localhost:5000/make-admin?email=${user?.email}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    auth: `Bearer ${getAccessToken()}`
-                },
-                body: JSON.stringify(email)
-            })
-                .then(res => res.json())
-                .then(res => console.log(res));
+        const alert = {
+            text : 'Do you want to make him an admin?',
+            confirmBtn : 'Yes, I want'
         }
+
+        simpleAlertWithConfirmBtn(alert, () => {
+            if (user?.email) {
+
+                fetch(`http://localhost:5000/make-admin?email=${user?.email}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        auth: `Bearer ${getAccessToken()}`
+                    },
+                    body: JSON.stringify({email})
+                })
+                    .then(res => res.json())
+                    .then(res => {
+                        if(res?.modifiedCount){
+                            successFullModal();
+                            setRefatch(true);
+                        }
+                    });
+            }
+        })
     }
 
     if (loading) {

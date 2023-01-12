@@ -30,9 +30,26 @@ const useModal = () => {
     }
 
 
+    function simpleAlertWithConfirmBtn(info = {}, cb) {
+        const { text = 'Are you sure?', confirmBtn = 'Ok' } = info;
+
+        Swal.fire({
+            title: `${text}`,
+            showCancelButton: true,
+            confirmButtonText: `${confirmBtn}`,
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+                cb();
+            }
+        })
+    }
+
+
     return {
         successFullModal,
-        deleteModal
+        deleteModal,
+        simpleAlertWithConfirmBtn
     }
 };
 
