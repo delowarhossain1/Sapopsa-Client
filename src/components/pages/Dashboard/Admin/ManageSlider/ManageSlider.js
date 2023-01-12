@@ -5,16 +5,51 @@ import css from "../../../../../css/ManageSlider.module.css";
 import css2 from "../../../../../css/Table.module.css";
 import { Link } from 'react-router-dom';
 import useModal from './../../../../../hooks/useModal';
+import { getAccessToken } from '../../../../../utilites/setAndGetAccessToken';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../../../firebase.init';
+import Loading from '../../../../shared/Loading/Loading';
 
 const ManageSlider = () => {
-    const {deleteModal} = useModal();
+    const [reFetch, setReFetch] = useState(false);
+    const [user, loading] = useAuthState(auth);
+    const { deleteModal, successFullModal } = useModal();
     const [sliders, setSliders] = useState([]);
 
     useEffect(() => {
         fetch('http://localhost:5000/sliders',)
             .then(res => res.json())
             .then(res => setSliders(res));
-    }, []);
+    }, [reFetch]);
+
+
+    // delete category
+    const deleteSlider = (id) => {
+
+        deleteModal(() => {
+            if (user && id) {
+                fetch(`http://localhost:5000/slider/${id}?email=${user?.email}`, {
+                    method: 'DELETE',
+                    headers: {
+                        "Content-Type": "application/json",
+                        auth: `Bearer ${getAccessToken()}`
+                    }
+                })
+                    .then(res => res.json())
+                    .then(res => {
+                        if (res?.deletedCount) {
+                            successFullModal();
+                            setReFetch(true);
+                        }
+                    })
+            }
+        });
+
+    }
+
+    if(loading){
+        return <Loading />
+    }
 
     return (
         <div>
@@ -45,9 +80,9 @@ const ManageSlider = () => {
                                 </th>
                                 <th>{slider?.title}</th>
                                 <th>
-                                    <button 
+                                    <button
                                         className={css2.deleteBtn}
-                                        onClick={()=> deleteModal()}
+                                        onClick={() => deleteSlider(slider?._id)}
                                     >Delete</button>
                                 </th>
                             </tr>
