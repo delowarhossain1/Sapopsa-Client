@@ -6,38 +6,43 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../../../firebase.init';
 import Loading from '../../../../shared/Loading/Loading';
 import { getAccessToken } from "../../../../../utilites/setAndGetAccessToken";
+import useModal from './../../../../../hooks/useModal';
 
 const ManageHeading = () => {
+    const {successFullModal} = useModal();
+    const [refetch, setRefetch] = useState(false);
     const [user, loading] = useAuthState(auth);
-    const [heading, setHeading] = useState([]);
+    const [heading, setHeading] = useState({});
 
     useEffect(() => {
         fetch('http://localhost:5000/web-heading')
             .then(res => res.json())
             .then(res => setHeading(res));
 
-    }, []);
+    }, [refetch]);
 
     // handle update heading
     const handleHading = (e) => {
         e.preventDefault();
-        const heading = e.target.heading.value;
+        let headingField = e.target.heading;
+        let updatedHeading = headingField.value;
 
-        if (heading && user) {
-            
+        if (updatedHeading && user) {
+
             fetch(`http://localhost:5000/web-heading?email=${user?.email}`, {
-                method: 'PUT',
+                method: 'PATCH',
                 headers: {
                     "Content-Type": "application/json",
                     auth: `Bearer ${getAccessToken()}`
                 },
-                body: JSON.stringify(heading)
+                body: JSON.stringify({ heading: updatedHeading })
             })
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res)
-                    if (res) {
-
+                    if (res?.modifiedCount) {
+                        setRefetch(true);
+                        successFullModal();
+                        headingField.value = ''
                     }
                 })
         }
@@ -53,11 +58,7 @@ const ManageHeading = () => {
             <PageTitle title='manage heading' />
 
             <div>
-                {
-                    heading?.map(h => (
-                        <div key={h?._id} style={{ background: '#ddd', padding: '4px' }}>{h.heading}</div>
-                    ))
-                }
+                <div style={{ background: '#ddd', padding: '4px' }}>{heading?.heading}</div>
 
                 <form className={css.form} onSubmit={handleHading}>
                     <textarea placeholder='Update Heading' name='heading'></textarea>
