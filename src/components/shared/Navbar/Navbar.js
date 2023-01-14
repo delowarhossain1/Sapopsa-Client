@@ -3,14 +3,17 @@ import { Link } from "react-router-dom";
 import logo from "../../../images/sapopsa.png";
 import close from "../../../images/close.svg";
 import search from "../../../icons/search.png";
-import user from "../../../icons/user.png";
+import userIcon from "../../../icons/user.png";
 import love from "../../../icons/love.png";
 import bag from "../../../icons/bag.png";
+import { AiOutlineLogin } from 'react-icons/ai';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
 
 const Navbar = () => {
+    const [user, loading] = useAuthState(auth);
     const [toggleClass, setToggleClass] = useState(false);
     const mediaSize = 991;
-
     const toggleNav = () => {
         setToggleClass(!toggleClass);
     }
@@ -23,10 +26,10 @@ const Navbar = () => {
             const menuItemHasChildren = event.target.parentElement;
             // if menuItemHasChildren is already expanded, collapse it
 
-            if(menuItemHasChildren.classList.contains("active")){
+            if (menuItemHasChildren.classList.contains("active")) {
 
             }
-            else{
+            else {
 
             }
         }
@@ -123,15 +126,20 @@ const Navbar = () => {
                         <div className="seacrhBox">
                             <input className="input" type="search" placeholder="search..." />
                             <label for="" className="searchBtn">
-                                <img type="submit" className="search" src={search} />
+                                <img type="submit" alt='' className="search" src={search} />
                             </label>
 
                         </div>
 
 
-                        <div className="usersNotify user">
-                            <Link to='/dashboard'><img src={user} alt="" /></Link>
+                        {user ? <div className="usersNotify user">
+                            <Link to='/my-dashboard'><img src={userIcon} alt="user" /></Link>
                         </div>
+                            :
+                            <div className="usersNotify user">
+                                <Link to='/login'><AiOutlineLogin className='login-icon' /></Link>
+                            </div>
+                        }
 
                         <div className="usersNotify love">
                             <Link to='/love'><img src={love} alt="" /><span className="notificaTion">1</span></Link>

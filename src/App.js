@@ -29,14 +29,13 @@ import Admins from './components/pages/Dashboard/Admin/Admins/Admins';
 import AddNewCategori from './components/pages/Dashboard/Admin/ManageCategories/AddNewCategori';
 import AddNewSlider from './components/pages/Dashboard/Admin/ManageSlider/AddNewSlider';
 import SingleProductDetails from './components/shared/SingleProductDetails/SingleProductDetails';
-import useAdmin from './hooks/useAdmin';
 import AddNewProduct from './components/pages/Dashboard/Admin/ManageProducts/AddNewProduct';
 import MyDashboard from './components/pages/Dashboard/User/MyDashboar/MyDashboard';
 import OrderDetails from './components/pages/Dashboard/User/OrderDetails/OrderDetails';
 import MyOrders from './components/pages/Dashboard/User/MyOrders/MyOrders';
+import RequireAdmin from './components/shared/Required/RequireAdmin/RequireAdmin';
 
 function App() {
-  const [isAdmin] = useAdmin();
 
   return (
     <div>
@@ -44,50 +43,44 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/product-details/:id' element={<SingleProductDetails />} />
+        <Route path='order-details/:id' element={<OrderDetails />} />
+
+        {/*********** User dashboard ****************/}
+
+        <Route path='/my-dashboard' element={
+            <RequiredAuth>
+              <MyDashboard />
+            </RequiredAuth>
+        }>
+          <Route index element={<MyOrders />} />
+          <Route path='order-details/:id' element={<OrderDetails />} />
+        </Route>
 
 
-        {/********* Dashboard route ************/}
+        {/********* Admin dashboard route ************/}
 
-        {
-          !isAdmin ?
+        <Route path='/dashboard' element={
+          <RequiredAuth>
+            <RequireAdmin>
+              < Dashboard />
+            </RequireAdmin>
+          </RequiredAuth>
+        }>
+          {/* Index route*/}
 
-            <Route path='/dashboard' element={<RequiredAuth>
-              < MyDashboard />
-            </RequiredAuth>}>
-              <Route index element={<MyOrders />} />
-              <Route path='order-details/:id' element={<OrderDetails />} />
-            </Route>
+          <Route index element={<Report />} />
+          <Route path='manage-orders' element={<ManageOrders />} />
+          <Route path='manage-products' element={<ManageProducts />} />
+          <Route path='manage-products/add-new-product' element={<AddNewProduct />} />
+          <Route path='manage-categories' element={<ManageCategories />} />
+          <Route path='manage-slider' element={<ManageSlider />} />
+          <Route path='manage-heading' element={<ManageHeading />} />
+          <Route path='customers' element={<Customers />} />
+          <Route path='admins' element={<Admins />} />
+          <Route path='manage-categories/add-new-category' element={<AddNewCategori />} />
+          <Route path='manage-slider/add-new-slider' element={<AddNewSlider />} />
 
-            :
-
-            <Route path='/dashboard' element={
-              <RequiredAuth>
-                < Dashboard />
-              </RequiredAuth>
-            }>
-
-              {/* Index route ( Admin routes )*/}
-
-              {
-                isAdmin && <Route index element={<Report />} />
-              }
-              {/* User route  */}
-
-
-              <Route path='manage-orders' element={<ManageOrders />} />
-              <Route path='manage-products' element={<ManageProducts />} />
-              <Route path='manage-products/add-new-product' element={<AddNewProduct />} />
-              <Route path='manage-categories' element={<ManageCategories />} />
-              <Route path='manage-slider' element={<ManageSlider />} />
-              <Route path='manage-heading' element={<ManageHeading />} />
-              <Route path='customers' element={<Customers />} />
-              <Route path='admins' element={<Admins />} />
-
-              <Route path='manage-categories/add-new-category' element={<AddNewCategori />} />
-              <Route path='manage-slider/add-new-slider' element={<AddNewSlider />} />
-
-            </Route>
-        }
+        </Route>
       </Routes>
 
       <Footer />

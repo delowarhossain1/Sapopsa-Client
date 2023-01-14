@@ -15,6 +15,7 @@ const RequireAdmin = ({children}) => {
         return <Loading />
     }
 
+
     if(! isAdmin){
         signOut(auth);
         navigate('/login');

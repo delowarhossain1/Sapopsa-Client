@@ -18,6 +18,7 @@ const ManageProducts = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
+
         fetch(`http://localhost:5000/products?email=${user?.email}`, {
             headers: {
                 auth: `Bearer ${getAccessToken()}`
@@ -25,6 +26,7 @@ const ManageProducts = () => {
         })
             .then(res => res.json())
             .then(res => setProducts(res));
+
 
     }, [user, reFetch]);
 
@@ -50,7 +52,7 @@ const ManageProducts = () => {
             });
         }
     }
-
+    console.log(products)
     if (userLoading) {
         return <Loading />
     }

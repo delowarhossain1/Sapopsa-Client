@@ -194,6 +194,11 @@ a {
 	position: relative;
 }
 
+.login-icon{
+	font-size: 25px;
+	font-weight: bold;
+}
+
 .notificaTion {
 	border: 1px solid var(---primary-color);
 	background-color: var(---primary-color);
