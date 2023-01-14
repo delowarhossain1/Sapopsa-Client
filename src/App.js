@@ -30,9 +30,10 @@ import AddNewCategori from './components/pages/Dashboard/Admin/ManageCategories/
 import AddNewSlider from './components/pages/Dashboard/Admin/ManageSlider/AddNewSlider';
 import SingleProductDetails from './components/shared/SingleProductDetails/SingleProductDetails';
 import useAdmin from './hooks/useAdmin';
-import MyOrders from './components/pages/Dashboard/User/MyOrders/MyOrders';
 import AddNewProduct from './components/pages/Dashboard/Admin/ManageProducts/AddNewProduct';
 import MyDashboard from './components/pages/Dashboard/User/MyDashboar/MyDashboard';
+import OrderDetails from './components/pages/Dashboard/User/OrderDetails/OrderDetails';
+import MyOrders from './components/pages/Dashboard/User/MyOrders/MyOrders';
 
 function App() {
   const [isAdmin] = useAdmin();
@@ -47,37 +48,46 @@ function App() {
 
         {/********* Dashboard route ************/}
 
-        <Route path='/dashboard' element={
-          <RequiredAuth>
-            {
-              ! isAdmin ?
+        {
+          !isAdmin ?
+
+            <Route path='/dashboard' element={<RequiredAuth>
               < MyDashboard />
-              :
-              < Dashboard />
-            }
-          </RequiredAuth>
-        }>
-          {/* Index route */}
-          {
-            ! isAdmin ? 
-            <Route index element={<MyOrders />} />
+            </RequiredAuth>}>
+              <Route index element={<MyOrders />} />
+              <Route path='order-details/:id' element={<OrderDetails />} />
+            </Route>
+
             :
-            <Route index element={<Report />} />
-          }
 
-          <Route path='manage-orders' element={<ManageOrders />} /> 
-          <Route path='manage-products' element={<ManageProducts />} /> 
-          <Route path='manage-products/add-new-product' element={<AddNewProduct />} /> 
-          <Route path='manage-categories' element={<ManageCategories />} /> 
-          <Route path='manage-slider' element={<ManageSlider />} /> 
-          <Route path='manage-heading' element={<ManageHeading/>} /> 
-          <Route path='customers' element={<Customers/>} /> 
-          <Route path='admins' element={<Admins/>} /> 
+            <Route path='/dashboard' element={
+              <RequiredAuth>
+                < Dashboard />
+              </RequiredAuth>
+            }>
 
-          <Route path='manage-categories/add-new-category' element={<AddNewCategori />} />
-          <Route path='manage-slider/add-new-slider' element={<AddNewSlider />} />
+              {/* Index route ( Admin routes )*/}
 
-        </Route>
+              {
+                isAdmin && <Route index element={<Report />} />
+              }
+              {/* User route  */}
+
+
+              <Route path='manage-orders' element={<ManageOrders />} />
+              <Route path='manage-products' element={<ManageProducts />} />
+              <Route path='manage-products/add-new-product' element={<AddNewProduct />} />
+              <Route path='manage-categories' element={<ManageCategories />} />
+              <Route path='manage-slider' element={<ManageSlider />} />
+              <Route path='manage-heading' element={<ManageHeading />} />
+              <Route path='customers' element={<Customers />} />
+              <Route path='admins' element={<Admins />} />
+
+              <Route path='manage-categories/add-new-category' element={<AddNewCategori />} />
+              <Route path='manage-slider/add-new-slider' element={<AddNewSlider />} />
+
+            </Route>
+        }
       </Routes>
 
       <Footer />
