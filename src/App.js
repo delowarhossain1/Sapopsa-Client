@@ -12,12 +12,12 @@ import "./css/places-order.css";
 import "./css/privacy.css";
 import "./css/single-product.css";
 import "./css/style.css";
+import "./css/userDashboard.css";
 import "./fonts/specimen_bold/stylesheet.css";
 import "./fonts/specimen_italic/stylesheet.css";
 import Login from './components/pages/Login/Login';
 import Dashboard from './components/pages/Dashboard/Dashboard';
 import Report from './components/pages/Dashboard/Admin/Report/Report';
-import Loading from './components/shared/Loading/Loading';
 import RequiredAuth from './components/shared/Required/RequiredAuth/RequiredAuth';
 import ManageSlider from './components/pages/Dashboard/Admin/ManageSlider/ManageSlider';
 import ManageOrders from './components/pages/Dashboard/Admin/ManageOrders/ManageOrders';
@@ -32,6 +32,7 @@ import SingleProductDetails from './components/shared/SingleProductDetails/Singl
 import useAdmin from './hooks/useAdmin';
 import MyOrders from './components/pages/Dashboard/User/MyOrders/MyOrders';
 import AddNewProduct from './components/pages/Dashboard/Admin/ManageProducts/AddNewProduct';
+import MyDashboard from './components/pages/Dashboard/User/MyDashboar/MyDashboard';
 
 function App() {
   const [isAdmin] = useAdmin();
@@ -48,7 +49,12 @@ function App() {
 
         <Route path='/dashboard' element={
           <RequiredAuth>
-            < Dashboard />
+            {
+              ! isAdmin ?
+              < MyDashboard />
+              :
+              < Dashboard />
+            }
           </RequiredAuth>
         }>
           {/* Index route */}

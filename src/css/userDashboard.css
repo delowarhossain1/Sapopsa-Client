@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;700;800;900&family=Pacifico&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Quicksand&display=swap');
+
+
+.orderMainTitle{
+    padding: 10px 0;
+}
+.container{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.backColor{
+    background-color: #EFF0F4;
+    width: 100%;
+    height: 100vh;
+    margin-top: 120px;
+    font-family: 'Poppins', sans-serif;
+}
+.boxColor{
+    background-color: #FFF;
+    padding: 4px;
+    margin-bottom: 15px;
+}
+.orderInfo{
+    padding: 0 10px;
+    margin: 10px 0;
+}
+.imgDes img{
+    width: 80px;
+}
+.myOrder .orderMainTitle{
+    font-weight: normal;
+    color: #555;
+}
+.orderLine{
+    background-color: #ddd;
+    height: 2px;
+    border: none;
+}
+.orderDate{
+    color: #555;
+}
+.orderInfo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.orderOder p a{
+    text-decoration: none;
+    color: #11ce60;
+}
+.mnage a{
+    color: blue;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+.OrderDescription{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 70%;
+    padding: 10px 10px;
+    background-color: #FFF;
+}
+.imgDes{
+    display: flex;
+
+}
+.my-dashboard-heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.my-dashboard-heading button{
+    padding: 7px;
+    font-size: 16px;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.my-dashboard-heading button span{
+    margin-left: 5px;
+}
+
+.imgTitle{
+    margin-left: 20px;
+}
+.orderStatus p{
+    background-color: #ddd;
+    padding: 7px 20px;
+    border-radius: 30px;
+}
+.Qty{
+    color: #555;
+}
+.Qty span{
+    color: #000;
+}
+.order-number{
+    color : blue;
+}
+/* =============================== address =============================== */
+
+.shippingTitle{
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.address{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.firstAddress{
+    flex-basis: 49%;
+    gap: 20px;
+}
+.summaryBox{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.Orbill{
+    background-color: #4FB1C7;
+    padding: 2px 10px;
+    border-radius: 30px;
+    font-size: 12px;
+    color: #fff;
+}
+.OrbillToo:last-child{
+    background-color: #FB6F4F;
+    padding: 2px 10px;
+    border-radius: 30px;
+    font-size: 12px;
+    color: #fff;
+}
+.shippingAdd{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #FFF;
+    padding: 10px;
+}
+
+
+@media(max-width: 991px){
+    .OrderDescription{
+        width: 100% ;
+    }
+    .firstAddress{
+        flex-basis: 100%;
+    }
+}
