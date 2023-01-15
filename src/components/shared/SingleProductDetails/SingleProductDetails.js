@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import Loading from '../Loading/Loading';
 import Navbar from '../Navbar/Navbar';
 import PageTitle from '../PageTitle/PageTitle';
+import { BsPlusLg } from "react-icons/bs";
+import { FaMinus } from 'react-icons/fa';
 
 const SingleProductDetails = () => {
     const { id } = useParams();
@@ -10,7 +12,8 @@ const SingleProductDetails = () => {
     const [loading, setLoading] = useState(true);
     const [changeImg, setChangeImg] = useState('');
     const [selectedSize, setSelectedSize] = useState('');
-    const quantityRef = useRef();
+    const [selectedQuantity, setSelectedQuantity] = useState(1);
+
 
     useEffect(() => {
         fetch(`http://localhost:5000/get-product/${id}`)
@@ -22,22 +25,41 @@ const SingleProductDetails = () => {
 
     }, [id]);
 
+
+    const handleQuantity = btn => {
+        if (btn === 'plus') {
+            setSelectedQuantity(selectedQuantity + 1);
+        }
+        else {
+            const rest = selectedQuantity > 1 ? selectedQuantity - 1 : selectedQuantity;
+
+            setSelectedQuantity(rest);
+        }
+    }
+
     if (loading) {
         return <Loading />
     }
 
     const { img, title, size, price, description, spacification, displayIMG } = product;
 
+    // calculate product base on quantity
+    const calPrice = selectedQuantity * price;
+
     const addToCardHandeler = () => {
-        const quantity = quantityRef.current.value;
 
         const info = {
             img,
             title,
-            size: selectedSize,
-            quantity,
+            price,
+            size: selectedSize || size[0],
+            quantity : selectedQuantity,
+            totalPrice : calPrice,
         }
-        
+
+
+        const data = JSON.stringify([info]);
+        localStorage.setItem('products', data);
     }
 
     return (
@@ -167,11 +189,20 @@ const SingleProductDetails = () => {
 
 
                                     <div class="quantiBtn">
-                                        Quantity
-                                        <input type="number" name="quantity" min='1' ref={quantityRef} />
+                                        <span>Quantity : </span>
+                                        <div className='updateAndLossQuantity'>
+                                            <div onClick={() => handleQuantity('minus')}>
+                                                <FaMinus className='bsPlusBtn' />
+                                            </div>
+
+                                            <div>{selectedQuantity}</div>
+
+                                            <div onClick={() => handleQuantity('plus')}><BsPlusLg className='bsPlusBtn' /></div>
+                                        </div>
                                     </div>
+
                                     <div class="filedWrap">
-                                        <span class="pricesFiled"> <del>${price + 98}</del> ${price}</span>
+                                        <span class="pricesFiled"> <del>${calPrice + 98}</del> ${calPrice}</span>
                                     </div>
                                     <button class="buyNow" onClick={addToCardHandeler}>Add To Cart</button>
 

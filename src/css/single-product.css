@@ -130,6 +130,23 @@ table, td, th {
 	color: var(---text-color);
 }
 
+.updateAndLossQuantity {
+	display: flex;
+	align-items: center;
+	margin-left: 10px;
+}
+.updateAndLossQuantity div{
+	margin: 10px;
+	font-size: 20px;
+}
+.updateAndLossQuantity div .bsPlusBtn{
+	cursor: pointer;
+}
+
+.quantiBtn{
+	display: flex;
+	align-items: center;
+}
 .filedWrap {
 	margin: 30px 0;
 }
