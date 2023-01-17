@@ -42,7 +42,7 @@ const SingleProductDetails = () => {
         return <Loading />
     }
 
-    const { img, title, size, price, description, spacification, displayIMG } = product;
+    const {_id, img, title, size, price, description, spacification, displayIMG } = product;
 
     // calculate product base on quantity
     const calPrice = selectedQuantity * price;
@@ -53,6 +53,7 @@ const SingleProductDetails = () => {
             img,
             title,
             price,
+            id : _id,
             size: selectedSize || size[0],
             quantity : selectedQuantity,
             totalPrice : calPrice,

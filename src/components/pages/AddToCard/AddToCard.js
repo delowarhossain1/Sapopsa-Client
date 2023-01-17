@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../../shared/Navbar/Navbar';
 import PageTitle from '../../shared/PageTitle/PageTitle';
 import { getProducts, removeProduct } from "../../../utilites/addToCard";
+import { Link } from 'react-router-dom';
 
 const AddToCard = () => {
-    const products = getProducts();
+    const [refetch, setRefetch] = useState(false);
+    const [products, setProducts] = useState([]);
+
+    useEffect(()=>{
+        const storedProducts = getProducts();
+        setProducts(storedProducts);
+    }, [refetch])
+    
+
+
+    
+    // Remove product 
+    const removeCardItem = () => {
+        setRefetch(true);
+        removeProduct();
+    }
+
+    // calculate 
+    const totalAmunt = products.reduce((s, p) => p.totalPrice + s, 0);
 
     return (
         <>
@@ -32,16 +51,16 @@ const AddToCard = () => {
                                                     <small>Prices: ${product?.price}</small>
                                                     <br />
 
-                                                    <p style={{cursor : 'pointer', marginTop : '7px'}} onClick={()=> removeProduct()}>Remove</p>
+                                                    <p style={{cursor : 'pointer', marginTop : '7px'}} onClick={removeCardItem}>Remove</p>
                                                 </div>
                                             </div>
 
                                         </td>
                                         <td>
-                                            <input type="number" value="1" />
+                                            <span>{product.quantity}</span>
                                         </td>
                                         <td>
-                                            $70.00
+                                            ${product?.totalPrice}
                                         </td>
                                     </tr>
                                 ))}
@@ -51,12 +70,12 @@ const AddToCard = () => {
                             <table>
                                 <tbody>
                                     <td>Subtotal</td>
-                                    <td>$200.00</td>
+                                    <td>${totalAmunt}</td>
                                 </tbody>
                             </table>
                         </div>
                         <div className="plOrder">
-                            <a href="/places-order.html"> <button type="button">Place Order</button></a>
+                            <Link to="/checkout"> <button type="button">Place Order</button></Link>
                         </div>
 
                     </div>

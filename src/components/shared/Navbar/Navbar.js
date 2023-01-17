@@ -117,7 +117,7 @@ const Navbar = () => {
                     <div className="search">
                         <input type="checkbox" id="check" />
                         <div className="usersNotify box user">
-                            <label for="check">
+                            <label htmlFor="check">
                                 <img src={search} alt="" />
                             </label>
                         </div>
@@ -125,7 +125,7 @@ const Navbar = () => {
 
                         <div className="seacrhBox">
                             <input className="input" type="search" placeholder="search..." />
-                            <label for="" className="searchBtn">
+                            <label htmlFor="" className="searchBtn">
                                 <img type="submit" alt='' className="search" src={search} />
                             </label>
 

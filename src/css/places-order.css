@@ -96,6 +96,9 @@ select#district {
 .btN:hover{
     color: #ddd;
 }
+.disabledPlaceOrderBtn{
+    cursor: not-allowed;
+}
 .checkFrom2 a{
     background-color: var(---btn-color);
     color: var(---back-color);

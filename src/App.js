@@ -35,6 +35,7 @@ import MyOrders from './components/pages/Dashboard/User/MyOrders/MyOrders';
 import RequireAdmin from './components/shared/Required/RequireAdmin/RequireAdmin';
 import SingleProductDetails from './components/pages/SingleProductDetails/SingleProductDetails';
 import AddToCard from './components/pages/AddToCard/AddToCard';
+import Checkout from './components/pages/Checkout/Checkout';
 
 
 function App() {
@@ -46,6 +47,15 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/product-details/:id' element={<SingleProductDetails />} />
         <Route path='/add-to-card' element={<AddToCard />} />
+
+
+        {/*********** Login required (required auth) ****************/}
+        <Route path='/checkout' element={
+          <RequiredAuth>
+            <Checkout />
+          </RequiredAuth>
+        } />
+        
 
         {/*********** User dashboard ****************/}
 
