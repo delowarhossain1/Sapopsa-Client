@@ -8,9 +8,9 @@ const MyDashboard = () => {
         <>
             <Navbar />
 
-            <div class="backColor">
-                <div class="container">
-                    <div class="myOrder">
+            <div className="backColor">
+                <div className="container">
+                    <div className="myOrder">
                         <Outlet />
                     </div>
                 </div>

@@ -146,7 +146,7 @@ const Navbar = () => {
                         </div>
 
                         <div className="usersNotify">
-                            <a href="cart.html"><img src={bag} alt="" /><span className="notificaTion">1</span></a>
+                            <Link to='/add-to-card'><img src={bag} alt="" /><span className="notificaTion">1</span></Link>
                         </div>
                     </div>
                 </div>

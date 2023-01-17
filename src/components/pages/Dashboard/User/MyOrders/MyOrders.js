@@ -12,27 +12,27 @@ const MyOrders = () => {
             <PageTitle title='My orders' />
             <UserDashboardTitle title='My orders' />
 
-            <div class="boxColor">
-                <div class="orderInfo">
-                    <div class="orderOder">
+            <div className="boxColor">
+                <div className="orderInfo">
+                    <div className="orderOder">
                         <p>Order <span className='order-number'>#1349502345820</span> </p>
-                        <p class="orderDate">Placed on 14 Aug 2022 <span>17:27:15</span></p>
+                        <p className="orderDate">Placed on 14 Aug 2022 <span>17:27:15</span></p>
                     </div>
-                    <div class="mnage">
+                    <div className="mnage">
                         <Link to='order-details/123456456'>manage</Link>
                     </div>
                 </div>
-                <hr class="orderLine" />
-                <div class="boxcolor">
-                    <div class="OrderDescription">
-                        <div class="imgDes">
+                <hr className="orderLine" />
+                <div className="boxcolor">
+                    <div className="OrderDescription">
+                        <div className="imgDes">
                             <img src={img1} alt="images" />
-                            <div class="imgTitle">Lorem ipsum dolor sit amet consectetur adipisicing elit...</div>
+                            <div className="imgTitle">Lorem ipsum dolor sit amet consectetur adipisicing elit...</div>
                         </div>
-                        <div class="Orderquantity">
-                            <p class="Qty">Qty: <span>1</span></p>
+                        <div className="Orderquantity">
+                            <p className="Qty">Qty: <span>1</span></p>
                         </div>
-                        <div class="orderStatus">
+                        <div className="orderStatus">
                             <p>Cancelled</p>
                         </div>
                     </div>

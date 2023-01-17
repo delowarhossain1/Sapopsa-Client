@@ -28,12 +28,14 @@ import Customers from './components/pages/Dashboard/Admin/Customers/Customers';
 import Admins from './components/pages/Dashboard/Admin/Admins/Admins';
 import AddNewCategori from './components/pages/Dashboard/Admin/ManageCategories/AddNewCategori';
 import AddNewSlider from './components/pages/Dashboard/Admin/ManageSlider/AddNewSlider';
-import SingleProductDetails from './components/shared/SingleProductDetails/SingleProductDetails';
 import AddNewProduct from './components/pages/Dashboard/Admin/ManageProducts/AddNewProduct';
 import MyDashboard from './components/pages/Dashboard/User/MyDashboar/MyDashboard';
 import OrderDetails from './components/pages/Dashboard/User/OrderDetails/OrderDetails';
 import MyOrders from './components/pages/Dashboard/User/MyOrders/MyOrders';
 import RequireAdmin from './components/shared/Required/RequireAdmin/RequireAdmin';
+import SingleProductDetails from './components/pages/SingleProductDetails/SingleProductDetails';
+import AddToCard from './components/pages/AddToCard/AddToCard';
+
 
 function App() {
 
@@ -43,7 +45,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/product-details/:id' element={<SingleProductDetails />} />
-        <Route path='order-details/:id' element={<OrderDetails />} />
+        <Route path='/add-to-card' element={<AddToCard />} />
 
         {/*********** User dashboard ****************/}
 

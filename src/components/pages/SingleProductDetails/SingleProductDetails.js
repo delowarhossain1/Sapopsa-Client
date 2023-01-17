@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Loading from '../Loading/Loading';
-import Navbar from '../Navbar/Navbar';
-import PageTitle from '../PageTitle/PageTitle';
+import Loading from '../../shared/Loading/Loading';
+import Navbar from '../../shared/Navbar/Navbar';
+import PageTitle from '../../shared/PageTitle/PageTitle';
 import { BsPlusLg } from "react-icons/bs";
 import { FaMinus } from 'react-icons/fa';
+import {addNewProduct} from "../../../utilites/addToCard";
 
 const SingleProductDetails = () => {
     const { id } = useParams();
@@ -57,9 +58,8 @@ const SingleProductDetails = () => {
             totalPrice : calPrice,
         }
 
-
-        const data = JSON.stringify([info]);
-        localStorage.setItem('products', data);
+        
+        addNewProduct(info);
     }
 
     return (
@@ -67,23 +67,23 @@ const SingleProductDetails = () => {
             <Navbar />
             <PageTitle title={title || ''} />
 
-            <div class="container">
-                <div class="smallContainer">
-                    <div class="cartWrapper">
-                        <div class="row">
-                            <div class="cratRow">
-                                <div class="imgWrapper">
-                                    <h5 class="productName">{title}</h5>
+            <div className="container">
+                <div className="smallContainer">
+                    <div className="cartWrapper">
+                        <div className="row">
+                            <div className="cratRow">
+                                <div className="imgWrapper">
+                                    <h5 className="productName">{title}</h5>
 
-                                    <img class="bigImg"
+                                    <img className="bigImg"
                                         src={changeImg ? changeImg : img} id="productImg" alt="product" />
 
-                                    <div class="samollPic">
+                                    <div className="samollPic">
                                         {
                                             displayIMG?.map((dImg, i) => (
-                                                <div class="small" onClick={() => setChangeImg(dImg)} key={i * Math.random()}>
+                                                <div className="small" onClick={() => setChangeImg(dImg)} key={i * Math.random()}>
 
-                                                    <img src={dImg} width="100%" class="samllImg" alt="" />
+                                                    <img src={dImg} width="100%" className="samllImg" alt="" />
 
                                                 </div>
                                             ))
@@ -92,14 +92,14 @@ const SingleProductDetails = () => {
                                 </div>
 
                             </div>
-                            <div class="cratRow cratRow1">
-                                <div class="colorCart">
-                                    <h6 class="productName right">{title}</h6>
-                                    <p class="proInfo">{description}</p>
+                            <div className="cratRow cratRow1">
+                                <div className="colorCart">
+                                    <h6 className="productName right">{title}</h6>
+                                    <p className="proInfo">{description}</p>
                                     <p>
                                         <strong>Detailed Specification:</strong>
                                     </p>
-                                    <ul class="Specification">
+                                    <ul className="Specification">
                                         {
                                             spacification?.map((spa, i) => (
                                                 <li key={i * Math.random()}>
@@ -120,7 +120,7 @@ const SingleProductDetails = () => {
                                                 <th>Sleeve</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="singleTable">
+                                        <tbody className="singleTable">
                                             <tr>
                                                 <td>XS</td>
                                                 <td>36</td>
@@ -172,12 +172,12 @@ const SingleProductDetails = () => {
                                         </tbody>
                                     </table>
                                     <strong>Choose Size : {selectedSize ? selectedSize : size[0]}</strong>
-                                    <div class="sizeWrap">
+                                    <div className="sizeWrap">
 
                                         {
                                             size?.map((s, i) => (
                                                 <div
-                                                    class={`sizeSelector list-inline-item `}
+                                                    className={`sizeSelector list-inline-item `}
                                                     onClick={() => setSelectedSize(s)}
                                                     key={i * Math.random()}>
                                                     {s}
@@ -188,7 +188,7 @@ const SingleProductDetails = () => {
                                     </div>
 
 
-                                    <div class="quantiBtn">
+                                    <div className="quantiBtn">
                                         <span>Quantity : </span>
                                         <div className='updateAndLossQuantity'>
                                             <div onClick={() => handleQuantity('minus')}>
@@ -201,10 +201,10 @@ const SingleProductDetails = () => {
                                         </div>
                                     </div>
 
-                                    <div class="filedWrap">
-                                        <span class="pricesFiled"> <del>${calPrice + 98}</del> ${calPrice}</span>
+                                    <div className="filedWrap">
+                                        <span className="pricesFiled"> <del>${calPrice + 98}</del> ${calPrice}</span>
                                     </div>
-                                    <button class="buyNow" onClick={addToCardHandeler}>Add To Cart</button>
+                                    <button className="buyNow" onClick={addToCardHandeler}>Add To Cart</button>
 
                                 </div>
                             </div>
