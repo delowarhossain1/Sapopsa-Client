@@ -8,14 +8,11 @@ const AddToCard = () => {
     const [refetch, setRefetch] = useState(false);
     const [products, setProducts] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         const storedProducts = getProducts();
         setProducts(storedProducts);
-    }, [refetch])
-    
+    }, [refetch]);
 
-
-    
     // Remove product 
     const removeCardItem = () => {
         setRefetch(true);
@@ -51,7 +48,7 @@ const AddToCard = () => {
                                                     <small>Prices: ${product?.price}</small>
                                                     <br />
 
-                                                    <p style={{cursor : 'pointer', marginTop : '7px'}} onClick={removeCardItem}>Remove</p>
+                                                    <p style={{ cursor: 'pointer', marginTop: '7px' }} onClick={removeCardItem}>Remove</p>
                                                 </div>
                                             </div>
 
@@ -75,7 +72,9 @@ const AddToCard = () => {
                             </table>
                         </div>
                         <div className="plOrder">
-                            <Link to="/checkout"> <button type="button">Place Order</button></Link>
+                            <Link to="/checkout">
+                                <button type="button" disabled={products.length > 0 ? false : true}>Place Order</button>
+                            </Link>
                         </div>
 
                     </div>

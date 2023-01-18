@@ -36,9 +36,11 @@ import RequireAdmin from './components/shared/Required/RequireAdmin/RequireAdmin
 import SingleProductDetails from './components/pages/SingleProductDetails/SingleProductDetails';
 import AddToCard from './components/pages/AddToCard/AddToCard';
 import Checkout from './components/pages/Checkout/Checkout';
+import { useState } from 'react';
 
 
 function App() {
+  const [deliveryInfo, setDeliveryInfo] = useState({});
 
   return (
     <div>
@@ -52,10 +54,10 @@ function App() {
         {/*********** Login required (required auth) ****************/}
         <Route path='/checkout' element={
           <RequiredAuth>
-            <Checkout />
+            <Checkout setDeliveryInfo={setDeliveryInfo}/>
           </RequiredAuth>
         } />
-        
+
 
         {/*********** User dashboard ****************/}
 
