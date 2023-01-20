@@ -11,7 +11,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 
 const Navbar = () => {
-    const [user, loading] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const [toggleClass, setToggleClass] = useState(false);
     const mediaSize = 991;
     const toggleNav = () => {

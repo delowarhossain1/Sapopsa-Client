@@ -34,14 +34,14 @@ const Customers = () => {
 
         simpleAlertWithConfirmBtn(alert, () => {
             if (user?.email) {
+                
+                const url = `http://localhost:5000/make-admin?email=${user?.email}&newAdminEmail=${email}`;
 
-                fetch(`http://localhost:5000/make-admin?email=${user?.email}`, {
+                fetch(url, {
                     method: 'PATCH',
                     headers: {
-                        'Content-Type': 'application/json',
                         auth: `Bearer ${getAccessToken()}`
-                    },
-                    body: JSON.stringify({email})
+                    }
                 })
                     .then(res => res.json())
                     .then(res => {

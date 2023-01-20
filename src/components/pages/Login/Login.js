@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../../shared/Navbar/Navbar';
 import logo from "../../../images/sapopsa.png";
 import fb from "../../../icons/facebook2.png";
@@ -7,7 +7,8 @@ import auth from './../../../firebase.init';
 import { useSignInWithGoogle } from "react-firebase-hooks/auth"
 import { useLocation, useNavigate } from 'react-router-dom';
 import Loading from '../../shared/Loading/Loading';
-import {setAccessToken} from "../../../utilites/setAndGetAccessToken";
+import { setAccessToken } from "../../../utilites/setAndGetAccessToken";
+import { signOut } from 'firebase/auth';
 
 const Login = () => {
     const [signInWithGoogle, user, loading] = useSignInWithGoogle(auth);
@@ -16,36 +17,31 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
     let from = location.state?.from?.pathname || "/";
-
-
-    if(user){
-
-        const userInfo = {
-            name : user?.user?.displayName,
-            email : user?.user?.email,
-        }
-
-        fetch('http://localhost:5000/user', {
-            method : 'PUT',
-            headers : {
-                'content-type' : 'application/json'
-            },
-            body : JSON.stringify(userInfo)
-        })
-        .then(res => res.json())
-        .then(res => {
+    console.log()
+    useEffect(() => {
+        if (user) {
             
-            if(res?.token){
-                setAccessToken(res.token);
-                navigate(from);
-            }
-        });
+            const email = user?.user?.email;
+            const name = user?.user?.displayName;
+            const url = `http://localhost:5000/user?email=${email}&name=${name}`;
 
-    }
+            fetch(url, { method: 'PUT'})
+                .then(res => res.json())
+                .then(res => {
+                    if (res?.token) {
+                        setAccessToken(res.token);
+                        navigate(from);
+                    }
+                    else{
+                        signOut(auth);
+                        navigate('/login')
+                    }
+                });
 
+        }
+    }, [user, navigate, from]);
 
-
-    if(loading){
+    if (loading) {
         return <Loading />
     }
 
@@ -79,14 +75,17 @@ const Login = () => {
                                 </div>
                             </div>
                             <div className="loginWith">
+
                                 <button type="button" onClick={() => signInWithGoogle()}>
                                     <h5>Login with</h5>
                                     <img className="facebock" src={go} alt="" />
                                 </button>
+
                                 <button className="logLog" type="button">
                                     <h5>Login with</h5>
                                     <img className="facebock" src={fb} alt="" />
                                 </button>
+
                             </div>
                         </div>
                     </div>

@@ -21,7 +21,8 @@ const Admins = () => {
             }
         })
             .then(res => res.json())
-            .then(res => setAdmins(res));
+            .then(res => setAdmins(res))
+            .catch(err => console.log(err))
 
     }, [user, refetch]);
 
@@ -34,13 +35,13 @@ const Admins = () => {
 
         simpleAlertWithConfirmBtn(message, () => {
             if (email && user) {
-                fetch(`http://localhost:5000/delete-admin?email=${user?.email}`, {
+                const url = `http://localhost:5000/delete-admin?email=${user?.email}&deleteAdmin=${email}`;
+
+                fetch(url, {
                     method: 'PATCH',
                     headers: {
-                        'Content-type': 'application/json',
                         auth: `Bearer ${getAccessToken()}`
-                    },
-                    body: JSON.stringify({ email })
+                    }
                 })
                 .then(res => res.json())
                 .then(res => {
@@ -81,6 +82,7 @@ const Admins = () => {
                                 <th>
                                     <button
                                         className={css.btn}
+                                        disabled = {admins?.length === 0}
                                         onClick={()=> removeAdmin(admin?.email)}
                                     >Delete Admin</button>
                                 </th>
