@@ -15,13 +15,11 @@ import { AiOutlineLogout } from 'react-icons/ai';
 import { useSignOut } from 'react-firebase-hooks/auth';
 import auth from './../../../firebase.init';
 import Loading from '../../shared/Loading/Loading';
-import useAdmin from '../../../hooks/useAdmin';
 
 const Dashboard = ({children}) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
     const [signOut, signOutLoading] = useSignOut(auth);
-    const [isAdmin, loading] = useAdmin();
 
     const menuItem = [
         {
@@ -66,7 +64,7 @@ const Dashboard = ({children}) => {
         },
     ]
 
-    if(signOutLoading || loading){
+    if(signOutLoading){
         return <Loading />
     }
 

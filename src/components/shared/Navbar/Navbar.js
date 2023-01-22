@@ -1,19 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import logo from "../../../images/sapopsa.png";
 import close from "../../../images/close.svg";
 import search from "../../../icons/search.png";
 import userIcon from "../../../icons/user.png";
-import love from "../../../icons/love.png";
 import bag from "../../../icons/bag.png";
 import { AiOutlineLogin } from 'react-icons/ai';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
+import { getProducts } from "../../../utilites/addToCard";
 
-const Navbar = () => {
+const Navbar = ({ refetch }) => {
     const [user] = useAuthState(auth);
+    const [addToCardProducts, setaddToCardProducts] = useState(0);
+    const [webHeading, setWebHeading] = useState('Sapopsa');
     const [toggleClass, setToggleClass] = useState(false);
     const mediaSize = 991;
+
+    // Get add to card products
+    useEffect(() => {
+        const products = getProducts();
+        setaddToCardProducts(products?.length);
+    }, [refetch]);
+
+    // Get web heading
+    useEffect(()=>{
+        fetch('http://localhost:5000/web-heading')
+        .then(res => res.json())
+        .then(res => setWebHeading(res?.heading))
+        .catch(err => console.log(err));
+    }, []);
+
+
     const toggleNav = () => {
         setToggleClass(!toggleClass);
     }
@@ -39,7 +57,8 @@ const Navbar = () => {
         <header className="header">
             <Link to='/'>
                 <div className="notice">
-                    <p className="noticeText">WELCOME TO OUR ONLINE STORE,NOTICES HERE......</p>
+                    {/* <p className="noticeText">WELCOME TO OUR ONLINE STORE,NOTICES HERE......</p> */}
+                    <marquee className="noticeText">{webHeading}</marquee>
                 </div>
             </Link>
             <div className="header-main">
@@ -141,12 +160,8 @@ const Navbar = () => {
                             </div>
                         }
 
-                        <div className="usersNotify love">
-                            <Link to='/love'><img src={love} alt="" /><span className="notificaTion">1</span></Link>
-                        </div>
-
                         <div className="usersNotify">
-                            <Link to='/add-to-card'><img src={bag} alt="" /><span className="notificaTion">1</span></Link>
+                            <Link to='/add-to-card'><img src={bag} alt="" /><span className="notificaTion">{addToCardProducts}</span></Link>
                         </div>
                     </div>
                 </div>

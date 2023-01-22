@@ -16,13 +16,13 @@ const AddNewCategori = () => {
         const formData = new FormData();
         formData.append('categoryImg', categoryImg);
         formData.append('title', title);
-        console.log(categoryImg)
+        console.log(formData)
 
         if (formData) {
             fetch(`http://localhost:5000/categories?email=${user?.email}`, {
                 method: 'POST',
                 headers: {
-                    "Content-type": "header",
+                    "Content-Type": "application/x-www-form-urlencoded",
                     auth: `Bearer ${getAccessToken()}` 
                 },
                 body: formData

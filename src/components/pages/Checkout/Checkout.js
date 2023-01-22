@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import Loading from '../../shared/Loading/Loading';
-import Navbar from '../../shared/Navbar/Navbar';
 import PageTitle from '../../shared/PageTitle/PageTitle';
 import cardPay from "../../../images/card-pay.png";
 
@@ -41,7 +40,6 @@ const Checkout = ({ setDeliveryInfo }) => {
     return (
         <div>
             <PageTitle title='Checkout' />
-            <Navbar />
 
             <div className="container">
                 <div className="smallContainer">

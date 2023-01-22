@@ -1,7 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Home from './components/pages/Home/Home';
-import Footer from './components/shared/Footer/Footer';
 import "./css/about.css";
 import "./css/buy-now.css";
 import "./css/contact.css";
@@ -36,25 +34,40 @@ import RequireAdmin from './components/shared/Required/RequireAdmin/RequireAdmin
 import SingleProductDetails from './components/pages/SingleProductDetails/SingleProductDetails';
 import AddToCard from './components/pages/AddToCard/AddToCard';
 import Checkout from './components/pages/Checkout/Checkout';
+import Home from './components/pages/Home/Home';
+import Footer from './components/shared/Footer/Footer';
 import { useState } from 'react';
+import Navbar from './components/shared/Navbar/Navbar';
 
 
 function App() {
-  const [deliveryInfo, setDeliveryInfo] = useState({});
-
+  const [refetchAddToCardProducts, setRefetchAddToCardProducts] = useState(false);
   return (
     <div>
+
+      <Navbar refetch={refetchAddToCardProducts} />
+
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/product-details/:id' element={<SingleProductDetails />} />
-        <Route path='/add-to-card' element={<AddToCard />} />
+
+        <Route path='/add-to-card' element={
+          <AddToCard
+            refetch={setRefetchAddToCardProducts}
+            reFetchValue={refetchAddToCardProducts}
+          />} />
+
+        <Route path='/product-details/:id' element={
+          <SingleProductDetails
+            refetch={setRefetchAddToCardProducts}
+            reFetchValue={refetchAddToCardProducts}
+          />} />
 
 
         {/*********** Login required (required auth) ****************/}
         <Route path='/checkout' element={
           <RequiredAuth>
-            <Checkout setDeliveryInfo={setDeliveryInfo}/>
+            <Checkout />
           </RequiredAuth>
         } />
 
@@ -62,9 +75,9 @@ function App() {
         {/*********** User dashboard ****************/}
 
         <Route path='/my-dashboard' element={
-            <RequiredAuth>
-              <MyDashboard />
-            </RequiredAuth>
+          <RequiredAuth>
+            <MyDashboard />
+          </RequiredAuth>
         }>
           <Route index element={<MyOrders />} />
           <Route path='order-details/:id' element={<OrderDetails />} />

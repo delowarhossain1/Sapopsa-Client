@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Loading from '../../shared/Loading/Loading';
-import Navbar from '../../shared/Navbar/Navbar';
 import PageTitle from '../../shared/PageTitle/PageTitle';
 import { BsPlusLg } from "react-icons/bs";
 import { FaMinus } from 'react-icons/fa';
 import {addNewProduct} from "../../../utilites/addToCard";
 
-const SingleProductDetails = () => {
+const SingleProductDetails = ({refetch, reFetchValue}) => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [product, setProduct] = useState({});
     const [loading, setLoading] = useState(true);
     const [changeImg, setChangeImg] = useState('');
@@ -61,11 +61,12 @@ const SingleProductDetails = () => {
 
         
         addNewProduct(info);
+        refetch(!reFetchValue);
+        navigate('/add-to-card')
     }
 
     return (
         <>
-            <Navbar />
             <PageTitle title={title || ''} />
 
             <div className="container">

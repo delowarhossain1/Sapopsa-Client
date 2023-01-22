@@ -52,7 +52,7 @@ const ManageProducts = () => {
             });
         }
     }
-    console.log(products)
+
     if (userLoading) {
         return <Loading />
     }

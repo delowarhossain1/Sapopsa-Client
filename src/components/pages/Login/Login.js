@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Navbar from '../../shared/Navbar/Navbar';
 import logo from "../../../images/sapopsa.png";
 import fb from "../../../icons/facebook2.png";
 import go from "../../../icons/google.png";
@@ -9,6 +8,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Loading from '../../shared/Loading/Loading';
 import { setAccessToken } from "../../../utilites/setAndGetAccessToken";
 import { signOut } from 'firebase/auth';
+import PageTitle from '../../shared/PageTitle/PageTitle';
 
 const Login = () => {
     const [signInWithGoogle, user, loading] = useSignInWithGoogle(auth);
@@ -47,7 +47,7 @@ const Login = () => {
 
     return (
         <div>
-            <Navbar />
+            <PageTitle title='Login' />
 
             <div className="container">
                 <div className="smallContainer">

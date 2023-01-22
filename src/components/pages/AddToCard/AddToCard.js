@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../../shared/Navbar/Navbar';
 import PageTitle from '../../shared/PageTitle/PageTitle';
 import { getProducts, removeProduct } from "../../../utilites/addToCard";
 import { Link } from 'react-router-dom';
 
-const AddToCard = () => {
-    const [refetch, setRefetch] = useState(false);
+const AddToCard = ({refetch, reFetchValue}) => {
+    const [reload, setReload] = useState(false);
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
         const storedProducts = getProducts();
         setProducts(storedProducts);
-    }, [refetch]);
+    }, [reload]);
 
     // Remove product 
-    const removeCardItem = () => {
-        setRefetch(true);
-        removeProduct();
+    const removeCardItem = (id) => {
+        removeProduct(id);
+        setReload(!reload);
+        refetch(!reFetchValue);
     }
 
     // calculate 
@@ -25,7 +25,6 @@ const AddToCard = () => {
     return (
         <>
             <PageTitle title='You added this products' />
-            <Navbar />
 
             <div className="container">
                 <div className="smallContainer">
@@ -45,10 +44,11 @@ const AddToCard = () => {
                                                 <img width="100px" src={product?.img} alt="product" />
                                                 <div>
                                                     <p>{product?.title?.length > 30 ? product.title.slice(0, 30) + '..' : product.title}</p>
-                                                    <small>Prices: ${product?.price}</small>
+                                                    <small>Prices: ${product?.price}</small> <br/>
+                                                    <small>Size: {product?.size}</small>
                                                     <br />
 
-                                                    <p style={{ cursor: 'pointer', marginTop: '7px' }} onClick={removeCardItem}>Remove</p>
+                                                    <p style={{ cursor: 'pointer', marginTop: '7px' }} onClick={()=> removeCardItem(product.id)}>Remove</p>
                                                 </div>
                                             </div>
 
