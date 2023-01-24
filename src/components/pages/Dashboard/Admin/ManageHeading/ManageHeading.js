@@ -7,12 +7,15 @@ import auth from '../../../../../firebase.init';
 import Loading from '../../../../shared/Loading/Loading';
 import { getAccessToken } from "../../../../../utilites/setAndGetAccessToken";
 import useModal from './../../../../../hooks/useModal';
+import SwitchBtn from '../../../../shared/SwitchBtn/SwitchBtn';
 
 const ManageHeading = () => {
-    const {successFullModal} = useModal();
+    const { successFullModal } = useModal();
     const [refetch, setRefetch] = useState(false);
     const [user, loading] = useAuthState(auth);
     const [heading, setHeading] = useState({});
+    const [isHeadingOn, setIsHeadingOn] = useState(true);
+
 
     useEffect(() => {
         fetch('http://localhost:5000/web-heading')
@@ -21,6 +24,25 @@ const ManageHeading = () => {
 
     }, [refetch]);
 
+    const updateHadingInfo = (updatedHeading, headingField) => {
+        fetch(`http://localhost:5000/web-heading?email=${user?.email}`, {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+                auth: `Bearer ${getAccessToken()}`
+            },
+            body: JSON.stringify({ heading: updatedHeading })
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res?.modifiedCount) {
+                    setRefetch(true);
+                    successFullModal();
+                    headingField.value = ''
+                }
+            })
+    }
+
     // handle update heading
     const handleHading = (e) => {
         e.preventDefault();
@@ -28,25 +50,11 @@ const ManageHeading = () => {
         let updatedHeading = headingField.value;
 
         if (updatedHeading && user) {
-
-            fetch(`http://localhost:5000/web-heading?email=${user?.email}`, {
-                method: 'PATCH',
-                headers: {
-                    "Content-Type": "application/json",
-                    auth: `Bearer ${getAccessToken()}`
-                },
-                body: JSON.stringify({ heading: updatedHeading })
-            })
-                .then(res => res.json())
-                .then(res => {
-                    if (res?.modifiedCount) {
-                        setRefetch(true);
-                        successFullModal();
-                        headingField.value = ''
-                    }
-                })
+            updateHadingInfo(updatedHeading, headingField)
         }
     }
+
+
 
     if (loading) {
         return <Loading />
@@ -57,7 +65,9 @@ const ManageHeading = () => {
             <DashboardTitle title='Heading' />
             <PageTitle title='manage heading' />
 
-            <div>
+            <SwitchBtn isOn={setIsHeadingOn} />
+
+            <div style={{ marginTop: '10px' }}>
                 <div style={{ background: '#ddd', padding: '4px' }}>{heading?.heading}</div>
 
                 <form className={css.form} onSubmit={handleHading}>

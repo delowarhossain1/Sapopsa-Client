@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PageTitle from '../../shared/PageTitle/PageTitle';
 import { getProducts, removeProduct } from "../../../utilites/addToCard";
-import { Link } from 'react-router-dom';
 import { getAccessToken } from '../../../utilites/setAndGetAccessToken';
 
 const AddToCard = ({refetch, reFetchValue}) => {

@@ -39,6 +39,7 @@ const AddNewCategori = () => {
             <div className={css.newCategoryFrom}>
                 <form className={css.form} onSubmit={handleSubmit}>
                     <h4>Add new category</h4>
+                    
                     <input type="text" placeholder='Category Title' name="title" required />
 
                     <input type='file' name="avater" onChange={(e) => setCategoryImg(e.target.files[0])} required />

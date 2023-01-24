@@ -39,7 +39,7 @@ const Checkout = ({ setDeliveryInfo }) => {
 
     return (
         <div>
-            <PageTitle title='Checkout' />
+            <PageTitle title='shipping info' />
 
             <div className="container">
                 <div className="smallContainer">
@@ -47,10 +47,7 @@ const Checkout = ({ setDeliveryInfo }) => {
                         <div className="checkoutInfo">
                             <div className="checkIn">
                                 <div className="cInf">
-                                    <h2>Checkout Info</h2>
-                                    {/* <div className="checkFrom2">
-                                        <a href="./cart.html">Modify Order</a>
-                                    </div> */}
+                                    <h2>Shipping Info</h2>
                                 </div>
                                 <div className="checkFrom">
                                     <form onSubmit={handleCheckoutInfo}>
@@ -103,7 +100,7 @@ heck-label">
                                                 href="/privacy-policy" target="_blank">Privacy Policy</a> of sapopsa.</span>
                                         <br /><br />
 
-                                        <button className={`btN ${!isAgree ? 'disabledPlaceOrderBtn' : ''}`} type="submit" name="button" disabled={!isAgree} >Proceed To Secure Payment</button>
+                                        <button className={`btN ${!isAgree ? 'disabledPlaceOrderBtn' : ''}`} type="submit" name="button" disabled={!isAgree} >Place order</button>
                                     </form>
                                 </div>
                             </div>
