@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PageTitle from '../../shared/PageTitle/PageTitle';
 import { getProducts, removeProduct } from "../../../utilites/addToCard";
 import { Link } from 'react-router-dom';
+import { getAccessToken } from '../../../utilites/setAndGetAccessToken';
 
 const AddToCard = ({refetch, reFetchValue}) => {
     const [reload, setReload] = useState(false);
@@ -17,6 +18,28 @@ const AddToCard = ({refetch, reFetchValue}) => {
         removeProduct(id);
         setReload(!reload);
         refetch(!reFetchValue);
+    }
+
+    // Payment button
+    const handlePayment = () => {
+        const products = getProducts();
+        const url = `http://localhost:5000/create-checkout-session`;
+
+        fetch(url, {
+            method : "POST",
+            headers : {
+                'Content-Type' : 'application/json',
+                auth : `${getAccessToken()}`
+            },
+            body : JSON.stringify(products)
+        })
+        .then(res => res.json())
+        .then(res => {
+            if(res?.url){
+                window.location.href = res?.url;
+            }
+        })
+        .catch(err => console.log(err))
     }
 
     // calculate 
@@ -72,9 +95,12 @@ const AddToCard = ({refetch, reFetchValue}) => {
                             </table>
                         </div>
                         <div className="plOrder">
-                            <Link to="/checkout">
-                                <button type="button" disabled={products.length > 0 ? false : true}>Place Order</button>
-                            </Link>
+                            {/* <Link to="/checkout"> */}
+                                <button type="button" 
+                                disabled={products.length > 0 ? false : true}
+                                onClick={handlePayment}
+                                >Place Order</button>
+                            {/* </Link> */}
                         </div>
 
                     </div>

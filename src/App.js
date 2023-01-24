@@ -65,7 +65,7 @@ function App() {
 
 
         {/*********** Login required (required auth) ****************/}
-        <Route path='/checkout' element={
+        <Route path='/place-order' element={
           <RequiredAuth>
             <Checkout />
           </RequiredAuth>
