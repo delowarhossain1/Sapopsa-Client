@@ -38,6 +38,7 @@ import Home from './components/pages/Home/Home';
 import Footer from './components/shared/Footer/Footer';
 import { useState } from 'react';
 import Navbar from './components/shared/Navbar/Navbar';
+import AddNewAdmin from './components/pages/Dashboard/Admin/Admins/AddNewAdmin';
 
 
 function App() {
@@ -104,6 +105,7 @@ function App() {
           <Route path='manage-heading' element={<ManageHeading />} />
           <Route path='customers' element={<Customers />} />
           <Route path='admins' element={<Admins />} />
+          <Route path='admins/add-new-admin' element={<AddNewAdmin />} />
           <Route path='manage-categories/add-new-category' element={<AddNewCategori />} />
           <Route path='manage-slider/add-new-slider' element={<AddNewSlider />} />
 

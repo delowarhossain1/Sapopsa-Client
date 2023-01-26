@@ -45,11 +45,23 @@ const useModal = () => {
         })
     }
 
+    const simpleMessageDisplay = (text = 'Set the title here') => {
+        Swal.fire({
+            title: `${text}`,
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        })
+    }
 
     return {
         successFullModal,
         deleteModal,
-        simpleAlertWithConfirmBtn
+        simpleAlertWithConfirmBtn,
+        simpleMessageDisplay
     }
 };
 

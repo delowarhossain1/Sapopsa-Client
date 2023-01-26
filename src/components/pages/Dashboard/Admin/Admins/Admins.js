@@ -7,6 +7,7 @@ import auth from '../../../../../firebase.init';
 import { getAccessToken } from '../../../../../utilites/setAndGetAccessToken';
 import Loading from '../../../../shared/Loading/Loading';
 import useModal from './../../../../../hooks/useModal';
+import { Link } from 'react-router-dom';
 
 const Admins = () => {
     const [refetch, setRefetch] = useState(false);
@@ -43,13 +44,13 @@ const Admins = () => {
                         auth: `Bearer ${getAccessToken()}`
                     }
                 })
-                .then(res => res.json())
-                .then(res => {
-                    if(res?.modifiedCount){
-                        successFullModal();
-                        setRefetch(true);
-                    }
-                })
+                    .then(res => res.json())
+                    .then(res => {
+                        if (res?.modifiedCount) {
+                            successFullModal();
+                            setRefetch(true);
+                        }
+                    })
             }
         });
     };
@@ -61,7 +62,16 @@ const Admins = () => {
     return (
         <div>
             <DashboardTitle title='Admins' />
-            <PageTitle title='admins' />
+            <PageTitle title='Admins' />
+
+            <div style={{display : 'flex', justifyContent : 'flex-end'}}>
+                <button style={{ padding: '5px', cursor: 'pointer' }}>
+                    <Link to='add-new-admin' style={{color : 'black'}}>
+                        Add New Admin
+                    </Link>
+                </button>
+            </div>
+
 
             <div style={{ overflowX: 'auto' }}>
                 <table className={css.table}>
@@ -82,8 +92,8 @@ const Admins = () => {
                                 <th>
                                     <button
                                         className={css.btn}
-                                        disabled = {admins?.length === 0}
-                                        onClick={()=> removeAdmin(admin?.email)}
+                                        disabled={admins?.length === 0}
+                                        onClick={() => removeAdmin(admin?.email)}
                                     >Delete Admin</button>
                                 </th>
                             </tr>
