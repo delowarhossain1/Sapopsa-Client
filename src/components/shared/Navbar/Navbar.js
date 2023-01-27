@@ -13,10 +13,10 @@ import { getProducts } from "../../../utilites/addToCard";
 const Navbar = ({ refetch }) => {
     const [user] = useAuthState(auth);
     const [addToCardProducts, setaddToCardProducts] = useState(0);
-    const [webHeading, setWebHeading] = useState('Sapopsa');
+    const [webHeading, setWebHeading] = useState({heading: '', isDispaly : false});
     const [toggleClass, setToggleClass] = useState(false);
     const mediaSize = 991;
-
+    
     // Get add to card products
     useEffect(() => {
         const products = getProducts();
@@ -24,11 +24,11 @@ const Navbar = ({ refetch }) => {
     }, [refetch]);
 
     // Get web heading
-    useEffect(()=>{
+    useEffect(() => {
         fetch('http://localhost:5000/web-heading')
-        .then(res => res.json())
-        .then(res => setWebHeading(res?.heading))
-        .catch(err => console.log(err));
+            .then(res => res.json())
+            .then(res => setWebHeading(res))
+            .catch(err => console.log(err));
     }, []);
 
 
@@ -55,12 +55,14 @@ const Navbar = ({ refetch }) => {
 
     return (
         <header className="header">
-            <Link to='/'>
+
+            {   webHeading?.isDispaly &&
+
                 <div className="notice">
-                    {/* <p className="noticeText">WELCOME TO OUR ONLINE STORE,NOTICES HERE......</p> */}
-                    <marquee className="noticeText">{webHeading}</marquee>
+                    <marquee className="noticeText">{webHeading?.heading}</marquee>
                 </div>
-            </Link>
+            }
+
             <div className="header-main">
                 <div className="openMenu" onClick={toggleNav}>
                     <i className="fa-solid fa-bars"></i>

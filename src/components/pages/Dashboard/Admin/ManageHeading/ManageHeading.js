@@ -10,19 +10,34 @@ import useModal from './../../../../../hooks/useModal';
 import SwitchBtn from '../../../../shared/SwitchBtn/SwitchBtn';
 
 const ManageHeading = () => {
-    const {successFullModal} = useModal();
+    const { successFullModal } = useModal();
     const [refetch, setRefetch] = useState(false);
     const [user, loading] = useAuthState(auth);
-    const [heading, setHeading] = useState({});
-    const [isHeadingOn, setIsHeadingOn] = useState(true);
+    const [heading, setHeading] = useState({heading : ''});
 
-
+    // Get website heading
     useEffect(() => {
         fetch('http://localhost:5000/web-heading')
             .then(res => res.json())
             .then(res => setHeading(res));
 
     }, [refetch]);
+
+    // Display heading / on or off
+    const isDispaly = (isOn) => {
+        const url = `http://localhost:5000/display-web-heading?email=${user?.email}`;
+
+        fetch(url, {
+            method: "PATCH",
+            headers: {
+                "Content-Type" : "application/json",
+                auth: `Bearer ${getAccessToken()}`
+            },
+            body : JSON.stringify({isOn})
+        })
+    }
+
+
 
     // handle update heading
     const handleHading = (e) => {
@@ -60,10 +75,12 @@ const ManageHeading = () => {
             <DashboardTitle title='Heading' />
             <PageTitle title='manage heading' />
 
-            <SwitchBtn isOn={setIsHeadingOn}/>
+            <div style={{ marginTop: '10px' }}>
+                <SwitchBtn isOn={isDispaly} />
+            </div>
 
-            <div style={{marginTop : '10px'}}>
-                <div style={{ background: '#ddd', padding: '4px' }}>{heading?.heading}</div>
+            <div className={css.container}>
+                <div className={css.headingText}>{heading?.heading}</div>
 
                 <form className={css.form} onSubmit={handleHading}>
                     <textarea placeholder='Update Heading' name='heading'></textarea>
