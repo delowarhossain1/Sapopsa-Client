@@ -43,7 +43,7 @@ const AddNewSlider = () => {
                 });
         }
         else{
-            simpleMessageDisplay("Unable to upload this file. Try an image file.");
+            simpleMessageDisplay("Unable to upload this file. Try another image file.");
         }
 
     }

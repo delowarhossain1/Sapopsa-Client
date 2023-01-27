@@ -6,8 +6,6 @@ import { Outlet } from 'react-router-dom';
 const MyDashboard = () => {
     return (
         <>
-            <Navbar />
-
             <div className="backColor">
                 <div className="container">
                     <div className="myOrder">

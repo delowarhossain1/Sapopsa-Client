@@ -5,29 +5,55 @@ import { getAccessToken } from '../../../../../utilites/setAndGetAccessToken';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../../../firebase.init';
 import axios from "axios";
+import Loading from '../../../../shared/Loading/Loading';
+import useModal from './../../../../../hooks/useModal';
+import { useNavigate } from 'react-router-dom';
 
 const AddNewCategori = () => {
+    const { successFullModal, simpleMessageDisplay } = useModal();
+    const navigate = useNavigate();
     const [user, loading] = useAuthState(auth);
     const [file, setFile] = useState(null);
 
     const handleSubmit = e => {
         e.preventDefault();
-        const title = e.target.title.value;
+        const reg = /image.*/;
 
-        const formData = new FormData();
-        formData.append('avatar', file);
+        if (file.type.match(reg)) {
+            const title = e.target.title.value;
+            const category = e.target.category.value;
+            const route = title.toLowerCase().split(' ').join('-');
 
-        if (formData) {
+            const formData = new FormData();
+            formData.append('img', file);
+            formData.append('title', title);
+            formData.append('thisIsFor', category);
+            formData.append('route', route);
+
             const url = `http://localhost:5000/categories?email=${user?.email}`;
-
             axios.post(url, formData, {
-                headers : {
-                    'content-type': 'multipart/form-data',
-                    auth : `Bearer ${getAccessToken()}`
+                headers: {
+                    auth: `Bearer ${getAccessToken()}`
                 }
             })
-            .then(res => console.log(res))
+                .then(res => {
+                    if (res?.data?.insertedId || res?.status === 200) {
+                        successFullModal();
+                        navigate('/dashboard/manage-categories');
+                    }
+                    else {
+                        simpleMessageDisplay('Category upload faild. Plase try again.');
+                    }
+                })
+                .catch(err => console.log(err))
         }
+        else {
+            simpleMessageDisplay('Unable upload this file. Please try another image file.');
+        }
+    }
+
+    if (loading) {
+        return <Loading />
     }
 
     return (
@@ -37,10 +63,25 @@ const AddNewCategori = () => {
             <div className={css.newCategoryFrom}>
                 <form className={css.form} onSubmit={handleSubmit}>
                     <h4>Add new category</h4>
-                    
-                    <input type="text" placeholder='Category Title' name="title" required />
 
-                    <input type='file' name="avater" onChange={(e) => setFile(e.target.files[0])} required />
+                    <div>
+                        <label htmlFor="title">Category title</label>
+                        <input type="text" placeholder='Category Title' name="title" id='title' required />
+                    </div>
+
+                    <div>
+                        <label>Select category</label>
+                        <select required name='category'>
+                            <option value='men'>Men</option>
+                            <option value='women'>women</option>
+                            <option value='sports'>Sports</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label htmlFor="file">Select category IMG</label>
+                        <input type='file' name="avater" onChange={(e) => setFile(e.target.files[0])} id='file' required />
+                    </div>
 
                     <button type='submit'>Submit</button>
                 </form>

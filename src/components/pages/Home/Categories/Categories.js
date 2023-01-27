@@ -26,13 +26,13 @@ const Categories = () => {
                             <div
                                 className="col"
                                 style={{ border: '1px solid #ddd', borderRadius: "2px", cursor: 'pointer' }}
-                                onClick={() => navigate(`/category/${category.title}`)}
+                                onClick={() => navigate(`/category/${category?.route}`)}
                                 key={category?._id}
                             >
 
                                 <img src={category?.img} alt="category" />
                                 <div className="productBtn">
-                                    <span>Men Polo Shirt</span>
+                                    <span>{category?.title}</span>
                                 </div>
                             </div>
                         ))

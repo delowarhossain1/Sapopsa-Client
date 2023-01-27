@@ -69,6 +69,7 @@ const ManageCategories = () => {
                     <tr>
                         <th>#No.</th>
                         <th>IMG</th>
+                        <th>Category</th>
                         <th>Title</th>
                         <th>Action</th>
                     </tr>
@@ -81,6 +82,7 @@ const ManageCategories = () => {
                                 <th>
                                     <img src={c?.img} className={css2.categoryImg} alt="" />
                                 </th>
+                                <th>Men</th>
                                 <th>{c?.title}</th>
                                 <th>
                                     <button

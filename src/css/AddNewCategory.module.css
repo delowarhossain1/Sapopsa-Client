@@ -1,31 +1,51 @@
-.newCategoryFrom{
+.newCategoryFrom {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70vh;
 }
 
-.form{
+.form {
     padding: 10px;
     background-color: #ddd;
     width: 350px;
     border-radius: 7px;
+    box-sizing: border-box;
 }
 
-.form h4{
+.form > div{
+    margin: 10px 0px;
+}
+
+.form > div > label{
+    color: rgb(77, 54, 54);
+    display: block;
+    font-size: 14px;
+}
+
+.form > div > input, .form > div > select{
+    width: 100%;
+}
+.form > div > select{
+    margin-left: 0px;
+}
+.form h4 {
     text-align: center;
     margin-bottom: 13px;
 }
-.form input{
+
+/* .form div input {
     padding: 7px;
     width: 100%;
     outline: none;
     margin-bottom: 5px;
     font-size: 16px;
-}
-.form button{
+} */
+
+.form button {
     width: 100%;
     padding: 5px;
     cursor: pointer;
     font-size: 16px;
 }
+
