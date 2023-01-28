@@ -73,6 +73,8 @@ const ManageProducts = () => {
                             <th>#No.</th>
                             <th>IMG</th>
                             <th>Price</th>
+                            <th>Category</th>
+                            <th>For</th>
                             <th>Title</th>
                             <th>Action</th>
                         </tr>
@@ -85,7 +87,11 @@ const ManageProducts = () => {
                                         <img src={product?.img} alt="product" className={css2.displayImg} />
                                     </th>
                                     <th>${product?.price}</th>
-                                    <th>{product?.title}</th>
+                                    <th></th>
+                                    <th></th>
+
+                                    <th>{product?.title?.length > 15 ? product?.title.slice(0, 15) + '..' : product?.title}</th>
+
                                     <th>
                                         <button
                                             className={css2.deleteBtn}

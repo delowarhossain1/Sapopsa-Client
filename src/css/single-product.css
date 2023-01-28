@@ -166,6 +166,39 @@ table, td, th {
 .buyNow:hover {
 	background-color: #1D9688;
 }
+
+.productColorBtnContainer{
+	display: flex;
+	align-items: center;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+.colorBtn{
+	width: 25px;
+	height: 25px;
+	margin-right: 5px;
+	border: none;
+	border-radius: 50%;
+	opacity: 0.7;
+	transition: .3s;
+}
+.colorBtn:hover{
+	opacity: 1;
+}
+.colorBtnActive{
+	opacity: 1;
+}
+
+.colorBtn svg{
+	color: #fff;
+}
+
+.activePriductSize{
+	background-color: orange;
+	color: white;
+}
+
 @media(max-width: 992px){
 	.imgWrapper {
 		width: 100%;

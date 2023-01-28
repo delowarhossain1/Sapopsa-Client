@@ -3,10 +3,10 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Loading from '../../shared/Loading/Loading';
 import PageTitle from '../../shared/PageTitle/PageTitle';
 import { BsPlusLg } from "react-icons/bs";
-import { FaMinus } from 'react-icons/fa';
-import {addNewProduct} from "../../../utilites/addToCard";
+import { FaCheck, FaMinus } from 'react-icons/fa';
+import { addNewProduct } from "../../../utilites/addToCard";
 
-const SingleProductDetails = ({refetch, reFetchValue}) => {
+const SingleProductDetails = ({ refetch, reFetchValue }) => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [product, setProduct] = useState({});
@@ -14,6 +14,7 @@ const SingleProductDetails = ({refetch, reFetchValue}) => {
     const [changeImg, setChangeImg] = useState('');
     const [selectedSize, setSelectedSize] = useState('');
     const [selectedQuantity, setSelectedQuantity] = useState(1);
+    const [selectedColor, setSelectedColor] = useState(['#fb5200']);
 
 
     useEffect(() => {
@@ -42,7 +43,7 @@ const SingleProductDetails = ({refetch, reFetchValue}) => {
         return <Loading />
     }
 
-    const {_id, img, title, size, price, description, spacification, displayIMG } = product;
+    const { _id, img, title, size, price, description, spacification, displayIMG } = product;
 
     // calculate product base on quantity
     const calPrice = selectedQuantity * price;
@@ -53,17 +54,19 @@ const SingleProductDetails = ({refetch, reFetchValue}) => {
             img,
             title,
             price,
-            id : _id,
+            id: _id,
             size: selectedSize || size[0],
-            quantity : selectedQuantity,
-            totalPrice : calPrice,
+            quantity: selectedQuantity,
+            totalPrice: calPrice,
         }
 
-        
+
         addNewProduct(info);
         refetch(!reFetchValue);
         navigate('/add-to-card')
     }
+
+    const colors = ['#000', '#fb5200', "#444"];
 
     return (
         <>
@@ -179,9 +182,10 @@ const SingleProductDetails = ({refetch, reFetchValue}) => {
                                         {
                                             size?.map((s, i) => (
                                                 <div
-                                                    className={`sizeSelector list-inline-item `}
+                                                    className={selectedSize === s ? 'sizeSelector list-inline-item activePriductSize' : 'sizeSelector list-inline-item'}
                                                     onClick={() => setSelectedSize(s)}
                                                     key={i * Math.random()}>
+                                                        
                                                     {s}
                                                 </div>
                                             ))
@@ -189,6 +193,24 @@ const SingleProductDetails = ({refetch, reFetchValue}) => {
 
                                     </div>
 
+                                    <div>
+                                        <h4>Colors : </h4>
+
+                                        <div className='productColorBtnContainer'>
+                                            {colors?.map((color, i) => {
+                                                return (
+                                                    <button
+                                                        key={i}
+                                                        style={{ background: color }}
+                                                        className={color === selectedColor ? 'colorBtn colorBtnActive' : 'colorBtn'}
+                                                        onClick={() => setSelectedColor(color)}
+                                                    >
+                                                        {color === selectedColor ? <FaCheck /> : null}
+                                                    </button>
+                                                )
+                                            })}
+                                        </div>
+                                    </div>
 
                                     <div className="quantiBtn">
                                         <span>Quantity : </span>
