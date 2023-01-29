@@ -14,7 +14,7 @@ const SingleProductDetails = ({ refetch, reFetchValue }) => {
     const [changeImg, setChangeImg] = useState('');
     const [selectedSize, setSelectedSize] = useState('');
     const [selectedQuantity, setSelectedQuantity] = useState(1);
-    const [selectedColor, setSelectedColor] = useState(['#fb5200']);
+    const [selectedColor, setSelectedColor] = useState([]);
 
 
     useEffect(() => {
@@ -43,7 +43,7 @@ const SingleProductDetails = ({ refetch, reFetchValue }) => {
         return <Loading />
     }
 
-    const { _id, img, title, size, price, description, spacification, displayIMG } = product;
+    const { _id, img, title, size, price, description, specification, galleryIMG, colors} = product;
 
     // calculate product base on quantity
     const calPrice = selectedQuantity * price;
@@ -51,13 +51,14 @@ const SingleProductDetails = ({ refetch, reFetchValue }) => {
     const addToCardHandeler = () => {
 
         const info = {
-            img,
             title,
             price,
             id: _id,
-            size: selectedSize || size[0],
-            quantity: selectedQuantity,
+            color : selectedColor,
             totalPrice: calPrice,
+            quantity: selectedQuantity,
+            img : changeImg || img,
+            size: selectedSize || size[0],
         }
 
 
@@ -65,8 +66,6 @@ const SingleProductDetails = ({ refetch, reFetchValue }) => {
         refetch(!reFetchValue);
         navigate('/add-to-card')
     }
-
-    const colors = ['#000', '#fb5200', "#444"];
 
     return (
         <>
@@ -85,7 +84,7 @@ const SingleProductDetails = ({ refetch, reFetchValue }) => {
 
                                     <div className="samollPic">
                                         {
-                                            displayIMG?.map((dImg, i) => (
+                                            galleryIMG?.map((dImg, i) => (
                                                 <div className="small" onClick={() => setChangeImg(dImg)} key={i * Math.random()}>
 
                                                     <img src={dImg} width="100%" className="samllImg" alt="" />
@@ -106,7 +105,7 @@ const SingleProductDetails = ({ refetch, reFetchValue }) => {
                                     </p>
                                     <ul className="Specification">
                                         {
-                                            spacification?.map((spa, i) => (
+                                            specification?.map((spa, i) => (
                                                 <li key={i * Math.random()}>
                                                     {spa}
                                                 </li>
@@ -176,9 +175,8 @@ const SingleProductDetails = ({ refetch, reFetchValue }) => {
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <strong>Choose Size : {selectedSize ? selectedSize : size[0]}</strong>
+                                    <strong>Choose Size : {selectedSize}</strong>
                                     <div className="sizeWrap">
-
                                         {
                                             size?.map((s, i) => (
                                                 <div

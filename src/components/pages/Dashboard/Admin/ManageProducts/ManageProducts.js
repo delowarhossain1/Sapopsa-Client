@@ -87,8 +87,8 @@ const ManageProducts = () => {
                                         <img src={product?.img} alt="product" className={css2.displayImg} />
                                     </th>
                                     <th>${product?.price}</th>
-                                    <th></th>
-                                    <th></th>
+                                    <th>{product?.category}</th>
+                                    <th>{product?.thisIsFor}</th>
 
                                     <th>{product?.title?.length > 15 ? product?.title.slice(0, 15) + '..' : product?.title}</th>
 
@@ -97,6 +97,8 @@ const ManageProducts = () => {
                                             className={css2.deleteBtn}
                                             onClick={() => deleteProduct(product._id)}
                                         >Delete</button>
+                                        
+                                        <button>Details</button>
                                     </th>
                                 </tr>
                             ))
