@@ -40,7 +40,6 @@ import { useState } from 'react';
 import Navbar from './components/shared/Navbar/Navbar';
 import AddNewAdmin from './components/pages/Dashboard/Admin/Admins/AddNewAdmin';
 
-
 function App() {
   const [refetchAddToCardProducts, setRefetchAddToCardProducts] = useState(false);
   return (

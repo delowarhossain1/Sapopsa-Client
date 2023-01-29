@@ -80,9 +80,9 @@ const ManageCategories = () => {
                             <tr key={c?._id}>
                                 <th>{i + 1}</th>
                                 <th>
-                                    <img src={c?.img} className={css2.categoryImg} alt="" />
+                                    <img src={c?.img} className={css2.categoryImg} alt="category img" />
                                 </th>
-                                <th>Men</th>
+                                <th>{c?.thisIsFor}</th>
                                 <th>{c?.title}</th>
                                 <th>
                                     <button

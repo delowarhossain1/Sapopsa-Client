@@ -69,7 +69,7 @@ const AddNewCategori = () => {
                         <input type="text" placeholder='Category Title' name="title" id='title' required />
                     </div>
 
-                    <div>
+                    <div className={css.selectCategory}>
                         <label>Select category</label>
                         <select required name='category'>
                             <option value='men'>Men</option>
