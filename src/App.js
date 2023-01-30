@@ -41,6 +41,7 @@ import Navbar from './components/shared/Navbar/Navbar';
 import AddNewAdmin from './components/pages/Dashboard/Admin/Admins/AddNewAdmin';
 import NotFound from './components/pages/NotFound/NotFound';
 import ProductFor from './components/pages/ProductFor/ProductFor';
+import CategoriesProducts from './components/pages/CategoriesProducts/CategoriesProducts';
 
 function App() {
   const [refetchAddToCardProducts, setRefetchAddToCardProducts] = useState(false);
@@ -53,6 +54,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/product-for/:id' element={<ProductFor />} />
+        <Route path='/category/:cty' element={<CategoriesProducts />} />
 
         <Route path='/add-to-card' element={
           <AddToCard
