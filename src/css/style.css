@@ -28,6 +28,18 @@ body.hidden-scrolling {
 	box-sizing: border-box;
 }
 
+/* Utilities */
+.margin-top{
+	margin-top: 130px;
+}
+
+.product-container{
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-gap: 20px;
+}
+
+
 .notice {
 	text-align: center;
 	width: 100%;
@@ -669,10 +681,16 @@ table.cartTable {
 	padding: 10px;
 	margin-bottom: 50px;
 	box-shadow: 0px 0px 5px 3px #efefef;
+	cursor: pointer;
+	transition: .5s;
 }
 
-.colTow a img {
+.colTow div img {
 	width: 100%;
+}
+
+.colTow:hover{
+	transform: translateY(-5px);
 }
 
 .discount {

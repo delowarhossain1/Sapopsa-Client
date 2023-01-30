@@ -27,15 +27,15 @@ const Arrivals = () => {
                             </div>
                         </div>
 
-                        <div className="body-menu-item" onClick={() => navigate('/men')}>
+                        <div className="body-menu-item" onClick={() => navigate('/product-for/male')}>
                             <span className="noStyleLink">MENS</span>
                         </div>
 
-                        <div className="body-menu-item" onClick={() => navigate('/women')}>
+                        <div className="body-menu-item" onClick={() => navigate('/product-for/female')}>
                             <span className="noStyleLink" >Women</span>
                         </div>
 
-                        <div className="body-menu-item" onClick={() => navigate('/sports')}>
+                        <div className="body-menu-item" onClick={() => navigate('/product-for/sports')}>
                             <span className="noStyleLink" >Sports</span>
                         </div>
                     </div>

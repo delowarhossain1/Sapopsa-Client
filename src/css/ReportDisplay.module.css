@@ -24,9 +24,9 @@
     font-size: 40px;
 }
 
-.row{
+.row-for-product{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(6 , 1fr);
     justify-content: space-between;
     margin-top: 50px;
 }
