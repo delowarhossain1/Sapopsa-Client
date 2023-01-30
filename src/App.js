@@ -39,6 +39,7 @@ import Footer from './components/shared/Footer/Footer';
 import { useState } from 'react';
 import Navbar from './components/shared/Navbar/Navbar';
 import AddNewAdmin from './components/pages/Dashboard/Admin/Admins/AddNewAdmin';
+import NotFound from './components/pages/NotFound/NotFound';
 
 function App() {
   const [refetchAddToCardProducts, setRefetchAddToCardProducts] = useState(false);
@@ -109,6 +110,9 @@ function App() {
           <Route path='manage-slider/add-new-slider' element={<AddNewSlider />} />
 
         </Route>
+
+        <Route path='*' element={<NotFound />} />
+        
       </Routes>
 
       <Footer />
