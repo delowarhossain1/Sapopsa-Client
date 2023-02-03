@@ -42,6 +42,7 @@ import AddNewAdmin from './components/pages/Dashboard/Admin/Admins/AddNewAdmin';
 import NotFound from './components/pages/NotFound/NotFound';
 import ProductFor from './components/pages/ProductFor/ProductFor';
 import CategoriesProducts from './components/pages/CategoriesProducts/CategoriesProducts';
+import Settings from './components/pages/Dashboard/Admin/Settings/Settings';
 
 function App() {
   const [refetchAddToCardProducts, setRefetchAddToCardProducts] = useState(false);
@@ -112,6 +113,7 @@ function App() {
           <Route path='admins/add-new-admin' element={<AddNewAdmin />} />
           <Route path='manage-categories/add-new-category' element={<AddNewCategori />} />
           <Route path='manage-slider/add-new-slider' element={<AddNewSlider />} />
+          <Route path='settings' element={<Settings />} />
 
         </Route>
 

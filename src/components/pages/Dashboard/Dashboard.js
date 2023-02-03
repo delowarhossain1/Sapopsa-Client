@@ -4,7 +4,7 @@ import {
     FaBars,
     FaShoppingBag,
 } from "react-icons/fa";
-import {FiShoppingBag, FiUsers} from "react-icons/fi";
+import {FiSettings, FiShoppingBag, FiUsers} from "react-icons/fi";
 import {BsCardHeading} from "react-icons/bs";
 import {RiUserSettingsFill} from "react-icons/ri";
 import {BiCategoryAlt} from "react-icons/bi";
@@ -61,6 +61,11 @@ const Dashboard = ({children}) => {
             path: "admins",
             name: "Admin",
             icon: <RiUserSettingsFill />
+        },
+        {
+            path: "settings",
+            name: "Settings",
+            icon: <FiSettings />
         },
     ]
 
