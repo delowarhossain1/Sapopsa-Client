@@ -1,0 +1,58 @@
+.checkoutInfoCont{
+    display: flex;
+
+}
+
+.productInfo{
+    margin-top: 35px;
+    margin-right: 30px;
+    flex-basis: 40%;
+}
+
+.subTotal{
+    border-top: 2px solid rgb(121, 80, 80);
+    margin-top: 30px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.productList{
+    display: flex;
+    margin-bottom: 10px;
+}
+.productList img{
+    width: 70px;
+    margin-right: 10px;
+}
+.productList > div {
+    display: flex;
+    flex-direction: column;
+}
+.productList > div > span{
+    font-size: 13px;
+}
+.productList > div > span:first-child{
+    font-size: 15px;
+}
+
+.checkOutInfo{
+    flex-basis: 60%;
+}
+
+.form label{
+    font-size: 14px;
+    color: rgb(74, 61, 61);
+}
+
+.selectOption{
+    margin-bottom: 20px;
+}
+
+.selectOption select{
+    width: 100%;
+    padding: 6px;
+    font-size: 16px;
+    outline: none;
+}

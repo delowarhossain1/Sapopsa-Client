@@ -22,23 +22,8 @@ const AddToCard = ({refetch, reFetchValue}) => {
     // Payment button
     const handlePayment = () => {
         const products = getProducts();
-        const url = `http://localhost:5000/create-checkout-session`;
-
-        fetch(url, {
-            method : "POST",
-            headers : {
-                'Content-Type' : 'application/json',
-                auth : `${getAccessToken()}`
-            },
-            body : JSON.stringify(products)
-        })
-        .then(res => res.json())
-        .then(res => {
-            if(res?.url){
-                window.location.href = res?.url;
-            }
-        })
-        .catch(err => console.log(err))
+        
+       
     }
 
     // calculate 
