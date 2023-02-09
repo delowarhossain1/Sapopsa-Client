@@ -6,8 +6,10 @@ import PageTitle from '../../shared/PageTitle/PageTitle';
 import cardPay from "../../../images/card-pay.png";
 import css from "../../../css/checkout.module.css";
 import { getProducts } from '../../../utilites/addToCard';
+import { useNavigate } from 'react-router-dom';
 
-const Checkout = ({ setDeliveryInfo }) => {
+const Checkout = ({ setCheckoutInfo }) => {
+    const navigate = useNavigate();
     const [user, loading] = useAuthState(auth);
     const [isAgree, setIsAgree] = useState(false);
     const [products, setProducts] = useState([]);
@@ -51,8 +53,8 @@ const Checkout = ({ setDeliveryInfo }) => {
             }
         }
 
-        console.log(info);
-
+        setCheckoutInfo(info);
+        navigate('/payment')
     }
 
     if (loading) {
@@ -139,7 +141,8 @@ const Checkout = ({ setDeliveryInfo }) => {
                                                 <div className="form-check form-check-inline payment-method-selector"
                                                     style={{ width: '270px !important' }}>
                                                     <label className="form-cimport { useAuthState } from 'react-firebase-hooks/auth' heck-label">
-                                                        <input className="form-check-input payment-method-radio" type="radio" name="payment_method"
+                                                        <input className="foimport { useNavigate } from 'react-router-dom';
+rm-check-input payment-method-radio" type="radio" name="payment_method"
                                                             value="ssl_card" checked="" />
                                                         <img src={cardPay} className="payment-method-logo" alt="" />
                                                     </label>

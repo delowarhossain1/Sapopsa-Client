@@ -43,9 +43,13 @@ import NotFound from './components/pages/NotFound/NotFound';
 import ProductFor from './components/pages/ProductFor/ProductFor';
 import CategoriesProducts from './components/pages/CategoriesProducts/CategoriesProducts';
 import Settings from './components/pages/Dashboard/Admin/Settings/Settings';
+import Payment from './components/pages/Checkout/Payment';
 
 function App() {
   const [refetchAddToCardProducts, setRefetchAddToCardProducts] = useState(false);
+  const [checkoutInfo, setCheckoutInfo] = useState({});
+
+
   return (
     <div>
 
@@ -56,7 +60,18 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/product-for/:id' element={<ProductFor />} />
         <Route path='/category/:cty' element={<CategoriesProducts />} />
-        <Route path='/checkout' element={<Checkout />} />
+
+        <Route path='/checkout' element={
+          <RequiredAuth>
+            <Checkout setCheckoutInfo={setCheckoutInfo}/>
+          </RequiredAuth>
+        }/>
+
+        <Route path='/payment' element={
+          <RequiredAuth>
+            <Payment checkoutInfo={checkoutInfo} />
+          </RequiredAuth>
+        } />
 
         <Route path='/add-to-card' element={
           <AddToCard

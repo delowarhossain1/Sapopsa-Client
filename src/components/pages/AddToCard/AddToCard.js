@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PageTitle from '../../shared/PageTitle/PageTitle';
 import { getProducts, removeProduct } from "../../../utilites/addToCard";
-import { getAccessToken } from '../../../utilites/setAndGetAccessToken';
+import {Link} from "react-router-dom"
 
 const AddToCard = ({refetch, reFetchValue}) => {
     const [reload, setReload] = useState(false);
@@ -17,13 +17,6 @@ const AddToCard = ({refetch, reFetchValue}) => {
         removeProduct(id);
         setReload(!reload);
         refetch(!reFetchValue);
-    }
-
-    // Payment button
-    const handlePayment = () => {
-        const products = getProducts();
-        
-       
     }
 
     // calculate 
@@ -79,12 +72,11 @@ const AddToCard = ({refetch, reFetchValue}) => {
                             </table>
                         </div>
                         <div className="plOrder">
-                            {/* <Link to="/checkout"> */}
+                            <Link to="/checkout">
                                 <button type="button" 
                                 disabled={products.length > 0 ? false : true}
-                                onClick={handlePayment}
                                 >Place Order</button>
-                            {/* </Link> */}
+                            </Link>
                         </div>
 
                     </div>

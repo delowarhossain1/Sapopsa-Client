@@ -5,7 +5,6 @@ const addNewProduct = (info = {}) => {
     if (storedProduct) {
         const filterProduct = storedProduct?.filter(p => p.id !== info.id);
         const newProduct = [...filterProduct, info];
-        console.log(newProduct);
         localStorage.setItem('products', JSON.stringify(newProduct));
     }
     else{
