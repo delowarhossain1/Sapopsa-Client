@@ -131,3 +131,24 @@
 .updateBtn button svg{
     margin-left: 4px;
 }
+.ordersPageContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.orderNotAviable{
+    font-size: 17px;
+    text-align: center;
+}
+
+.searchOrders > input{
+    width: 230px;
+    padding: 3px;
+    font-size: 15px;
+}
+.searchOrders > button{
+    font-size: 15px;
+    padding: 3px;
+    position: relative;
+    left: -2px;
+}

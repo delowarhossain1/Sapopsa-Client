@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import DashboardTitle from '../../DashboardTitle';
 import PageTitle from './../../../../shared/PageTitle/PageTitle';
 import css2 from "../../../../../css/Table.module.css";
@@ -13,20 +13,44 @@ import css from "../../../../../css/ManageOrder.module.css";
 import { Link } from 'react-router-dom';
 
 const ManageOrders = () => {
+    const getSearchText = useRef();
     const [user, loading] = useAuthState(auth);
-    const [state, setState] = useState('Pending');
+    const [searchText, setSearchText] = useState('Pending');
 
-    const { isLoading, data: orders, } = useQuery('orders', () => (
-        axios.get(`http://localhost:5000/orders?status=Pending&email=${user?.email}`, {
+    const { isLoading, data: orders, } = useQuery(['orders', searchText], () => (
+        axios.get(`http://localhost:5000/orders?searchText=${searchText}&email=${user?.email}`, {
             headers: { auth: `Bearer ${getAccessToken()}` }
         })
             .then(res => res.data)
     ));
 
+    // Search handle
+    const handleSearch = () => {
+        const text = getSearchText.current.value;
+
+        if (text && text?.length > 5) {
+
+            if (text === "pending" || text === "shipping" || text === "delivered" || text === "cancelled") {
+                const currectText = text.charAt(0).toUpperCase() + text.slice(1, text.length);
+                setSearchText(currectText);
+
+                // Set empty string in search field
+                getSearchText.current.value = "";
+            }
+            else {
+                setSearchText(text);
+
+                // Set empty string in search field
+                getSearchText.current.value = "";
+            }
+        };
+    }
+
     if (loading || isLoading) {
         return <Loading />
     }
 
+    // Css avtive class
     const active = css.active;
 
     return (
@@ -34,28 +58,39 @@ const ManageOrders = () => {
             <DashboardTitle title='Orders' />
             <PageTitle title='Orders' />
 
-            <div className={css.orderStateBtn}>
-                <button
-                    onClick={() => setState('Pending')}
-                    className={state === 'Pending' ? active : 'state-btn'}
-                >Pending</button>
+            <div className={css.ordersPageContainer}>
+                <div className={css.orderStateBtn}>
+                    <button
+                        onClick={() => setSearchText('Pending')}
+                        className={searchText === 'Pending' ? active : 'state-btn'}
+                    >Pending</button>
 
-                <button
-                    onClick={() => setState('Shipping')}
-                    className={state === 'Shipping' ? active : 'state-btn'}
-                >Shipping</button>
+                    <button
+                        onClick={() => setSearchText('Shipping')}
+                        className={searchText === 'Shipping' ? active : 'state-btn'}
+                    >Shipping</button>
 
-                <button
-                    onClick={() => setState('Delivered')}
-                    className={state === 'Delivered' ? active : 'state-btn'}
-                >Delivered</button>
+                    <button
+                        onClick={() => setSearchText('Delivered')}
+                        className={searchText === 'Delivered' ? active : 'state-btn'}
+                    >Delivered</button>
 
-                <button
-                    onClick={() => setState('Cancelled')}
-                    className={state === 'Cancelled' ? active : 'state-btn'}
-                >Cancelled</button>
+                    <button
+                        onClick={() => setSearchText('Cancelled')}
+                        className={searchText === 'Cancelled' ? active : 'state-btn'}
+                    >Cancelled</button>
 
+                </div>
+
+                <div className={css.searchOrders}>
+                    <input type='text' placeholder='Email / Phone / TXN ID / Status' autoFocus autoComplete='off' ref={getSearchText} />
+                    <button
+                        type="button"
+                        onClick={handleSearch}
+                    >Search</button>
+                </div>
             </div>
+
             <div style={{ overflowX: 'auto' }}>
                 <table className={css2.table}>
                     <tr>
@@ -65,6 +100,9 @@ const ManageOrders = () => {
                         <th>Status</th>
                         <th>Price</th>
                         <th>Date</th>
+                        <th>Phone</th>
+                        <th>email</th>
+                        <th>TXN ID</th>
                         <th>Action</th>
                     </tr>
 
@@ -82,9 +120,12 @@ const ManageOrders = () => {
                                 <th>{order?.status}</th>
                                 <th>${order?.total}</th>
                                 <th>{order?.placed?.date}</th>
+                                <th>{order?.dailyveryInfo?.phone}</th>
+                                <th>{order?.dailyveryInfo?.email}</th>
+                                <th>{order?.payment?.txn}</th>
                                 <th>
-                                    <Link 
-                                    to={`order-details/${order?._id}`}>
+                                    <Link
+                                        to={`order-details/${order?._id}`}>
                                         <button
                                             className={css2.deleteBtn}
                                         >Views</button>
@@ -93,7 +134,9 @@ const ManageOrders = () => {
                             </tr>
                         ))
                     }
+
                 </table>
+                {orders?.length === 0 && <div className={css.orderNotAviable}>No Result found.</div>}
             </div>
         </div>
     );
