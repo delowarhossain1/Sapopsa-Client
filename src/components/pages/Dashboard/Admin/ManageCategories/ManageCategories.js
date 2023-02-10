@@ -65,7 +65,7 @@ const ManageCategories = () => {
             </div>
 
             <div style={{ overflowX: 'auto' }}>
-                <table className={css.table}>
+                <table className={css2.table}>
                     <tr>
                         <th>#No.</th>
                         <th>IMG</th>

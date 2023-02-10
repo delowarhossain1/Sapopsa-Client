@@ -1,0 +1,133 @@
+.orderStateBtn > button{
+    font-size: 17px;
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-right: 2px solid #604444;
+    cursor: pointer;
+}
+.orderStateBtn > button:last-child{
+    border-right: none;
+}
+
+.active{
+    background-color: rgb(30, 34, 30);
+    color: white;
+}
+
+/* Order details */
+.orderDetailBG{
+    background-color: #ede7e7;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.orderNum{
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+.heading div:last-child{
+    font-size: 18px;
+}
+.ordersCards{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+.orderStatus{
+    font-weight: 500;
+    font-style: italic;
+}
+.orderCard{
+    background-color: #f4f1f1;
+    padding: 5px;
+    border-radius: 7px;
+    margin-bottom: 5px;
+}
+.orderCard img{
+    width: 30px;
+}
+.cardDes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.cardDes div {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+}
+.orderSummery{
+    margin-top: 10px;
+    border-top: 2px solid #787474;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    width: 200px;
+}
+.orderSummery span:first-child{
+    font-size: 16px;
+}
+.summeryBox{
+    display: flex;
+    justify-content: end;
+}
+.orderInfo{
+    background-color: #f4f1f1;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+}
+.orderInfo span:first-child{
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+.paymentInfo{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.takeAction{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+.takeAction > div{
+    width: 200px;
+}
+.takeAction > div > select{
+    width: 100%;
+    font-size: 16px;
+    padding: 4px;
+    outline: none;
+    cursor: pointer;
+}
+.updateBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+.updateBtn button{
+    font-size: 17px;
+    padding: 5px 10px;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.updateBtn button svg{
+    margin-left: 4px;
+}

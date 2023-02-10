@@ -28,7 +28,7 @@ import AddNewCategori from './components/pages/Dashboard/Admin/ManageCategories/
 import AddNewSlider from './components/pages/Dashboard/Admin/ManageSlider/AddNewSlider';
 import AddNewProduct from './components/pages/Dashboard/Admin/ManageProducts/AddNewProduct';
 import MyDashboard from './components/pages/Dashboard/User/MyDashboar/MyDashboard';
-import OrderDetails from './components/pages/Dashboard/User/OrderDetails/OrderDetails';
+import MyOrderDetails from './components/pages/Dashboard/User/OrderDetails/OrderDetails';
 import MyOrders from './components/pages/Dashboard/User/MyOrders/MyOrders';
 import RequireAdmin from './components/shared/Required/RequireAdmin/RequireAdmin';
 import SingleProductDetails from './components/pages/SingleProductDetails/SingleProductDetails';
@@ -44,6 +44,7 @@ import ProductFor from './components/pages/ProductFor/ProductFor';
 import CategoriesProducts from './components/pages/CategoriesProducts/CategoriesProducts';
 import Settings from './components/pages/Dashboard/Admin/Settings/Settings';
 import Payment from './components/pages/Checkout/Payment';
+import OrderDetails from './components/pages/Dashboard/Admin/ManageOrders/OrderDetails';
 
 function App() {
   const [refetchAddToCardProducts, setRefetchAddToCardProducts] = useState(false);
@@ -102,7 +103,7 @@ function App() {
           </RequiredAuth>
         }>
           <Route index element={<MyOrders />} />
-          <Route path='order-details/:id' element={<OrderDetails />} />
+          <Route path='order-details/:id' element={<MyOrderDetails />} />
         </Route>
 
 
@@ -119,6 +120,7 @@ function App() {
 
           <Route index element={<Report />} />
           <Route path='manage-orders' element={<ManageOrders />} />
+          <Route path='manage-orders/order-details/:id' element={<OrderDetails />} />
           <Route path='manage-products' element={<ManageProducts />} />
           <Route path='manage-products/add-new-product' element={<AddNewProduct />} />
           <Route path='manage-categories' element={<ManageCategories />} />
