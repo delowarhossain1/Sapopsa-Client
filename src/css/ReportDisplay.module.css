@@ -6,7 +6,8 @@
 }
 
 .reportDisplay > div{
-    background-color: #ddd;
+    background-color: #000000e0;
+    color: white;
     padding: 7px;
     border-radius: 10px;
     padding: 20px;
@@ -17,6 +18,18 @@
     font-size: 20px;
 }
 
+.reportDisplay > div:nth-child(2){
+    background-color: #1877F2;
+    color: white;
+}
+.reportDisplay > div:nth-child(4){
+    background-color: #1877F2;
+    color: white;
+}
+.reportDisplay > div:last-child{
+    background-color: #1877F2;
+    color: white;
+}
 .displayIcon{
     font-size: 30px;
 }
@@ -32,16 +45,44 @@
 }
 
 .title{
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .user{
     display: flex;
     padding: 2px;
     border-radius: 3px;
-    font-size: 17px;
-    margin-bottom: 10px;
+    font-size: 18px;
+    margin-bottom: 7px;
 }
 .user h5{
     margin-left: 10px;
+}
+
+.row{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    grid-gap: 50px;
+    margin-top: 30px;
+}
+.displayOrder{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.displayOrder > div:first-child{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.productCardIcon{
+    font-size: 25px;
+    margin-bottom: 5px;
 }
