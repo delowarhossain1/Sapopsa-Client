@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PageTitle from '../../../../shared/PageTitle/PageTitle';
 import DashboardTitle from '../../DashboardTitle';
 import css from "../../../../../css/Table.module.css";
@@ -9,26 +9,21 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../../../firebase.init';
 import useModal from './../../../../../hooks/useModal';
 import Loading from '../../../../shared/Loading/Loading';
+import { useQuery } from 'react-query';
+import axios from 'axios';
 
 const ManageProducts = () => {
     const navigate = useNavigate();
     const { deleteModal, successFullModal } = useModal();
-    const [reFetch, setRefacth] = useState(false);
     const [user, userLoading] = useAuthState(auth);
-    const [products, setProducts] = useState([]);
 
-    useEffect(() => {
 
-        fetch(`http://localhost:5000/products?email=${user?.email}`, {
-            headers: {
-                auth: `Bearer ${getAccessToken()}`
-            }
+    const {data:products, refetch,  isLoading} = useQuery(['manage-products', user], ()=>(
+        axios.get(`http://localhost:5000/products?email=${user?.email}`, {
+            headers : {auth: `Bearer ${getAccessToken()}`}
         })
-            .then(res => res.json())
-            .then(res => setProducts(res));
-
-
-    }, [user, reFetch]);
+        .then(res => res.data)
+    ))
 
 
     // Delete product
@@ -46,14 +41,14 @@ const ManageProducts = () => {
                     .then(res => {
                         if (res?.deletedCount) {
                             successFullModal();
-                            setRefacth(true);
+                            refetch();
                         }
                     })
             });
         }
     }
 
-    if (userLoading) {
+    if (userLoading || isLoading) {
         return <Loading />
     }
 
@@ -98,7 +93,10 @@ const ManageProducts = () => {
                                             onClick={() => deleteProduct(product._id)}
                                         >Delete</button>
                                         
-                                        <button>Details</button>
+                                        <button 
+                                            className={css2.detailsBtn}
+                                            onClick={()=> navigate(`details/${product?._id}`)}
+                                        >Details</button>
                                     </th>
                                 </tr>
                             ))

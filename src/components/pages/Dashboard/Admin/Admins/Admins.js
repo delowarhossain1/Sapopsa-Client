@@ -8,24 +8,21 @@ import { getAccessToken } from '../../../../../utilites/setAndGetAccessToken';
 import Loading from '../../../../shared/Loading/Loading';
 import useModal from './../../../../../hooks/useModal';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useQuery } from 'react-query';
 
 const Admins = () => {
-    const [refetch, setRefetch] = useState(false);
     const [user, loading] = useAuthState(auth);
-    const [admins, setAdmins] = useState([]);
     const { simpleAlertWithConfirmBtn, successFullModal } = useModal();
 
-    useEffect(() => {
-        fetch(`http://localhost:5000/admins?email=${user?.email}`, {
+    const { data: admins, isLoading, refetch } = useQuery(['manage-admins', user], () => (
+        axios.get(`http://localhost:5000/admins?email=${user?.email}`, {
             headers: {
                 auth: `Bearer ${getAccessToken()}`
             }
         })
-            .then(res => res.json())
-            .then(res => setAdmins(res))
-            .catch(err => console.log(err))
-
-    }, [user, refetch]);
+            .then(res => res.data)
+    ))
 
     // remove admin
     const removeAdmin = (email) => {
@@ -48,25 +45,23 @@ const Admins = () => {
                     .then(res => {
                         if (res?.modifiedCount) {
                             successFullModal();
-                            setRefetch(true);
+                            refetch();
                         }
                     })
             }
         });
     };
 
-    if (loading) {
-        return <Loading />
-    }
+    if (loading || isLoading) <Loading />;
 
     return (
         <div>
             <DashboardTitle title='Admins' />
             <PageTitle title='Admins' />
 
-            <div style={{display : 'flex', justifyContent : 'flex-end'}}>
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <button style={{ padding: '5px', cursor: 'pointer' }}>
-                    <Link to='add-new-admin' style={{color : 'black'}}>
+                    <Link to='add-new-admin' style={{ color: 'black' }}>
                         Add New Admin
                     </Link>
                 </button>
@@ -90,11 +85,10 @@ const Admins = () => {
                                 <th>{admin?.name}</th>
                                 <th>{admin?.email}</th>
                                 <th>
-                                    <button
-                                        className={css.btn}
-                                        disabled={admins?.length === 0}
+                                    {! admins?.length === 0 && <button
+                                        className={css.btn} 
                                         onClick={() => removeAdmin(admin?.email)}
-                                    >Delete Admin</button>
+                                    >Delete Admin</button> }
                                 </th>
                             </tr>
                         ))

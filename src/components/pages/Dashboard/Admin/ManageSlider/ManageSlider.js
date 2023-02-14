@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import DashboardTitle from '../../DashboardTitle';
 import PageTitle from '../../../../shared/PageTitle/PageTitle';
 import css from "../../../../../css/ManageSlider.module.css";
@@ -9,19 +9,16 @@ import { getAccessToken } from '../../../../../utilites/setAndGetAccessToken';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../../../firebase.init';
 import Loading from '../../../../shared/Loading/Loading';
+import { useQuery } from 'react-query';
+import axios from 'axios';
 
 const ManageSlider = () => {
-    const [reFetch, setReFetch] = useState(false);
     const [user, loading] = useAuthState(auth);
     const { deleteModal, successFullModal } = useModal();
-    const [sliders, setSliders] = useState([]);
 
-    useEffect(() => {
-        fetch('http://localhost:5000/sliders',)
-            .then(res => res.json())
-            .then(res => setSliders(res));
-    }, [reFetch]);
-
+    const {data:sliders, isLoading, refetch} = useQuery('manage-all-sliders', ()=>(
+        axios.get('http://localhost:5000/sliders').then(res => res.data)
+    ));
 
     // delete category
     const deleteSlider = (id) => {
@@ -39,7 +36,7 @@ const ManageSlider = () => {
                     .then(res => {
                         if (res?.deletedCount) {
                             successFullModal();
-                            setReFetch(true);
+                            refetch();
                         }
                     })
             }
@@ -47,9 +44,8 @@ const ManageSlider = () => {
 
     }
 
-    if(loading){
-        return <Loading />
-    }
+    // set loading status
+    if(loading || isLoading)return <Loading />;
 
     return (
         <div>

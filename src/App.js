@@ -45,6 +45,7 @@ import CategoriesProducts from './components/pages/CategoriesProducts/Categories
 import Settings from './components/pages/Dashboard/Admin/Settings/Settings';
 import Payment from './components/pages/Checkout/Payment';
 import OrderDetails from './components/pages/Dashboard/Admin/ManageOrders/OrderDetails';
+import ProductsDetails from './components/pages/Dashboard/Admin/ManageProducts/ProductsDetails';
 
 function App() {
   const [refetchAddToCardProducts, setRefetchAddToCardProducts] = useState(false);
@@ -122,6 +123,7 @@ function App() {
           <Route path='manage-orders' element={<ManageOrders />} />
           <Route path='manage-orders/order-details/:id' element={<OrderDetails />} />
           <Route path='manage-products' element={<ManageProducts />} />
+          <Route path='manage-products/details/:id' element={<ProductsDetails />} />
           <Route path='manage-products/add-new-product' element={<AddNewProduct />} />
           <Route path='manage-categories' element={<ManageCategories />} />
           <Route path='manage-slider' element={<ManageSlider />} />

@@ -6,26 +6,22 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../../../firebase.init';
 import { getAccessToken } from '../../../../../utilites/setAndGetAccessToken';
 import Loading from '../../../../shared/Loading/Loading';
-import useModal from './../../../../../hooks/useModal';
+import { useQuery } from 'react-query';
+import axios from 'axios';
 
 const Customers = () => {
     const [user, loading] = useAuthState(auth);
-    const [allUsers, setAllUsers] = useState([]);
 
-    useEffect(() => {
-        fetch(`http://localhost:5000/customers?email=${user?.email}`, {
+    const {data:allUsers, isLoading} = useQuery(['manage-customers', user], ()=>(
+        axios.get(`http://localhost:5000/customers?email=${user?.email}`, {
             headers: {
                 auth: `Bearer ${getAccessToken()}`
             }
         })
-            .then(res => res.json())
-            .then(res => setAllUsers(res));
+        .then(res => res.data)
+    ))
 
-    }, [user]);
-
-    if (loading) {
-        return <Loading />
-    }
+    if (loading || isLoading) <Loading />;
 
     return (
         <div>

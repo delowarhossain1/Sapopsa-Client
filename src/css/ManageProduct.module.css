@@ -188,3 +188,14 @@ label{
     cursor: pointer;
     width: 70px;
 }
+
+.detailsBtn{
+    background-color: rgb(20, 123, 20);
+    padding: 8px 15px;
+    font-size: 17px;
+    border: none;
+    color: wheat;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 7px;
+}

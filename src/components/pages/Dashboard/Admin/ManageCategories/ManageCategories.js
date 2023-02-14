@@ -8,23 +8,19 @@ import auth from '../../../../../firebase.init';
 import Loading from '../../../../shared/Loading/Loading';
 import { getAccessToken } from "../../../../../utilites/setAndGetAccessToken";
 import useModal from './../../../../../hooks/useModal';
+import { useQuery } from 'react-query';
+import axios from 'axios';
 
 const ManageCategories = () => {
     const [user, userLoading] = useAuthState(auth);
-    const [reFetch, setReFetch] = useState(false);
     const { deleteModal, successFullModal } = useModal();
-    const [allCategory, setAllCategory] = useState([]);
 
-    useEffect(() => {
-        fetch(`http://localhost:5000/all-categories?email=${user?.email}`, {
-            headers: {
-                auth: `Bearer ${getAccessToken()}`
-            }
+    const {data:allCategory, isLoading, refetch} = useQuery(['manage-categories', user], ()=>(
+        axios.get(`http://localhost:5000/all-categories?email=${user?.email}`, {
+            headers : {auth : `Bearer ${getAccessToken()}`}
         })
-            .then(res => res.json())
-            .then(res => setAllCategory(res))
-
-    }, [user, reFetch]);
+        .then(res => res.data)
+    ));
 
     // delete category
     const deleteCategory = (id) => {
@@ -42,7 +38,7 @@ const ManageCategories = () => {
                     .then(res => {
                         if (res?.deletedCount) {
                             successFullModal();
-                            setReFetch(true);
+                            refetch();
                         }
                     })
             }
@@ -50,9 +46,8 @@ const ManageCategories = () => {
 
     }
 
-    if (userLoading) {
-        return <Loading />
-    }
+    // Set loading status
+    if (userLoading || isLoading) <Loading />;
 
     return (
         <div>
