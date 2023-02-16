@@ -3,13 +3,13 @@ import { useParams } from 'react-router-dom';
 import PageTitle from '../../../../shared/PageTitle/PageTitle';
 import DashboardTitle from '../../DashboardTitle';
 import css from "../../../../../css/ManageOrder.module.css";
-import { HiOutlinePaperAirplane } from "react-icons/hi"
 import axios from 'axios';
 import { getAccessToken } from '../../../../../utilites/setAndGetAccessToken';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from './../../../../../firebase.init';
 import Loading from '../../../../shared/Loading/Loading';
 import useModal from './../../../../../hooks/useModal';
+import UpdateBtn from '../../../../shared/Button/UpdateBtn';
 
 const OrderDetails = () => {
     const { id } = useParams();
@@ -161,9 +161,9 @@ const OrderDetails = () => {
                 </div>
 
                 <div className={css.updateBtn}>
-                    <button onClick={handleStatus}>
-                        Update Info <HiOutlinePaperAirplane />
-                    </button>
+                    <span onClick={handleStatus}>
+                        <UpdateBtn />
+                    </span>
                 </div>
             </div>
         </div>

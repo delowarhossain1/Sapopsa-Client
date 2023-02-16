@@ -1,0 +1,9 @@
+{
+    "isNavbarTitleDisplay" : true,
+    "shippingCharge" : [
+        {
+            "area" : "saver - $10",
+            "charge" : 10
+        }
+    ]
+}

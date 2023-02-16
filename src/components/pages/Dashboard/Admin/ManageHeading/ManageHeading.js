@@ -23,20 +23,6 @@ const ManageHeading = () => {
 
     }, [refetch]);
 
-    // Display heading / on or off
-    const isDispaly = (isOn) => {
-        const url = `http://localhost:5000/display-web-heading?email=${user?.email}`;
-
-        fetch(url, {
-            method: "PATCH",
-            headers: {
-                "Content-Type" : "application/json",
-                auth: `Bearer ${getAccessToken()}`
-            },
-            body : JSON.stringify({isOn})
-        })
-    }
-
 
 
     // handle update heading
@@ -74,10 +60,6 @@ const ManageHeading = () => {
         <div>
             <DashboardTitle title='Heading' />
             <PageTitle title='manage heading' />
-
-            <div style={{ marginTop: '10px' }}>
-                <SwitchBtn isOn={isDispaly} />
-            </div>
 
             <div className={css.container}>
                 <div className={css.headingText}>{heading?.heading}</div>

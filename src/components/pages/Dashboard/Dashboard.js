@@ -15,13 +15,12 @@ import { AiOutlineLogout } from 'react-icons/ai';
 import { useSignOut } from 'react-firebase-hooks/auth';
 import auth from './../../../firebase.init';
 import Loading from '../../shared/Loading/Loading';
-import DashboardTitle from './DashboardTitle';
 
 const Dashboard = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
     const [signOut, signOutLoading] = useSignOut(auth);
-
+    const [activeLink, setActiveLink] = useState('Dashboard');
     const menuItem = [
         {
             path: "/dashboard",
@@ -89,7 +88,12 @@ const Dashboard = ({ children }) => {
                 </div>
                 {
                     menuItem.map((item, index) => (
-                        <NavLink to={item.path} key={index} className={css.link}>
+                        <NavLink 
+                            to={item.path}
+                            key={index} 
+                            className={activeLink === item?.name ? `${css.link} ${css.activeLink}` : `${css.link}`}
+                            onClick={()=> setActiveLink(item.name)}
+                            >
                             <div className={css.icon}>{item.icon}</div>
                             <div style={{ display: isOpen ? "block" : "none" }} className={css.link_text}>{item.name}</div>
                         </NavLink>

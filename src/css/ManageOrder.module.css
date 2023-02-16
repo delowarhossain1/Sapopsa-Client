@@ -120,17 +120,7 @@
     justify-content: center;
     margin-top: 30px;
 }
-.updateBtn button{
-    font-size: 17px;
-    padding: 5px 10px;
-    outline: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-}
-.updateBtn button svg{
-    margin-left: 4px;
-}
+
 .ordersPageContainer{
     display: flex;
     align-items: center;

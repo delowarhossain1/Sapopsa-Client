@@ -33,6 +33,7 @@ main{
     padding: 10px 15px;
     gap: 15px;
     transition: all 0.2s;
+    margin-bottom: 3px;
 }
 .link:hover{
     background:lightskyblue;
@@ -45,4 +46,8 @@ main{
 }
 .icon, .link_text{
     font-size: 18px;
+}
+.activeLink{
+    background:lightskyblue;
+    color: #000;
 }

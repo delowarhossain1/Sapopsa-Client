@@ -1,33 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import ToggleButton from 'react-toggle-button'
-import Loading from '../Loading/Loading';
 
-const SwitchBtn = ({ isOn }) => {
-    const [loading, setLoading] = useState(true);
-    const [isAlreadyOpen, setIsAlreadyOpen] = useState(true);
-    const [on, setOn] = useState(isAlreadyOpen);
+const SwitchBtn = ({ setStatus, currentStatus }) => {
+    const [isOn, setOn] = useState(currentStatus);
+    // console.log(currentStatus, isOn)
 
-    useEffect(() => { isOn(on) }, [on, isOn]);
-
-
-    useEffect(() => {
-        fetch('http://localhost:5000/web-heading')
-            .then(res => res.json())
-            .then(res => {
-                setIsAlreadyOpen(res?.isDisplay)
-                setLoading(false);
-            });
-    }, []);
-
-    if (loading) {
-        return <Loading />
-    }
+    useEffect(() => setStatus(isOn), [isOn, setStatus, currentStatus]);
 
     return (
         <div>
             <ToggleButton
-                value={on}
-                onToggle={() => setOn(!on)} />
+                value={isOn === undefined ? currentStatus : isOn}
+                onToggle={() => setOn(!isOn)} />
         </div>
     );
 };
