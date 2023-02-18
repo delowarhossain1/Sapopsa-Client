@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import logo from "../../../../images/1.png";
 import { useNavigate } from 'react-router-dom';
 import LatestProductCard from './LatestProductCard';
+import { useQuery } from 'react-query';
+import axios from 'axios';
 
-const Arrivals = () => {
+const Arrivals = ({ setLoading }) => {
     const navigate = useNavigate();
-    const [latestProducts, setLatestProducts] = useState([]);
 
-    useEffect(() => {
-        fetch('http://localhost:5000/latest-products')
-            .then(res => res.json())
-            .then(res => setLatestProducts(res));
-    }, []);
+    const { data: latestProducts, isLoading } = useQuery('latest-products', () => (
+        axios.get('http://localhost:5000/latest-products')
+            .then(res => res?.data)
+    ));
+
+    // Set loading
+    if (isLoading) setLoading(true);
 
     return (
         <div>

@@ -69,7 +69,7 @@ const OrderDetails = () => {
         return <Loading />
     }
 
-    const { total, status, products, placed, payment, dailyveryInfo: dInfo } = order;
+    const { total, subTotal, status, products, placed, payment, dailyveryInfo: dInfo } = order;
 
     return (
         <div>
@@ -120,8 +120,8 @@ const OrderDetails = () => {
                         <div className={css.summeryBox}>
                             <div className={css.orderSummery}>
                                 <span>Total Summary</span>
-                                <sapn>Sub total : ${ }</sapn>
-                                <sapn>Shipping Fee : $10</sapn>
+                                <sapn>Sub total : ${subTotal}</sapn>
+                                <sapn>Shipping Fee : ${dInfo?.shippingCharge}</sapn>
                                 <sapn>Total : ${total}</sapn>
                             </div>
                         </div>

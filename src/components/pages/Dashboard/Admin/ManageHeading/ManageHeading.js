@@ -7,7 +7,6 @@ import auth from '../../../../../firebase.init';
 import Loading from '../../../../shared/Loading/Loading';
 import { getAccessToken } from "../../../../../utilites/setAndGetAccessToken";
 import useModal from './../../../../../hooks/useModal';
-import SwitchBtn from '../../../../shared/SwitchBtn/SwitchBtn';
 
 const ManageHeading = () => {
     const { successFullModal } = useModal();

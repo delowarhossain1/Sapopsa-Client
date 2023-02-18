@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PrimaryProductCard from './../../shared/PrimaryProductCard/PrimaryProductCard';
+import { useQuery } from 'react-query';
+import axios from 'axios';
+import Loading from '../../shared/Loading/Loading';
 
 const CategoriesProducts = () => {
     const { cty } = useParams();
-    const [products, setProducts] = useState([]);
 
-    useEffect(() => {
-        const url = `http://localhost:5000/categories-products?cty=${cty}`;
+    const {data:products, isLoading} = useQuery(['categories-products', cty], ()=>(
+        axios.get(`http://localhost:5000/categories-products?cty=${cty}`)
+        .then(res => res?.data)
+    ));
 
-        fetch(url)
-            .then(res => res.json())
-            .then(res => setProducts(res));
-
-    }, [cty]);
-
-
+    // Set loading status
+    if(isLoading) <Loading />;
 
     return (
         <div className='margin-top'>

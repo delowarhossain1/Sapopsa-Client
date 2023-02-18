@@ -37,11 +37,10 @@ const Settings = () => {
 
     // Handle shipping items
     const handleShippingItem = () => {
-        const areaText = shippingArea.current.value;
+        const area = shippingArea.current.value;
         const charge = Number(shippingCharge.current.value);
 
-        if (areaText && charge) {
-            const area = `${areaText} - $${charge}`;
+        if (area && charge) {
             const shipping = { area, charge };
             setShippingItems([...shippingItems, shipping]);
 
@@ -127,7 +126,7 @@ const Settings = () => {
                                     shippingItems?.map((item, i) => (
                                         <span key={i * Math.random()}>
 
-                                            {item?.area}
+                                            {`${item?.area} - $${item?.charge}`}
                                             <AiOutlineCloseSquare 
                                                 onClick={()=> removeShippingItem(i)}/>
 

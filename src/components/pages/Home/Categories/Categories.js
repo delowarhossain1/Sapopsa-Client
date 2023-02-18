@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import axios from 'axios';
 
-const Categories = () => {
+const Categories = ({setLoading}) => {
     const navigate = useNavigate();
-    const [categories, setCategories] = useState([]);
 
-    useEffect(() => {
-        fetch('http://localhost:5000/categories')
-            .then(res => res.json())
-            .then(res => setCategories(res));
-    }, []);
+    const {data:categories, isLoading} = useQuery('homepage-categories', ()=>(
+        axios.get('http://localhost:5000/categories')
+        .then(res => res?.data) 
+    ));
+
+    // Set loading
+    if(isLoading) setLoading(true);
 
     return (
         <div>

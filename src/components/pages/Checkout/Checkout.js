@@ -3,25 +3,48 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import Loading from '../../shared/Loading/Loading';
 import PageTitle from '../../shared/PageTitle/PageTitle';
-import cardPay from "../../../images/card-pay.png";
 import css from "../../../css/checkout.module.css";
 import { getProducts } from '../../../utilites/addToCard';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import axios from 'axios';
+import { getAccessToken } from "../../../utilites/setAndGetAccessToken";
 
 const Checkout = ({ setCheckoutInfo }) => {
     const navigate = useNavigate();
     const [user, loading] = useAuthState(auth);
     const [isAgree, setIsAgree] = useState(false);
     const [products, setProducts] = useState([]);
+    const [shippingChg, setShippingChg] = useState(0);
+    const [shippingArea, setShippingArea] = useState('');
+    const [settings, setSettings] = useState({});
 
+    console.log(shippingArea)
+    // Get settings ( shipping charge );
+    useEffect(() => {
+        axios.get(`http://localhost:5000/settings?email=${user?.email}`, {
+            headers: { auth: `Bearer ${getAccessToken()}` }
+        })
+            .then(res => setSettings(res.data))
+    }, [user]);
+
+    // set product info
     useEffect(() => {
         const storedProducts = getProducts();
         setProducts(storedProducts);
-    }, []);
+
+        // if (settings) {
+        //     // Set shipping charge
+        //     setShippingChg(settings?.shippingCharge[0]['charge'] || 0);
+        //     // Set shipping area 
+        //     setShippingArea(settings?.shippingCharge[0]['area'] || '');
+        // }
+
+    }, [settings]);
 
     // Product calculation
     const subTotal = products.reduce((sTotal, items) => items.totalPrice + sTotal, 0);
-    const total = subTotal;
+    const total = Number(subTotal) + Number(shippingChg);
 
     const handleCheckoutInfo = (event) => {
         event.preventDefault();
@@ -32,24 +55,25 @@ const Checkout = ({ setCheckoutInfo }) => {
         const phone = e.phone.value;
         const addressLineOne = e.addressOne.value;
         const addressLineTwo = e.addressTwo.value;
-        const shippingArea = e.shippingArea.value;
+        const shippingCharge = e.shippingCharge.value;
 
         const info = {
-            total,
             products,
-            status : 'Pending',
-            isMultipleOrder : products.length > 1,
-            placed : {
-                date : date.toDateString(),
-                time : date.toLocaleTimeString()
+            total,
+            status: 'Pending',
+            isMultipleOrder: products.length > 1,
+            placed: {
+                date: date.toDateString(),
+                time: date.toLocaleTimeString()
             },
-            dailyveryInfo : {
+            dailyveryInfo: {
                 name,
                 email,
                 phone,
                 addressLineOne,
                 shippingArea,
-                addressLineTwo : addressLineTwo || 'N/A'
+                shippingCharge,
+                addressLineTwo: addressLineTwo || 'N/A'
             }
         }
 
@@ -57,9 +81,8 @@ const Checkout = ({ setCheckoutInfo }) => {
         navigate('/payment')
     }
 
-    if (loading) {
-        <Loading />
-    }
+    // Set loading status
+    if (loading) <Loading />;
 
 
     return (
@@ -95,8 +118,8 @@ const Checkout = ({ setCheckoutInfo }) => {
 
                                 <div className={css.subTotal}>
                                     <span>Sub total : ${subTotal}</span>
-                                    <span>Shipping : $120</span>
-                                    <span>Total : $120</span>
+                                    <span>Shipping : ${shippingChg}</span>
+                                    <span>Total : ${total}</span>
                                 </div>
                             </div>
 
@@ -118,12 +141,30 @@ const Checkout = ({ setCheckoutInfo }) => {
                                                     <input type="number" id='number' placeholder="Phone Number" name='phone' required />
                                                 </div>
 
-                                               <div className={css.selectOption}>
+                                                <div className={css.selectOption}>
                                                     <label for="">Shipping area</label>
-                                                    <select name='shippingArea'>
-                                                        <option value="">Dhaka - 50tk</option>
+                                                    <select
+                                                        name='shippingCharge'
+                                                        onChange={(e) => setShippingChg(e.target.value)}>
+
+                                                        {
+                                                            settings?.shippingCharge?.map((item, i) => {
+                                                                const { charge, area } = item;
+
+                                                                return (
+                                                                    <option
+                                                                        value={charge}
+                                                                        key={i * Math.random()}
+                                                                        onClick={() => setShippingArea(area)}
+                                                                    >
+                                                                        {`${area} - $${charge}`}
+                                                                    </option>
+                                                                )
+                                                            })
+                                                        }
+
                                                     </select>
-                                               </div>
+                                                </div>
 
                                                 <div className="minWidht">
                                                     <label for="add">Address</label>
@@ -132,22 +173,6 @@ const Checkout = ({ setCheckoutInfo }) => {
                                                     <input type="text" placeholder="Address line 2" name='addressTwo' />
                                                 </div><br />
 
-                                                <br />
-                                                <div className="note">
-                                                    *Approximate shipping duration is 7-10 days. Tracking id and tracking link will be sent via
-                                                    email after the products are shipped.
-                                                </div>
-                                                <br />
-                                                <div className="form-check form-check-inline payment-method-selector"
-                                                    style={{ width: '270px !important' }}>
-                                                    <label className="form-cimport { useAuthState } from 'react-firebase-hooks/auth' heck-label">
-                                                        <input className="foimport { useNavigate } from 'react-router-dom';
-rm-check-input payment-method-radio" type="radio" name="payment_method"
-                                                            value="ssl_card" checked="" />
-                                                        <img src={cardPay} className="payment-method-logo" alt="" />
-                                                    </label>
-                                                </div>
-                                                <br />
                                                 <br />
                                                 <div className="alert-container"></div>
 

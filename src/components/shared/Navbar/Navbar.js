@@ -9,10 +9,11 @@ import { AiOutlineLogin } from 'react-icons/ai';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import { getProducts } from "../../../utilites/addToCard";
+import { useQuery } from 'react-query';
+import axios from 'axios';
 
 const Navbar = ({ refetch }) => {
     const [user] = useAuthState(auth);
-    const [categories, setCategories] = useState({});
     const [addToCardProducts, setaddToCardProducts] = useState(0);
     const [webHeading, setWebHeading] = useState({ heading: '', isDispaly: false });
 
@@ -26,20 +27,17 @@ const Navbar = ({ refetch }) => {
     }, [refetch]);
 
     // Get web heading
-    useEffect(() => {
-        fetch('http://localhost:5000/web-heading')
-            .then(res => res.json())
-            .then(res => setWebHeading(res))
-            .catch(err => console.log(err));
-    }, []);
+    const getWebHeading = useQuery('nav-web-heading', ()=>(
+        axios.get('http://localhost:5000/web-heading')
+        .then(res => setWebHeading(res?.data))
+    ));
 
     // Get cagories
-    useEffect(() => {
-        const url = `http://localhost:5000/categories-list`;
-        fetch(url)
-            .then(res => res.json())
-            .then(res => setCategories(res));
-    }, [])
+
+    const {data:categories} = useQuery('nav-categories-list', ()=>(
+        axios.get('http://localhost:5000/categories-list')
+        .then(res => res?.data)
+    ))
 
 
     const toggleNav = () => {

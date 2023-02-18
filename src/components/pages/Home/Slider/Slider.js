@@ -3,16 +3,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
+import { useQuery } from 'react-query';
+import axios  from 'axios';
 
-const Slider = () => {
-    const [sliders, setSliders] = useState([]);
+const Slider = ({setLoading}) => {
 
-    useEffect(() => {
-        fetch('http://localhost:5000/sliders')
-            .then(res => res.json())
-            .then(res => setSliders(res));
+    const {data:sliders, isLoading} = useQuery('sliders', ()=>(
+        axios.get('http://localhost:5000/sliders')
+        .then(res => res?.data)
+    ));
 
-    }, []);
+    // Set loading
+    if(isLoading) setLoading(true);
 
     return (
         <div className='slider'>
