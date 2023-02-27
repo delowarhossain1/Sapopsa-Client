@@ -249,9 +249,6 @@ a {
 	background-color: #E6E8E7;
 }
 
-.seacrhBox:hover {
-	border: 1px solid #ddd;
-}
 
 .from i {
 	padding: 0px 9px;
@@ -273,6 +270,11 @@ a {
 	padding: 0 5px;
 	letter-spacing: 1px;
 	font-family: 'agencyfb';
+}
+.seacrhBox > button{
+	outline: none;
+	border: none;
+	background-color: #E6E8E7;
 }
 /*================================ Menu Header ================================================*/
 .slider {
@@ -958,8 +960,9 @@ table.cartTable {
 		z-index: 1;
 	}
 
-	label.searchBtn {
+	.searchBtn {
 		margin-right: 30px;
+		border: none;
 	}
 
 	#check:checked~.seacrhBox {

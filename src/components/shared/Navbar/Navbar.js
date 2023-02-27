@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../images/sapopsa.png";
 import close from "../../../images/close.svg";
 import search from "../../../icons/search.png";
@@ -13,6 +13,7 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 
 const Navbar = ({ refetch }) => {
+    const navigate = useNavigate();
     const [user] = useAuthState(auth);
     const [addToCardProducts, setaddToCardProducts] = useState(0);
     const [webHeading, setWebHeading] = useState({ heading: '', isDispaly: false });
@@ -33,12 +34,19 @@ const Navbar = ({ refetch }) => {
     ));
 
     // Get cagories
-
     const {data:categories} = useQuery('nav-categories-list', ()=>(
         axios.get('http://localhost:5000/categories-list')
         .then(res => res?.data)
-    ))
+    ));
 
+    // Handle search
+    const handleSearch = (event) => {
+        event.preventDefault();
+        const text = event.target.text.value;
+        if(text?.length > 3){
+            navigate(`/search/${text}`);
+        }
+    }
 
     const toggleNav = () => {
         setToggleClass(!toggleClass);
@@ -146,13 +154,14 @@ const Navbar = ({ refetch }) => {
                         </div>
 
 
-                        <div className="seacrhBox">
-                            <input className="input" type="search" placeholder="search..." />
-                            <label htmlFor="" className="searchBtn">
-                                <img type="submit" alt='' className="search" src={search} />
-                            </label>
+                        <form className="seacrhBox" onSubmit={handleSearch}>
+                            <input className="input" type="search" placeholder="search..." name="text" autoComplete='off' autoFocus />
 
-                        </div>
+                            <button type="submit" className='searchTextsubmitBtn'>
+                                <img  alt='search'  src={search}  />
+                            </button>
+
+                        </form>
 
 
                         {user ? <div className="usersNotify user">

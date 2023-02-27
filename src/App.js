@@ -46,6 +46,7 @@ import Settings from './components/pages/Dashboard/Admin/Settings/Settings';
 import Payment from './components/pages/Checkout/Payment';
 import OrderDetails from './components/pages/Dashboard/Admin/ManageOrders/OrderDetails';
 import ProductsDetails from './components/pages/Dashboard/Admin/ManageProducts/ProductsDetails';
+import Search from './components/pages/Search/Search';
 
 function App() {
   const [refetchAddToCardProducts, setRefetchAddToCardProducts] = useState(false);
@@ -62,6 +63,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/product-for/:id' element={<ProductFor />} />
         <Route path='/category/:cty' element={<CategoriesProducts />} />
+        <Route path='/search/:text' element={<Search />} />
 
         <Route path='/checkout' element={
           <RequiredAuth>
