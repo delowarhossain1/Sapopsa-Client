@@ -94,7 +94,7 @@ function App() {
         <Route path='/place-order' element={
           <RequiredAuth>
             <Checkout />
-          </RequiredAuth> @Github.User.P.38077#
+          </RequiredAuth>
         } />
 
         {/*********** User dashboard ****************/}
