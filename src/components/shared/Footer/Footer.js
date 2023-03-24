@@ -10,12 +10,21 @@ import delop from "../../../icons/delop.png";
 import fb from "../../../icons/facebook.png";
 import tw from "../../../icons/twitter.png";
 import ins from "../../../icons/instagram.png";
+import { useQuery } from 'react-query';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 // years
 const date = new Date();
 const year = date.getFullYear();
 
 const Footer = () => {
+    // Get cagories
+    const {data:categories} = useQuery('nav-categories-list', ()=>(
+        axios.get('http://localhost:5000/categories-list')
+        .then(res => res?.data)
+    ));
+
     return (
         <div>
             <div className="paymentWrapper">
@@ -61,33 +70,48 @@ const Footer = () => {
                         </div>
                         <div className="sopopsa">
                             <p>MEN</p>
-                            <div className="arLink">
-                                <a href="#">Men Polo Shirt</a>
-                                <a href="#">Men t-Shirt</a>
-                                <a href="#">Men Shirt</a>
-                                <a href="#">HOODIE</a>
-                                <a href="#">jacket</a>
-                            </div>
+                            <ul className="arLink">
+                                {
+                                    categories?.men?.map(category => (
+                                        <li
+                                            key={category?._id}
+                                            className='menuItem'
+                                        >
+                                            <Link to={`category/${category.route}`}>{category?.title}</Link>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
                         </div>
                         <div className="sopopsa">
                             <p>WOMEN</p>
-                            <div className="arLink">
-                                <a href="#">woMen Shirt</a>
-                                <a href="#">woMen t-Shirt</a>
-                                <a href="#">SWEATSHIRT</a>
-                                <a href="#">frock</a>
-                                <a href="#">skist</a>
-                            </div>
+                            <ul className="arLink">
+                                {
+                                    categories?.women?.map(category => (
+                                        <li
+                                            key={category?._id}
+                                            className='menuItem'
+                                        >
+                                           <Link to={`category/${category.route}`}>{category?.title}</Link>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
                         </div>
                         <div className="sopopsa">
                             <p>SPORTS</p>
-                            <div className="arLink">
-                                <a href="#">jersy kit</a>
-                                <a href="#">sports t-shirt</a>
-                                <a href="#">sports shorts</a>
-                                <a href="#">Football Jersey</a>
-                                <a href="#">TROUSER</a>
-                            </div>
+                            <ul className="arLink">
+                                {
+                                    categories?.sports?.map(category => (
+                                        <li
+                                            key={category?._id}
+                                            className='menuItem'
+                                        >
+                                            <Link to={`category/${category.route}`}>{category?.title}</Link>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
                         </div>
                     </div>
                     <div className="quickLink">

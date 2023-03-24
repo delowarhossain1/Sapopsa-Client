@@ -740,6 +740,7 @@ table.cartTable {
 
 .arLink {
 	color: var(---back-color);
+	list-style: none;
 }
 
 .arLink a {
