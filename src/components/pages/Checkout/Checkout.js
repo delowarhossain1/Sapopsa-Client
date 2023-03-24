@@ -19,7 +19,6 @@ const Checkout = ({ setCheckoutInfo }) => {
     const [shippingArea, setShippingArea] = useState('');
     const [settings, setSettings] = useState({});
 
-    console.log(shippingArea)
     // Get settings ( shipping charge );
     useEffect(() => {
         axios.get(`http://localhost:5000/settings?email=${user?.email}`, {
@@ -102,7 +101,7 @@ const Checkout = ({ setCheckoutInfo }) => {
 
                                 {
                                     products?.map(product => (
-                                        <div className={css.productList} key={product?.id}>
+                                        <div className={css.productList} key={product?.id * Math.random()}>
                                             <img src={product?.img} alt="product" />
 
                                             <div>

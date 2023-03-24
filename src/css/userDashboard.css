@@ -107,6 +107,17 @@
 .order-number{
     color : blue;
 }
+.user-empty-orders{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+.user-empty-orders > svg{
+    font-size: 30px;
+    margin-bottom: 5px;
+}
 /* =============================== address =============================== */
 
 .shippingTitle{

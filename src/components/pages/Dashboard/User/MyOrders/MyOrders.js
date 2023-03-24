@@ -1,5 +1,4 @@
 import React from 'react';
-import img1 from "../../../../../images/1.jpg";
 import { Link } from 'react-router-dom';
 import PageTitle from '../../../../shared/PageTitle/PageTitle';
 import UserDashboardTitle from '../UserDashboardTitle/UserDashboardTitle';
@@ -9,6 +8,7 @@ import Loading from './../../../../shared/Loading/Loading';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { getAccessToken } from '../../../../../utilites/setAndGetAccessToken';
+import { TfiFaceSad } from 'react-icons/tfi';
 
 const MyOrders = () => {
     const [user, loading] = useAuthState(auth);
@@ -19,8 +19,6 @@ const MyOrders = () => {
         })
             .then(res => res.data)
     ));
-
-    console.log(orders);
 
     if (loading || isLoading) {
         return <Loading />
@@ -34,12 +32,14 @@ const MyOrders = () => {
 
             {orders?.map(order => {
                 const {_id, payment, placed, products, status} = order;
+                const {img, title} = products[0];
+
                 return (
-                    <div className="boxColor">
+                    <div className="boxColor" key={_id}>
                         <div className="orderInfo">
                             <div className="orderOder">
-                                <p>Order <span className='order-number'>#1349502345820</span> </p>
-                                <p className="orderDate">Placed on 14 Aug 2022 <span>17:27:15</span></p>
+                                <p>Order <span className='order-number'>#{payment?.txn}</span> </p>
+                                <p className="orderDate">Placed on {placed?.date} <span>{placed?.time}</span></p>
                             </div>
                             <div className="mnage">
                                 <Link to='order-details/123456456'>manage</Link>
@@ -49,11 +49,13 @@ const MyOrders = () => {
                         <div className="boxcolor">
                             <div className="OrderDescription">
                                 <div className="imgDes">
-                                    <img src={img1} alt="images" />
-                                    <div className="imgTitle">Lorem ipsum dolor sit amet consectetur adipisicing elit...</div>
+                                    <img src={img} alt="images" />
+                                    <div className="imgTitle">
+                                        {title?.length > 30 ? title?.slice(0,30)+'...' : title}
+                                    </div>
                                 </div>
                                 <div className="Orderquantity">
-                                    <p className="Qty">Qty: <span>1</span></p>
+                                    <p className="Qty">Order Qty : <span>{products?.length}</span></p>
                                 </div>
                                 <div className="orderStatus">
                                     <p>{status}</p>
@@ -63,6 +65,17 @@ const MyOrders = () => {
                     </div>
                 )
             })}
+
+            {/* No Orders available */}
+            {
+                orders?.length === 0 &&
+
+                <div className='user-empty-orders'>
+                    <TfiFaceSad />
+                    <p>There is no orders.</p>
+                    <Link to='/'>Go Shopping</Link>
+                </div>
+            }
         </>
     );
 };
