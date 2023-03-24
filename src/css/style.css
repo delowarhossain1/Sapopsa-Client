@@ -470,6 +470,14 @@ table.cartTable {
     border: none!important;
 	padding: 10px 0;
 }
+.empty-card p{
+	font-size: 17px;
+	margin-top: 25px;
+	color: #555;
+}
+.empty-card p a{
+	text-decoration: underline;
+}
 .cartTable{
     border: none;
 }
@@ -521,6 +529,7 @@ table.cartTable {
 .tatalPrice td:last-child{
 	text-align: left;
 }
+
 .plOrder{
 	margin: 50px 0;
 	text-align: center;

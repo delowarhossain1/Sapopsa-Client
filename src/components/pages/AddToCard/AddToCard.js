@@ -61,6 +61,15 @@ const AddToCard = ({refetch, reFetchValue}) => {
                                         </td>
                                     </tr>
                                 ))}
+
+                                {/* If add to empty */}
+                                {
+                                    products?.length === 0 &&
+
+                                    <div className='empty-card'>
+                                        <p>Your card is empty. <Link to='/'>Shopping</Link></p>
+                                    </div>
+                                }
                             </tbody>
                         </table>
                         <div className="tatalPrice">
