@@ -42,7 +42,7 @@ const MyOrders = () => {
                                 <p className="orderDate">Placed on {placed?.date} <span>{placed?.time}</span></p>
                             </div>
                             <div className="mnage">
-                                <Link to='order-details/123456456'>manage</Link>
+                                <Link to={`order-details/${_id}`}>manage</Link>
                             </div>
                         </div>
                         <hr className="orderLine" />
