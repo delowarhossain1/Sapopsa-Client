@@ -4,6 +4,7 @@ import PrimaryProductCard from './../../shared/PrimaryProductCard/PrimaryProduct
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import Loading from '../../shared/Loading/Loading';
+import ProductNotFoundText from "../../shared/ProductNotFoundText/ProductNotFoundText"
 
 const CategoriesProducts = () => {
     const { cty } = useParams();
@@ -30,6 +31,12 @@ const CategoriesProducts = () => {
                         ))
                     }
                 </div>
+                    
+                {/* If product is not available. */}
+                {
+                    products?.length === 0 && <ProductNotFoundText />
+                }
+                
             </div>
         </div >
     );

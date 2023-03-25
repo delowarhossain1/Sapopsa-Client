@@ -4,6 +4,7 @@ import PrimaryProductCard from '../../shared/PrimaryProductCard/PrimaryProductCa
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import Loading from "../../shared/Loading/Loading";
+import ProductNotFoundText from '../../shared/ProductNotFoundText/ProductNotFoundText';
 
 const ProductFor = () => {
     const { id } = useParams();
@@ -46,11 +47,9 @@ const ProductFor = () => {
                 {/* Is product not available. */}
 
                 {
-                    products?.length === 0 &&
-                   ( <div style={{ height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <p>Product not available.</p>
-                    </div>)
+                    products?.length === 0 && <ProductNotFoundText />
                 }
+                
             </div>
         </div>
     );
