@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PrimaryProductCard from '../../shared/PrimaryProductCard/PrimaryProductCard';
 import { useQuery } from 'react-query';
@@ -7,15 +7,25 @@ import Loading from "../../shared/Loading/Loading";
 
 const ProductFor = () => {
     const { id } = useParams();
+    const [products, setProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const {data:products, isLoading} = useQuery(['product-for', id], ()=>(
+    useEffect(() => {
+        // set loading status;
+        setIsLoading(true);
+
         axios.get(`http://localhost:5000/product-for?thisIsFor=${id}`)
-        .then(res => res?.data)
-    ));
+            .then(res => {
+                // set loading status;
+                setIsLoading(false);
+
+                setProducts(res?.data)
+            })
+    }, [id])
 
     // set loading status
-    if(isLoading) <Loading />;
-
+    if (isLoading) <Loading />;
+    console.log(products?.length === 0)
     return (
         <div className="margin-top">
             <div className='container'>
@@ -32,6 +42,15 @@ const ProductFor = () => {
                         ))
                     }
                 </div>
+
+                {/* Is product not available. */}
+
+                {
+                    products?.length === 0 &&
+                   ( <div style={{ height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <p>Product not available.</p>
+                    </div>)
+                }
             </div>
         </div>
     );

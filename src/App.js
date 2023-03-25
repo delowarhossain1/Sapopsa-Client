@@ -47,6 +47,7 @@ import Payment from './components/pages/Checkout/Payment';
 import OrderDetails from './components/pages/Dashboard/Admin/ManageOrders/OrderDetails';
 import ProductsDetails from './components/pages/Dashboard/Admin/ManageProducts/ProductsDetails';
 import Search from './components/pages/Search/Search';
+import ScrollToTop from './components/shared/ScrollToTop/ScrollToTop';
 
 function App() {
   const [refetchAddToCardProducts, setRefetchAddToCardProducts] = useState(false);
@@ -58,7 +59,11 @@ function App() {
 
       <Navbar refetch={refetchAddToCardProducts} />
 
+      {/* Page scroll from the begging when route will be change */}
+      <ScrollToTop />
+
       <Routes>
+        
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/product-for/:id' element={<ProductFor />} />
