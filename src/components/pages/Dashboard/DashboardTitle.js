@@ -31,7 +31,7 @@ const DashboardTitle = ({ title = 'Title here...' }) => {
                 <div title='Log out' className={css.logOut} onClick={() => signOut()}><AiOutlineLogout /></div>
 
                 <div className={css.profile} title='Hey, this is you'>
-                    <img src={user.photoURL} alt='Profile' />
+                    <img src={user?.photoURL} />
                 </div>
             </div>
         </div>

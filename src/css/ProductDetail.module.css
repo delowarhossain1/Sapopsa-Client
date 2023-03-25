@@ -1,0 +1,90 @@
+.bg{
+    background-color: #ddd;
+}
+.title{
+    padding: 5px;
+    font-size: 17px;
+}
+.productMeta{
+    margin-top: 10px;
+}
+.images{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.gallery{
+    display: flex;
+}
+.galleryImg > img{
+    width: 80px;
+    border: 1px solid #ddd;
+    margin-right: 5px;
+}
+
+.displayImg > img{
+    width: 200px;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+}
+
+.productMeta{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+
+}
+.metaInfo > p{
+    margin-bottom: 5px;
+}
+.specList{
+    list-style: none;
+    margin-top: 10px;
+}
+.specList > li{
+    display: flex;
+    align-items: center;
+}
+.size{
+    display: flex;
+    align-items: center;
+    margin: 10px 0px;
+}
+.size > span{
+    margin-right: 5px;
+}
+.size > div{
+    display: flex;
+    align-items: center;
+}
+.sizeBtn{
+    padding: 5px;
+    font-size: 14px;
+    margin-right: 5px;
+}
+.colorBtn{
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.colors{
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+.colors > div{
+    display: flex;
+    align-items: center;
+}
+.description{
+    background-color: #ddd;
+    margin-top: 30px;
+    padding: 8px;
+    font-size: 17px;
+}
+.description p:first-child{
+    font-size: 20px;
+    margin-bottom: 5px;
+}
