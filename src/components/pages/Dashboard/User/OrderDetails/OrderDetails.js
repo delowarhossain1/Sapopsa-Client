@@ -35,7 +35,7 @@ const OrderDetails = () => {
     }
 
     // Orders info;
-    const { dailyveryInfo, payment, placed, products, status, total } = order;
+    const { dailyveryInfo, payment, placed, products, status, total, subTotal } = order;
 
     return (
         <div>
@@ -64,7 +64,7 @@ const OrderDetails = () => {
 
                     <div>
                         {products?.map(product => {
-                            const {id, img, price, quantity, size, title, totalPrice} = product;
+                            const {id, img, price, quantity, size, title, totalPrice, color} = product;
 
                             return (
                                 <div className="OrderDescription" key={id}>
@@ -75,7 +75,10 @@ const OrderDetails = () => {
                                     <div className="Orderquantity">
                                         <p className="Qty">Qty: <span>{quantity}</span></p>
                                         <p className="Qty">Size: <span>{size}</span></p>
-                                        <p className="Qty">Color: <span>{}</span></p>
+                                        <p className="Qty selectedColorBtn">
+                                            Color: 
+                                            <span style={{background : color}}></span>
+                                        </p>
                                     </div>
 
                                     <div>
@@ -103,12 +106,13 @@ const OrderDetails = () => {
                             <h3>Total Summary</h3>
                             <div className="summaryBox">
                                 <div className="leftSummary">
-
+                                    <p>Sub Total </p>
                                     <p>Delivery Fee</p>
                                     <p>Total</p>
 
                                 </div>
                                 <div className="rightSummary">
+                                    <p>${subTotal}</p>
                                     <p>${dailyveryInfo?.shippingCharge}</p>
                                     <p>$ {total}</p>
                                 </div>

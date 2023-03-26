@@ -96,7 +96,7 @@ const OrderDetails = () => {
                     <div>
                         {
                             products?.map(product => {
-                                const { img, price, quantity, size, title, totalPrice } = product;
+                                const { img, price, quantity, size, title, totalPrice, color } = product;
                                 return (
                                     <div className={css.orderCard}>
                                         <div className={css.cardDes}>
@@ -107,6 +107,11 @@ const OrderDetails = () => {
                                             <div>
                                                 <span>Size : {size}</span>
                                                 <span>Qty : {quantity}</span>
+
+                                                <p className='selectedColorBtn'>
+                                                    Color :
+                                                     <span style={{background : `${color}`}}></span>
+                                                </p>
                                             </div>
 
                                             <span>Price : (${price} * {quantity}) ${totalPrice}</span>

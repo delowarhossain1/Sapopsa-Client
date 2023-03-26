@@ -54,9 +54,7 @@ const MyOrders = () => {
                                         {title?.length > 30 ? title?.slice(0,30)+'...' : title}
                                     </div>
                                 </div>
-                                <div className="Orderquantity">
-                                    <p className="Qty">Order Qty : <span>{products?.length}</span></p>
-                                </div>
+                                
                                 <div className="orderStatus">
                                     <p>{status}</p>
                                 </div>

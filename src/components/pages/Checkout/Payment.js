@@ -59,7 +59,7 @@ const Payment = ({ checkoutInfo }) => {
                     <div className={css.PaymentContainer}>
                     <div>
                         <h2 className={css.orderSummeryText}>Order Summary</h2>
-                        <span className={css.subTotalText}>Subtotal ({products?.length} Items and shipping fee included) - ${total}</span>
+                        <span className={css.subTotalText}>Subtotal ({products?.length} Item'(s) and shipping fee included) - ${total}</span>
 
                         <h5 className={css.totalAmoutText}>Total Amount : ${total}</h5>
                     </div>

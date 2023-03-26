@@ -52,7 +52,7 @@ const Checkout = ({ setCheckoutInfo }) => {
     }
 
     // Product calculation
-    const subTotal = products.reduce((sTotal, items) => items.totalPrice + sTotal, 0);
+    const subTotal = products?.reduce((sTotal, items) => items.totalPrice + sTotal, 0);
     const total = Number(subTotal) + Number(shippingChg);
 
     const handleCheckoutInfo = (event) => {
@@ -68,6 +68,7 @@ const Checkout = ({ setCheckoutInfo }) => {
         const info = {
             products,
             total,
+            subTotal,
             status: 'Pending',
             isMultipleOrder: products.length > 1,
             placed: {

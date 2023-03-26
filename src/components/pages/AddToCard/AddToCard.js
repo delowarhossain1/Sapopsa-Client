@@ -6,7 +6,7 @@ import {Link} from "react-router-dom"
 const AddToCard = ({refetch, reFetchValue}) => {
     const [reload, setReload] = useState(false);
     const [products, setProducts] = useState([]);
-
+    
     useEffect(() => {
         const storedProducts = getProducts();
         setProducts(storedProducts);
