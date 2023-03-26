@@ -17,29 +17,39 @@ const Checkout = ({ setCheckoutInfo }) => {
     const [products, setProducts] = useState([]);
     const [shippingChg, setShippingChg] = useState(0);
     const [shippingArea, setShippingArea] = useState('');
-    const [settings, setSettings] = useState({});
-
+    // console.log(shippingArea)
     // Get settings ( shipping charge );
-    useEffect(() => {
-        axios.get(`http://localhost:5000/settings?email=${user?.email}`, {
-            headers: { auth: `Bearer ${getAccessToken()}` }
-        })
-            .then(res => setSettings(res.data))
-    }, [user]);
+    const { data: settings, isLoading, refetch } = useQuery(['settings-management', user],
+        () => (
+            axios.get(`http://localhost:5000/settings?email=${user?.email}`, {
+                headers: { auth: `Bearer ${getAccessToken()}` }
+            })
+                .then(res => res.data)
+        ));
 
     // set product info
     useEffect(() => {
         const storedProducts = getProducts();
         setProducts(storedProducts);
 
-        // if (settings) {
-        //     // Set shipping charge
-        //     setShippingChg(settings?.shippingCharge[0]['charge'] || 0);
-        //     // Set shipping area 
-        //     setShippingArea(settings?.shippingCharge[0]['area'] || '');
-        // }
+        if (settings) {
+            // Set shipping charge
+            setShippingChg(settings?.shippingCharge[0]['charge'] || 0);
+            // Set shipping area 
+            setShippingArea(settings?.shippingCharge[0]['area'] || '');
+        }
 
     }, [settings]);
+
+    // Set shipping charge
+    const handleShippingChrg = (e) =>{
+        const charge = e.target.value;
+        const area = e.target.selectedOptions[0].getAttribute('data-area');
+
+        // Update state;
+        setShippingChg(charge);
+        setShippingArea(area)
+    }
 
     // Product calculation
     const subTotal = products.reduce((sTotal, items) => items.totalPrice + sTotal, 0);
@@ -54,7 +64,6 @@ const Checkout = ({ setCheckoutInfo }) => {
         const phone = e.phone.value;
         const addressLineOne = e.addressOne.value;
         const addressLineTwo = e.addressTwo.value;
-        const shippingCharge = e.shippingCharge.value;
 
         const info = {
             products,
@@ -71,7 +80,7 @@ const Checkout = ({ setCheckoutInfo }) => {
                 phone,
                 addressLineOne,
                 shippingArea,
-                shippingCharge,
+                shippingCharge : shippingChg,
                 addressLineTwo: addressLineTwo || 'N/A'
             }
         }
@@ -105,10 +114,14 @@ const Checkout = ({ setCheckoutInfo }) => {
                                             <img src={product?.img} alt="product" />
 
                                             <div>
-                                                <span>{product?.title.length > 20 ? product.title.slice(0, 20) + '...' : product?.title}</span>
-                                                <span>Price : ${product.price}</span>
-                                                <span>Size : {product.size}</span>
-                                                <span>Qty : {product.quantity}</span>
+                                                <h4>{product?.title.length > 20 ? product.title.slice(0, 20) + '...' : product?.title}</h4>
+                                                <p>Price : ${product?.price}</p>
+                                                <p>Size : {product?.size}</p>
+                                                <p>Qty : {product?.quantity}</p>
+                                                <p className='selectedColorBtn'>
+                                                    Color : 
+                                                    <span style={{background : product?.color}}></span>
+                                                </p>
                                             </div>
                                         </div>
                                     ))
@@ -117,7 +130,7 @@ const Checkout = ({ setCheckoutInfo }) => {
 
                                 <div className={css.subTotal}>
                                     <span>Sub total : ${subTotal}</span>
-                                    <span>Shipping : ${shippingChg}</span>
+                                    <span>Shipping : ${shippingChg} <small>({shippingArea})</small></span>
                                     <span>Total : ${total}</span>
                                 </div>
                             </div>
@@ -137,14 +150,16 @@ const Checkout = ({ setCheckoutInfo }) => {
                                                     <input type="email" id='email' placeholder="Email" value={user?.email} readOnly disabled />
 
                                                     <label for="number">Phone</label>
-                                                    <input type="number" id='number' placeholder="Phone Number" name='phone' required />
+                                                    <input type="tel" id='number' placeholder="Phone Number" name='phone' required />
                                                 </div>
 
                                                 <div className={css.selectOption}>
                                                     <label for="">Shipping area</label>
                                                     <select
                                                         name='shippingCharge'
-                                                        onChange={(e) => setShippingChg(e.target.value)}>
+                                                        value={shippingChg}
+                                                        onChange={handleShippingChrg}
+                                                        >
 
                                                         {
                                                             settings?.shippingCharge?.map((item, i) => {
@@ -153,8 +168,8 @@ const Checkout = ({ setCheckoutInfo }) => {
                                                                 return (
                                                                     <option
                                                                         value={charge}
-                                                                        key={i * Math.random()}
-                                                                        onClick={() => setShippingArea(area)}
+                                                                        data-area={area}
+                                                                        key={i * Math.random()}       
                                                                     >
                                                                         {`${area} - $${charge}`}
                                                                     </option>

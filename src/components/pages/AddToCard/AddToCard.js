@@ -43,12 +43,16 @@ const AddToCard = ({refetch, reFetchValue}) => {
                                             <div className="cartInfo">
                                                 <img width="100px" src={product?.img} alt="product" />
                                                 <div>
-                                                    <p>{product?.title?.length > 30 ? product.title.slice(0, 30) + '..' : product.title}</p>
-                                                    <small>Prices: ${product?.price}</small> <br/>
-                                                    <small>Size: {product?.size}</small>
-                                                    <br />
+                                                    <h3>{product?.title?.length > 30 ? product.title.slice(0, 30) + '..' : product.title}</h3>
+                                                    <p>Price: ${product?.price}</p>
+                                                    <p>Size: {product?.size}</p>
 
-                                                    <p style={{ cursor: 'pointer', marginTop: '7px' }} onClick={()=> removeCardItem(product.id)}>Remove</p>
+                                                    <p className='selectedColorBtn'>
+                                                        Color: 
+                                                        <span style={{background : product?.color}}></span>
+                                                    </p>
+                                            
+                                                    <p style={{ cursor: 'pointer', marginTop: '7px', color : 'blue' }} onClick={()=> removeCardItem(product.id)}>Remove</p>
                                                 </div>
                                             </div>
 
