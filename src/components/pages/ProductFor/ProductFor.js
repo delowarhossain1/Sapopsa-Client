@@ -5,6 +5,7 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 import Loading from "../../shared/Loading/Loading";
 import ProductNotFoundText from '../../shared/ProductNotFoundText/ProductNotFoundText';
+import css from "../../../css/categoriesProduct.module.css"
 
 const ProductFor = () => {
     const { id } = useParams();
@@ -33,7 +34,7 @@ const ProductFor = () => {
 
                 <h1 style={{ textTransform: "uppercase", marginBottom: '20px', fontSize: '24px' }}>{id}'s {id === 'sports' ? 'collection' : 'fashion'}</h1>
 
-                <div className='product-container'>
+                <div className={css.categoriesProducts}>
 
                     {
                         products?.map(product => (

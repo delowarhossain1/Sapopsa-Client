@@ -5,6 +5,7 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 import Loading from '../../shared/Loading/Loading';
 import ProductNotFoundText from "../../shared/ProductNotFoundText/ProductNotFoundText"
+import css from "../../../css/categoriesProduct.module.css";
 
 const CategoriesProducts = () => {
     const { cty } = useParams();
@@ -22,7 +23,7 @@ const CategoriesProducts = () => {
             <div className='container'>
                 <h1 style={{ textTransform: "uppercase", marginBottom: '20px', fontSize: '24px' }}> {cty?.split('-').join(' ')} </h1>
 
-                <div className='product-container'>
+                <div className={css.categoriesProducts}>
                     {
                         products?.map(product => (
                             <PrimaryProductCard

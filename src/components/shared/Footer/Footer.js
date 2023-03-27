@@ -20,9 +20,9 @@ const year = date.getFullYear();
 
 const Footer = () => {
     // Get cagories
-    const {data:categories} = useQuery('nav-categories-list', ()=>(
+    const { data: categories } = useQuery('nav-categories-list', () => (
         axios.get('http://localhost:5000/categories-list')
-        .then(res => res?.data)
+            .then(res => res?.data)
     ));
 
     return (
@@ -92,7 +92,7 @@ const Footer = () => {
                                             key={category?._id}
                                             className='menuItem'
                                         >
-                                           <Link to={`category/${category.route}`}>{category?.title}</Link>
+                                            <Link to={`category/${category.route}`}>{category?.title}</Link>
                                         </li>
                                     ))
                                 }
@@ -115,7 +115,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className="quickLink">
-                        <a target="_blank" href="https://www.facebook.com/"> <img src={fb} alt="" /></a>
+                        <a target="_blank" href="https://www.facebook.com/sapopsa.it?mibextid=ZbWKwL"> <img src={fb} alt="" /></a>
                         <a target="_blank" href="https://www.instagram.com/"><img src={ins} alt="" /></a>
                         <a target="_blank" href="https://www.twitter.com/"> <img src={tw} alt="" /></a>
                     </div>

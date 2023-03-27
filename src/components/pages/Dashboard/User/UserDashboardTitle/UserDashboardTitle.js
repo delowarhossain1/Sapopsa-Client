@@ -12,7 +12,7 @@ const UserDashboardTitle = ({ title = 'Simple title' }) => {
         <div className='my-dashboard-heading'>
             <h2 className="orderMainTitle">{title}</h2>
 
-            <div style={{ display: 'flex' }}>
+            <div className='signoutSigninBtn'>
                 <button onClick={() => signOut(auth)}>
                     <AiOutlineLogin />
                     <span>Log out</span>

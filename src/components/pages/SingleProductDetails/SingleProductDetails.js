@@ -44,7 +44,7 @@ const SingleProductDetails = ({ refetch, reFetchValue }) => {
     }
 
     const { _id, img, title, size, price, description, specification, galleryIMG, colors} = product;
-
+    console.log(specification)
     // calculate product base on quantity
     const calPrice = selectedQuantity * price;
 

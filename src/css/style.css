@@ -708,6 +708,9 @@ table.cartTable {
 	box-shadow: 0px 0px 5px 3px #efefef;
 	cursor: pointer;
 	transition: .5s;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .colTow div img {

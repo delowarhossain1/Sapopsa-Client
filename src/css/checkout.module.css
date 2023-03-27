@@ -108,3 +108,22 @@
 .warningBox > button > svg{
     margin-left: 5px;
 }
+
+@media only screen and (max-width : 991px) {
+    .checkoutInfoCont{
+        display: block;
+        flex-wrap: wrap !important;
+        width: 100%;
+    }
+    .productInfo{
+        width: 100%;
+    }
+
+    .PaymentContainer{
+        flex-wrap: wrap;
+    }
+
+    .paypalBTNS{
+        margin-top: 20px;
+    }
+}

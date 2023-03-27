@@ -63,6 +63,7 @@ const Payment = ({ checkoutInfo }) => {
 
                         <h5 className={css.totalAmoutText}>Total Amount : ${total}</h5>
                     </div>
+                    
                     <div className={css.paypalBTNS}>
                         {products?.length > 0 &&
                             <PayPalScriptProvider options={{ "client-id": `${process.env.REACT_APP_PAYPAL_CLIENT_ID}` }}>
