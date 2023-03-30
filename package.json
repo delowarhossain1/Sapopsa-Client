@@ -14,7 +14,6 @@
     "react-firebase-hooks": "^5.1.1",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.7.1",
-    "react-messenger-customer-chat": "^0.8.0",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",
