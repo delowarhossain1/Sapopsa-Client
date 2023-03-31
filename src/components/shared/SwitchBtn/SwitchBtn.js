@@ -3,7 +3,6 @@ import ToggleButton from 'react-toggle-button'
 
 const SwitchBtn = ({ setStatus, currentStatus }) => {
     const [isOn, setOn] = useState(currentStatus);
-    // console.log(currentStatus, isOn)
 
     useEffect(() => setStatus(isOn), [isOn, setStatus, currentStatus]);
 

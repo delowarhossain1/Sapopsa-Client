@@ -22,7 +22,7 @@ const Payment = ({ checkoutInfo }) => {
         setLoading(true);
 
         if(user && data){
-            const url = `http://localhost:5000/order?email=${user?.email}`;
+            const url = `/order?email=${user?.email}`;
 
             fetch(url, {
                 method : "POST",

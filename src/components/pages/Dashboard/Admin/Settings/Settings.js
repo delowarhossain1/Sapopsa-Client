@@ -25,7 +25,7 @@ const Settings = () => {
     // Get all settings
     const {data:settings, isLoading, refetch} = useQuery(['settings-management', user], 
     ()=>(
-        axios.get(`http://localhost:5000/settings?email=${user?.email}`, {
+        axios.get(`/settings?email=${user?.email}`, {
             headers : {auth : `Bearer ${getAccessToken()}`}
         })
         .then(res => res.data)
@@ -77,7 +77,7 @@ const Settings = () => {
                 shippingCharge: shippingItems,
             }
 
-            const url = `http://localhost:5000/settings?email=${user?.email}`;
+            const url = `/settings?email=${user?.email}`;
             fetch(url, {
                 method: 'PATCH',
                 headers: {

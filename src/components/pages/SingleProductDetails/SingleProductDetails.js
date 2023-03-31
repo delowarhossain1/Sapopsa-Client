@@ -18,7 +18,7 @@ const SingleProductDetails = ({ refetch, reFetchValue }) => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/get-product/${id}`)
+        fetch(`/get-product/${id}`)
             .then(res => res.json())
             .then(res => {
                 setProduct(res);
@@ -44,7 +44,7 @@ const SingleProductDetails = ({ refetch, reFetchValue }) => {
     }
 
     const { _id, img, title, size, price, description, specification, galleryIMG, colors} = product;
-    console.log(specification)
+   
     // calculate product base on quantity
     const calPrice = selectedQuantity * price;
 

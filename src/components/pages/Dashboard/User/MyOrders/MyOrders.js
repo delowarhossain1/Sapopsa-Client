@@ -14,7 +14,7 @@ const MyOrders = () => {
     const [user, loading] = useAuthState(auth);
 
     const { isLoading, data: orders, } = useQuery('myOrders', () => (
-        axios.get(`http://localhost:5000/my-orders?email=${user?.email}`, {
+        axios.get(`/my-orders?email=${user?.email}`, {
             headers: { auth: `Bearer ${getAccessToken()}` }
         })
             .then(res => res.data)

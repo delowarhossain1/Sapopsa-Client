@@ -22,7 +22,7 @@ const Report = () => {
     const [user, loading] = useAuthState(auth);
 
     const { isLoading, data: allReport } = useQuery(['dashboard-report', user], () => (
-        axios.get(`http://localhost:5000/report?email=${user?.email}`, {
+        axios.get(`/report?email=${user?.email}`, {
             headers: { auth: `Bearer ${getAccessToken()}` }
         })
             .then(res => res?.data)
@@ -33,7 +33,7 @@ const Report = () => {
     }
 
     const { orders, totalOrders, totalUsers, users, todaysOrders, successFulDelivered, totalProducts, totalCategories } = allReport;
-    console.log(orders)
+
     return (
         <div>
             <PageTitle title='dashboard report' />

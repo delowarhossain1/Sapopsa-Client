@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
 import "swiper/css";
@@ -9,7 +9,7 @@ import axios  from 'axios';
 const Slider = ({setLoading}) => {
 
     const {data:sliders, isLoading} = useQuery('sliders', ()=>(
-        axios.get('http://localhost:5000/sliders')
+        axios.get('/sliders')
         .then(res => res?.data)
     ));
 

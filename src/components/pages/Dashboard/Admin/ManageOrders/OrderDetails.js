@@ -24,7 +24,7 @@ const OrderDetails = () => {
     } = useModal();
 
     useEffect(() => {
-        const url = `http://localhost:5000/get-order?id=${id}&email=${user?.email}`;
+        const url = `/get-order?id=${id}&email=${user?.email}`;
         axios.get(url, {
             headers: { auth: `Bearer ${getAccessToken()}` }
         })
@@ -43,7 +43,7 @@ const OrderDetails = () => {
         simpleAlertWithConfirmBtn(alertInfo, () => {
             if (user?.email) {
 
-                const url = `http://localhost:5000/update-order-status/${order?._id}?status=${status}&email=${user?.email}`;
+                const url = `/update-order-status/${order?._id}?status=${status}&email=${user?.email}`;
 
                 fetch(url, {
                     method : 'PATCH',

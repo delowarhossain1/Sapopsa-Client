@@ -19,7 +19,7 @@ const AddNewAdmin = () => {
         const email = e.target.email.value;
 
         //  update database
-        const url = `http://localhost:5000/make-admin?email=${user?.email}`;
+        const url = `/make-admin?email=${user?.email}`;
 
         fetch(url, {
             method: 'PATCH',

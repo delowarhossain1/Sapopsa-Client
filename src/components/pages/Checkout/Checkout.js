@@ -17,11 +17,11 @@ const Checkout = ({ setCheckoutInfo }) => {
     const [products, setProducts] = useState([]);
     const [shippingChg, setShippingChg] = useState(0);
     const [shippingArea, setShippingArea] = useState('');
-    // console.log(shippingArea)
+   
     // Get settings ( shipping charge );
     const { data: settings, isLoading, refetch } = useQuery(['settings-management', user],
         () => (
-            axios.get(`http://localhost:5000/settings?email=${user?.email}`, {
+            axios.get(`/settings?email=${user?.email}`, {
                 headers: { auth: `Bearer ${getAccessToken()}` }
             })
                 .then(res => res.data)

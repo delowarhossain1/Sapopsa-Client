@@ -16,7 +16,7 @@ const ProductFor = () => {
         // set loading status;
         setIsLoading(true);
 
-        axios.get(`http://localhost:5000/product-for?thisIsFor=${id}`)
+        axios.get(`/product-for?thisIsFor=${id}`)
             .then(res => {
                 // set loading status;
                 setIsLoading(false);
@@ -27,7 +27,7 @@ const ProductFor = () => {
 
     // set loading status
     if (isLoading) <Loading />;
-    console.log(products?.length === 0)
+
     return (
         <div className="margin-top">
             <div className='container'>

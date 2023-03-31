@@ -16,7 +16,7 @@ const Admins = () => {
     const { simpleAlertWithConfirmBtn, successFullModal } = useModal();
 
     const { data: admins, isLoading, refetch } = useQuery(['manage-admins', user], () => (
-        axios.get(`http://localhost:5000/admins?email=${user?.email}`, {
+        axios.get(`/admins?email=${user?.email}`, {
             headers: {
                 auth: `Bearer ${getAccessToken()}`
             }
@@ -33,7 +33,7 @@ const Admins = () => {
 
         simpleAlertWithConfirmBtn(message, () => {
             if (email && user) {
-                const url = `http://localhost:5000/delete-admin?email=${user?.email}&deleteAdmin=${email}`;
+                const url = `/delete-admin?email=${user?.email}&deleteAdmin=${email}`;
 
                 fetch(url, {
                     method: 'PATCH',

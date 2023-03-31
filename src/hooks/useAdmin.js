@@ -15,7 +15,7 @@ const useAdmin = () => {
         if(user){
             const email = user?.email;
 
-            fetch(`http://localhost:5000/is-admin/${email}`)
+            fetch(`/is-admin/${email}`)
             .then(res => res.json())
             .then(adminInfo =>{
                 setAdmin(adminInfo?.isAdmin);

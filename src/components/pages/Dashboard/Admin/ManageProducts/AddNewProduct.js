@@ -25,7 +25,7 @@ const AddNewProduct = () => {
 
     // Get all categories
     useEffect(()=>{
-        axios.get('http://localhost:5000/categories-list')
+        axios.get('/categories-list')
             .then(res => setCategories(res?.data));
     }, [])
 
@@ -136,7 +136,7 @@ const AddNewProduct = () => {
             }
 
             // Update database
-            const url = `http://localhost:5000/product?email=${user?.email}`;
+            const url = `/product?email=${user?.email}`;
             axios.post(url, formData, {
                 headers : {
                     auth : `Bearer ${getAccessToken()}`

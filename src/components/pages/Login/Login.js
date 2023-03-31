@@ -17,13 +17,13 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
     let from = location.state?.from?.pathname || "/";
-    console.log()
+
     useEffect(() => {
         if (user) {
             
             const email = user?.user?.email;
             const name = user?.user?.displayName;
-            const url = `http://localhost:5000/user?email=${email}&name=${name}`;
+            const url = `/user?email=${email}&name=${name}`;
 
             fetch(url, { method: 'PUT'})
                 .then(res => res.json())

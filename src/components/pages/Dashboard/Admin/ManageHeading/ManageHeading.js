@@ -16,7 +16,7 @@ const ManageHeading = () => {
 
     // Get website heading
     useEffect(() => {
-        fetch('http://localhost:5000/web-heading')
+        fetch('/web-heading')
             .then(res => res.json())
             .then(res => setHeading(res));
 
@@ -32,7 +32,7 @@ const ManageHeading = () => {
 
         if (updatedHeading && user) {
 
-            fetch(`http://localhost:5000/web-heading?email=${user?.email}`, {
+            fetch(`/web-heading?email=${user?.email}`, {
                 method: 'PATCH',
                 headers: {
                     "Content-Type": "application/json",

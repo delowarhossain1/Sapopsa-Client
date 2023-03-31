@@ -17,7 +17,7 @@ const ProductsDetails = () => {
 
     useEffect(() => {
 
-        const url = `http://localhost:5000/get-product/${id}`;
+        const url = `/get-product/${id}`;
         axios.get(url)
             .then(res => {
                 setProduct(res.data);

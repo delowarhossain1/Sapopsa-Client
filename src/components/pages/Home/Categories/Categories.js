@@ -7,7 +7,7 @@ const Categories = ({setLoading}) => {
     const navigate = useNavigate();
 
     const {data:categories, isLoading} = useQuery('homepage-categories', ()=>(
-        axios.get('http://localhost:5000/categories')
+        axios.get('/categories')
         .then(res => res?.data) 
     ));
 
