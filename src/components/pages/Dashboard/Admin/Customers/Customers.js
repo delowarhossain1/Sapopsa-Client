@@ -13,7 +13,7 @@ const Customers = () => {
     const [user, loading] = useAuthState(auth);
 
     const {data:allUsers, isLoading} = useQuery(['manage-customers', user], ()=>(
-        axios.get(`/customers?email=${user?.email}`, {
+        axios.get(`/api/customers?email=${user?.email}`, {
             headers: {
                 auth: `Bearer ${getAccessToken()}`
             }

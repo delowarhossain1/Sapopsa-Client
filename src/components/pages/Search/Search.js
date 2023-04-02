@@ -14,7 +14,7 @@ const Search = () => {
         // start loading
         setLoading(true);
 
-        fetch('/search', {
+        fetch('/api/search', {
             headers: {
                 search: text
             }

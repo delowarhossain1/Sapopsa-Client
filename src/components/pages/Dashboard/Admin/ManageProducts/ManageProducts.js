@@ -19,7 +19,7 @@ const ManageProducts = () => {
 
 
     const {data:products, refetch,  isLoading} = useQuery(['manage-products', user], ()=>(
-        axios.get(`/products?email=${user?.email}`, {
+        axios.get(`/api/products?email=${user?.email}`, {
             headers : {auth: `Bearer ${getAccessToken()}`}
         })
         .then(res => res.data)
@@ -30,7 +30,7 @@ const ManageProducts = () => {
     const deleteProduct = (id) => {
         if (user) {
             deleteModal(() => {
-                fetch(`/product/${id}?email=${user?.email}`, {
+                fetch(`/api/product/${id}?email=${user?.email}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',

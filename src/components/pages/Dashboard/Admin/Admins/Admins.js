@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import DashboardTitle from '../../DashboardTitle';
 import css from "../../../../../css/Table.module.css";
 import PageTitle from '../../../../shared/PageTitle/PageTitle';
@@ -16,7 +16,7 @@ const Admins = () => {
     const { simpleAlertWithConfirmBtn, successFullModal } = useModal();
 
     const { data: admins, isLoading, refetch } = useQuery(['manage-admins', user], () => (
-        axios.get(`/admins?email=${user?.email}`, {
+        axios.get(`/api/admins?email=${user?.email}`, {
             headers: {
                 auth: `Bearer ${getAccessToken()}`
             }
@@ -33,7 +33,7 @@ const Admins = () => {
 
         simpleAlertWithConfirmBtn(message, () => {
             if (email && user) {
-                const url = `/delete-admin?email=${user?.email}&deleteAdmin=${email}`;
+                const url = `/api/delete-admin?email=${user?.email}&deleteAdmin=${email}`;
 
                 fetch(url, {
                     method: 'PATCH',

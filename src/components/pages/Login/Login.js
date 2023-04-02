@@ -23,7 +23,7 @@ const Login = () => {
             
             const email = user?.user?.email;
             const name = user?.user?.displayName;
-            const url = `/user?email=${email}&name=${name}`;
+            const url = `/api/user?email=${email}&name=${name}`;
 
             fetch(url, { method: 'PUT'})
                 .then(res => res.json())

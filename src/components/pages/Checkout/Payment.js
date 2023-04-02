@@ -22,7 +22,7 @@ const Payment = ({ checkoutInfo }) => {
         setLoading(true);
 
         if(user && data){
-            const url = `/order?email=${user?.email}`;
+            const url = `/api/order?email=${user?.email}`;
 
             fetch(url, {
                 method : "POST",

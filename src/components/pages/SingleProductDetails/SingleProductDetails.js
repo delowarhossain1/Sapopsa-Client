@@ -18,7 +18,7 @@ const SingleProductDetails = ({ refetch, reFetchValue }) => {
 
 
     useEffect(() => {
-        fetch(`/get-product/${id}`)
+        fetch(`/api/get-product/${id}`)
             .then(res => res.json())
             .then(res => {
                 setProduct(res);

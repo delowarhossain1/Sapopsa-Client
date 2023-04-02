@@ -19,7 +19,7 @@ const OrderDetails = () => {
         // Set loading status;
         setOrdersInfoLoading(true);
 
-        axios.get(`/get-order?id=${id}&email=${user?.email}`, {
+        axios.get(`/api/get-order?id=${id}&email=${user?.email}`, {
             headers: { auth: `Bearer ${getAccessToken()}` }
         })
             .then(function (res) {

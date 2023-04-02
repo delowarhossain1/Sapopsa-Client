@@ -30,7 +30,7 @@ const AddNewCategori = () => {
             formData.append('thisIsFor', category);
             formData.append('route', route);
 
-            const url = `/categories?email=${user?.email}`;
+            const url = `/api/categories?email=${user?.email}`;
             axios.post(url, formData, {
                 headers: {
                     auth: `Bearer ${getAccessToken()}`

@@ -21,7 +21,7 @@ const Checkout = ({ setCheckoutInfo }) => {
     // Get settings ( shipping charge );
     const { data: settings, isLoading, refetch } = useQuery(['settings-management', user],
         () => (
-            axios.get(`/settings?email=${user?.email}`, {
+            axios.get(`/api/settings?email=${user?.email}`, {
                 headers: { auth: `Bearer ${getAccessToken()}` }
             })
                 .then(res => res.data)

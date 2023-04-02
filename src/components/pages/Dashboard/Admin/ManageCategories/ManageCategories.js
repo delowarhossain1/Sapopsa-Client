@@ -16,7 +16,7 @@ const ManageCategories = () => {
     const { deleteModal, successFullModal } = useModal();
 
     const {data:allCategory, isLoading, refetch} = useQuery(['manage-categories', user], ()=>(
-        axios.get(`/all-categories?email=${user?.email}`, {
+        axios.get(`/api/all-categories?email=${user?.email}`, {
             headers : {auth : `Bearer ${getAccessToken()}`}
         })
         .then(res => res.data)
@@ -27,7 +27,7 @@ const ManageCategories = () => {
 
         deleteModal(() => {
             if (user && id) {
-                fetch(`/category/${id}?email=${user?.email}`, {
+                fetch(`/api/category/${id}?email=${user?.email}`, {
                     method: 'DELETE',
                     headers: {
                         "Content-Type": "application/json",

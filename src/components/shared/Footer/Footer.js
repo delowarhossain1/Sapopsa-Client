@@ -21,7 +21,7 @@ const year = date.getFullYear();
 const Footer = () => {
     // Get cagories
     const { data: categories } = useQuery('nav-categories-list', () => (
-        axios.get('/categories-list')
+        axios.get('/api/categories-list')
             .then(res => res?.data)
     ));
 

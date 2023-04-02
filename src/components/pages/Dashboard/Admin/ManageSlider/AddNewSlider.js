@@ -26,7 +26,7 @@ const AddNewSlider = () => {
             formData.append('img', sliderImage);
             formData.append('title', title);
 
-            const url = `/sliders?email=${user?.email}`;
+            const url = `/api/sliders?email=${user?.email}`;
             axios.post(url, formData, {
                 headers: {
                     auth: `Bearer ${getAccessToken()}`

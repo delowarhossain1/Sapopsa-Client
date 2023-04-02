@@ -29,13 +29,13 @@ const Navbar = ({ refetch }) => {
 
     // Get web heading
     const getWebHeading = useQuery('nav-web-heading', ()=>(
-        axios.get('/web-heading')
+        axios.get('/api/web-heading')
         .then(res => setWebHeading(res?.data))
     ));
 
     // Get cagories
     const {data:categories} = useQuery('nav-categories-list', ()=>(
-        axios.get('/categories-list')
+        axios.get('/api/categories-list')
         .then(res => res?.data)
     ));
 

@@ -17,7 +17,7 @@ const ManageSlider = () => {
     const { deleteModal, successFullModal } = useModal();
 
     const {data:sliders, isLoading, refetch} = useQuery('manage-all-sliders', ()=>(
-        axios.get('/sliders').then(res => res.data)
+        axios.get('/api/sliders').then(res => res.data)
     ));
 
     // delete category
@@ -25,7 +25,7 @@ const ManageSlider = () => {
 
         deleteModal(() => {
             if (user && id) {
-                fetch(`/slider/${id}?email=${user?.email}`, {
+                fetch(`/api/slider/${id}?email=${user?.email}`, {
                     method: 'DELETE',
                     headers: {
                         "Content-Type": "application/json",

@@ -19,7 +19,7 @@ const AddNewAdmin = () => {
         const email = e.target.email.value;
 
         //  update database
-        const url = `/make-admin?email=${user?.email}`;
+        const url = `/api/make-admin?email=${user?.email}`;
 
         fetch(url, {
             method: 'PATCH',

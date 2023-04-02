@@ -9,7 +9,7 @@ const Arrivals = ({ setLoading }) => {
     const navigate = useNavigate();
 
     const { data: latestProducts, isLoading } = useQuery('latest-products', () => (
-        axios.get('/latest-products')
+        axios.get('/api/latest-products')
             .then(res => res?.data)
     ));
 

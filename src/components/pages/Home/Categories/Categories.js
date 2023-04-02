@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import axios from 'axios';
@@ -7,7 +7,7 @@ const Categories = ({setLoading}) => {
     const navigate = useNavigate();
 
     const {data:categories, isLoading} = useQuery('homepage-categories', ()=>(
-        axios.get('/categories')
+        axios.get('/api/categories')
         .then(res => res?.data) 
     ));
 

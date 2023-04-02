@@ -17,7 +17,7 @@ const ProductsDetails = () => {
 
     useEffect(() => {
 
-        const url = `/get-product/${id}`;
+        const url = `/api/get-product/${id}`;
         axios.get(url)
             .then(res => {
                 setProduct(res.data);

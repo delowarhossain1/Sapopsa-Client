@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PrimaryProductCard from '../../shared/PrimaryProductCard/PrimaryProductCard';
-import { useQuery } from 'react-query';
 import axios from 'axios';
 import Loading from "../../shared/Loading/Loading";
 import ProductNotFoundText from '../../shared/ProductNotFoundText/ProductNotFoundText';
@@ -16,7 +15,7 @@ const ProductFor = () => {
         // set loading status;
         setIsLoading(true);
 
-        axios.get(`/product-for?thisIsFor=${id}`)
+        axios.get(`/api/product-for?thisIsFor=${id}`)
             .then(res => {
                 // set loading status;
                 setIsLoading(false);

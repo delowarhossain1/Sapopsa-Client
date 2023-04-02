@@ -18,7 +18,7 @@ const ManageOrders = () => {
     const [searchText, setSearchText] = useState('Pending');
 
     const { isLoading, data: orders, } = useQuery(['orders', searchText], () => (
-        axios.get(`/orders?searchText=${searchText}&email=${user?.email}`, {
+        axios.get(`/api/orders?searchText=${searchText}&email=${user?.email}`, {
             headers: { auth: `Bearer ${getAccessToken()}` }
         })
             .then(res => res.data)

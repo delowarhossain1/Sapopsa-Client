@@ -9,7 +9,7 @@ import axios  from 'axios';
 const Slider = ({setLoading}) => {
 
     const {data:sliders, isLoading} = useQuery('sliders', ()=>(
-        axios.get('/sliders')
+        axios.get('/api/sliders')
         .then(res => res?.data)
     ));
 

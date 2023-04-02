@@ -11,7 +11,7 @@ const CategoriesProducts = () => {
     const { cty } = useParams();
 
     const {data:products, isLoading} = useQuery(['categories-products', cty], ()=>(
-        axios.get(`/categories-products?cty=${cty}`)
+        axios.get(`/api/categories-products?cty=${cty}`)
         .then(res => res?.data)
     ));
 
