@@ -3,7 +3,7 @@ import logo from "../../../../images/1.png";
 import { useNavigate } from 'react-router-dom';
 import LatestProductCard from './LatestProductCard';
 import { useQuery } from 'react-query';
-import axios from 'axios';
+import axios from 'axios'; 
 
 const Arrivals = ({ setLoading }) => {
     const navigate = useNavigate();
