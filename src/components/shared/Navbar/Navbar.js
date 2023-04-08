@@ -19,6 +19,7 @@ const Navbar = ({ refetch }) => {
     const [webHeading, setWebHeading] = useState({ heading: '', isDispaly: false });
 
     const [toggleClass, setToggleClass] = useState(false);
+    const [activeSubMenu, setActiveSubMenu] = useState(null);
     const mediaSize = 991;
 
     // Get add to card products
@@ -50,23 +51,25 @@ const Navbar = ({ refetch }) => {
 
     const toggleNav = () => {
         setToggleClass(!toggleClass);
+        document.body.classList.toggle("hidden-scrolling");
     }
 
     const navMenu = (event) => {
-        if (event.target.hasAttribute("data-toggle") &&
-            window.innerWidth <= mediaSize) {
-            // prevent default anchor click behavior
-            event.preventDefault();
-            const menuItemHasChildren = event.target.parentElement;
+        // if (event.target.hasAttribute("data-toggle") &&
+        //     window.innerWidth <= mediaSize) {
+        //     // prevent default anchor click behavior
+        //     event.preventDefault();
+        //     const menuItemHasChildren = event.target.parentElement;
 
-            if (menuItemHasChildren.classList.contains("active")) {
+        //     if (menuItemHasChildren.classList.contains("active")) {
 
-            }
-            else {
+        //     }
+        //     else {
 
-            }
-        }
+        //     }
+        // }
     }
+
 
     return (
         <header className="header">
@@ -89,14 +92,19 @@ const Navbar = ({ refetch }) => {
                 <div className={toggleClass ? 'menu-overlay active' : 'menu-overlay'} onClick={toggleNav}>
                 </div>
                 {/* <!-- navigation menu start --> */}
-                <nav className={toggleClass ? 'nav-menu open' : 'nav-menu'} onClick={(e) => navMenu(e)}>
+                <nav className={toggleClass ? 'nav-menu open' : 'nav-menu'}>
 
                     <div className="closeNavMenu" onClick={toggleNav}>
                         <img src={close} alt="close" />
                     </div>
                     <ul className="menu">
-                        <li className="menuItem menuitemHasChildren">
-                            <a href="#" data-toggle="subMenu">MEN <i className="fa-solid fa-angle-right"></i></a>
+                        <li className="menuItem menuitemHasChildren" >
+                            <a href="#" 
+                            data-toggle="subMenu"
+                            
+                            >MEN 
+                            <i className="fa-solid fa-angle-right"></i></a>
+
                             <ul className="subMenu">
                                 {
                                     categories?.men?.map(category => (

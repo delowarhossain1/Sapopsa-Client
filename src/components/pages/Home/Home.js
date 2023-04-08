@@ -7,7 +7,7 @@ import { Pagination, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useNavigate } from 'react-router-dom';
-import LatestProductCard from './Arrivals/LatestProductCard';
+import LatestProductCard from './LatestProductCard';
 import logo from "../../../images/1.png";
 
 
@@ -34,10 +34,10 @@ const Home = () => {
     ));
 
     // Set loading status
-    if(slidersLoading || categoriesLoading || latestProductLoading) {
+    if (slidersLoading || categoriesLoading || latestProductLoading) {
         return <Loading />
     }
-    
+
     return (
 
         <div>
@@ -75,7 +75,7 @@ const Home = () => {
             <div>
                 {/* <!-- home section end --> */}
                 <div className="noImageTitle">
-                    <h1>FIND YOUR COICE</h1>
+                    <h1>FIND YOUR CHOICE</h1>
                 </div>
 
                 <div className="container conTainer">
@@ -106,68 +106,63 @@ const Home = () => {
             {/* Arrivals */}
 
             <div>
-            <div className="design-cats">
-                {/* <!-- FIND YOUR THING --> */}
-                <div style={{ width: '100%', margin: '0 auto', overflowX: 'auto' }}>
-                    <div className="body-menu">
-                        <div className="body-menu-item">
-                            <div className="new">
-                                <div className="noStyle">
-                                    <img src={logo} alt="logo" />
+                <div className="design-cats">
+                    {/* <!-- FIND YOUR THING --> */}
+                    <div style={{ width: '100%', margin: '0 auto', overflowX: 'auto' }}>
+                        <div className="body-menu">
+                            <div className="body-menu-item">
+                                <div className="new">
+                                    <div className="noStyle">
+                                        <img src={logo} alt="logo" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="body-menu-item" onClick={() => navigate('/product-for/male')}>
+                                <span className="noStyleLink">MENS</span>
+                            </div>
+
+                            <div className="body-menu-item" onClick={() => navigate('/product-for/female')}>
+                                <span className="noStyleLink" >Women</span>
+                            </div>
+
+                            <div className="body-menu-item" onClick={() => navigate('/product-for/sports')}>
+                                <span className="noStyleLink" >Sports</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div className="container">
+                    <div className="newArrivals">
+
+                        <div style={{ width: '100%', margin: '0 auto', overflowX: 'auto' }}>
+                            <div className="btnWrap">
+                                <div className="btnDiv">
+                                    <button className="btn">Latest product</button>
                                 </div>
                             </div>
                         </div>
+                        <hr />
+                    </div>
 
-                        <div className="body-menu-item" onClick={() => navigate('/product-for/male')}>
-                            <span className="noStyleLink">MENS</span>
-                        </div>
+                    <div className="row">
+                        {
+                            latestProducts?.map(product => (
+                                <LatestProductCard
+                                    key={product._id}
+                                    product={product} />
+                            ))
+                        }
 
-                        <div className="body-menu-item" onClick={() => navigate('/product-for/female')}>
-                            <span className="noStyleLink" >Women</span>
-                        </div>
-
-                        <div className="body-menu-item" onClick={() => navigate('/product-for/sports')}>
-                            <span className="noStyleLink" >Sports</span>
-                        </div>
                     </div>
                 </div>
             </div>
 
-
-
-
-            <div className="container">
-                <div className="newArrivals">
-
-                    <div style={{ width: '100%', margin: '0 auto', overflowX: 'auto' }}>
-                        <div className="btnWrap">
-                            <div className="btnDiv">
-                                <button className="btn">Latest product</button>
-                            </div>
-                        </div>
-                    </div>
-                    <hr />
-                </div>
-
-                <div className="row">
-                    {
-                        latestProducts?.map(product => (
-                            <LatestProductCard
-                                key={product._id}
-                                product={product} />
-                        ))
-                    }
-
-                </div>
-            </div>
         </div>
-
-        </div>
-        // <>
-        //    <Slider setLoading={setLoading}/>
-        //    <Categories setLoading={setLoading}/> 
-        //    <Arrivals setLoading={setLoading}/>
-        // </>
     );
 };
 
