@@ -56,8 +56,8 @@ const Login = () => {
                             <div className="Logicon">
                                 <img className="logIcon" src={logo} alt="" />
                             </div>
-                            <h3>Login</h3>
-                            <p>Let's check if you already have an account</p>
+                            <h3 style={{textAlign : 'center'}}>Login</h3>
+                            {/* <p>Let's check if you already have an account</p>
                             <div className="Logg">
                                 <div className="logBox">
                                     <input type="email" required="required" />
@@ -73,17 +73,17 @@ const Login = () => {
                                         <i className="fa-solid fa-arrow-right"></i>
                                     </button>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="loginWith">
 
                                 <button type="button" onClick={() => signInWithGoogle()}>
-                                    <h5>Login with</h5>
                                     <img className="facebock" src={go} alt="" />
+                                    <h5>Sign in with Google</h5>
                                 </button>
 
                                 <button className="logLog" type="button">
-                                    <h5>Login with</h5>
                                     <img className="facebock" src={fb} alt="" />
+                                    <h5>Sign in with Facebook</h5>
                                 </button>
 
                             </div>

@@ -96,6 +96,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 .loginWith button{
     flex-basis: 45%;
@@ -112,6 +113,10 @@
     border: 1px solid var(---text-color);
     display: flex;
     align-items: center;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .loginWith button h5{
