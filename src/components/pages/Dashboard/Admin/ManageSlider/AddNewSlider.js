@@ -10,13 +10,17 @@ import useModal from './../../../../../hooks/useModal';
 import { useNavigate } from 'react-router-dom';
 
 const AddNewSlider = () => {
-    const [user, loading] = useAuthState(auth);
+    const [loading, setLoading] = useState(false);
+    const [user, UserLoading] = useAuthState(auth);
     const [sliderImage, setSliderImage] = useState(null);
     const { successFullModal, simpleMessageDisplay } = useModal();
     const navigate = useNavigate();
 
 
     const handleSubmit = (e) => {
+        // Loading status updated;
+        setLoading(true);
+
         e.preventDefault();
         const type = /image.*/;
 
@@ -34,21 +38,28 @@ const AddNewSlider = () => {
             })
                 .then(res => {
                     if (res?.data?.insertedId && res?.status === 200) {
+                        // Loading status updated;
+                        setLoading(true);
+
                         successFullModal();
-                        navigate('/dashboard/manage-slider/')
+                        navigate('/dashboard/manage-slider/');
                     }
                     else {
+                        // Loading status updated;
+                        setLoading(true);
                         simpleMessageDisplay('Slider upload failed. Please try again.')
                     }
                 });
         }
         else{
+            // Loading status updated;
+            setLoading(true);
             simpleMessageDisplay("Unable to upload this file. Try another image file.");
         }
 
     }
 
-    if (loading) {
+    if (loading || UserLoading) {
         return <Loading />
     }
 
