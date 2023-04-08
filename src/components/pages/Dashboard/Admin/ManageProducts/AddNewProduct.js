@@ -16,6 +16,7 @@ const AddNewProduct = () => {
     const speciRef = useRef();
     const sizeRef = useRef();
     const navigate = useNavigate();
+    const [productUploading, setProductUploading] = useState(false);
     const [user, loading] = useAuthState(auth);
     const { simpleMessageDisplay, successFullModal } = useModal();
     const [productCLR, setProductCLR] = useState([]);
@@ -79,6 +80,9 @@ const AddNewProduct = () => {
 
     // Handle add product
     const handleProduct = (event) => {
+        // Set loading status;
+        setProductUploading(true);
+
         event.preventDefault();
         const e = event.target;
         const reg = /image.*/;
@@ -94,7 +98,7 @@ const AddNewProduct = () => {
         }
 
 
-        if (displayIMG?.type?.match(reg) && galleryIMG?.length < 4) {
+        if (displayIMG?.type?.match(reg) && galleryIMG?.length < 3) {
             const title = e.title.value;
             const price = e.price.value;
             const thisIsFor = e.thisIsFor.value;
@@ -111,29 +115,9 @@ const AddNewProduct = () => {
 
             for (let file of galleryIMG) formData.append('galleryIMG', file);
 
-            // Set product size
-            if(allSize?.length > 0){
-                for (let s of allSize) formData.append('size', s);
-            }
-            else{
-                formData.append('size', '')
-            }
-
-            // Set specification
-            if(specification?.length > 0){
-                for (let spe of specification) formData.append('specification', spe);
-            }
-            else{
-                formData.append('specification', []); 
-            }
-
-            // Set colors
-            if(productCLR?.length > 0){
-                for (let clr of productCLR) formData.append('colors', clr);
-            }
-            else{
-                formData.append('colors', []);
-            }
+            formData.append('size', JSON.stringify(allSize));
+            formData.append('specification', JSON.stringify(specification));
+            formData.append('colors', JSON.stringify(productCLR));
 
             // Update database
             const url = `/api/product?email=${user?.email}`;
@@ -144,17 +128,29 @@ const AddNewProduct = () => {
             })
             .then(res => {
                 if(res?.data?.insertedId && res?.status === 200){
+                     // Set loading status;
+                    setProductUploading(false);
+
                     successFullModal();
                     navigate('/dashboard/manage-products');
+                }
+                else{
+                    // Set loading status;
+                    setProductUploading(false);
+                    // Error message
+                    simpleMessageDisplay("Please try again.");
                 }
             });
         }
         else {
-            simpleMessageDisplay('Only image file can upload and Gallery image must be less then 4.');
+            // Set loading status;
+            setProductUploading(false);
+
+            simpleMessageDisplay('Only image file can upload and Gallery image must be less then 3.');
         }
     }
 
-    if (loading) {
+    if (loading || productUploading) {
         return <Loading />
     }
 
