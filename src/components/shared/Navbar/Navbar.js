@@ -162,7 +162,7 @@ const Navbar = ({ refetch }) => {
 
 
                         <form className="seacrhBox" onSubmit={handleSearch}>
-                            <input className="input" type="search" placeholder="search..." name="text" autoComplete='off' autoFocus />
+                            <input className="input" type="search" placeholder="search here..." name="text" autoComplete='off' autoFocus />
 
                             <button type="submit" className='searchTextsubmitBtn'>
                                 <img  alt='search'  src={search}  />
