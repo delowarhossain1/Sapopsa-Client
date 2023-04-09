@@ -75,7 +75,6 @@ const Navbar = ({ refetch }) => {
         <header className="header">
 
             {webHeading?.isDispaly &&
-
                 <div className="notice">
                     <marquee className="noticeText">{webHeading?.heading}</marquee>
                 </div>
