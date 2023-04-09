@@ -143,7 +143,7 @@ const AddNewProduct = () => {
             });
         }
         else {
-            // Set loading status;
+            // Set loading status;   
             setProductUploading(false);
 
             simpleMessageDisplay('Only image file can upload and Gallery image must be less then 3.');
