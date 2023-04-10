@@ -37,7 +37,7 @@ import Checkout from './components/pages/Checkout/Checkout';
 import Home from './components/pages/Home/Home';
 import Footer from './components/shared/Footer/Footer';
 import { useState } from 'react';
-import Navbar from './components/shared/Navbar/Navbar';
+import Navbar from './components/shared/Navbars/Navbar';
 import AddNewAdmin from './components/pages/Dashboard/Admin/Admins/AddNewAdmin';
 import NotFound from './components/pages/NotFound/NotFound';
 import ProductFor from './components/pages/ProductFor/ProductFor';
@@ -57,7 +57,8 @@ function App() {
   return (
     <div>
 
-      <Navbar refetch={refetchAddToCardProducts} />
+      {/* <Navbar refetch={refetchAddToCardProducts} /> */}
+      <Navbar />
 
       {/* Page scroll from the begging when route will be change */}
       <ScrollToTop />

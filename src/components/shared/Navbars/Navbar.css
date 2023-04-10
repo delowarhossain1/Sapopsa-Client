@@ -1,0 +1,165 @@
+.navbarTitle{
+    background-color: black;
+    color: white;
+    padding: 5px 0px;
+    font-size: 16px;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0,0,0, .1);
+    padding: 0px 5%;
+    /* display: flex;
+    align-items: center;
+    justify-content: space-between; */
+    z-index: 1000;
+}
+.menuContainer{
+    padding: 5px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.logoAndMenuBtnContainer{
+    display: flex;
+    align-items: center;
+}
+
+header .navbarLogo > img{
+    width: 50px;
+    height: 50px;
+}
+
+header .navbar ul{
+    list-style: none;
+}
+
+header .navbar ul li{
+    position: relative;
+    float: left;
+}
+
+header .navbar ul li a{
+    font-size: 20px;
+    color: black;
+    display: block;
+    padding : 0px 10px;
+    font-family: 'agencyfb';
+}
+
+header .navbar ul li a:hover{
+   color : #1b19199b;
+    transition: all 0.3s;
+}
+
+header .navbar ul li ul{
+    position: absolute;
+    left: 0;
+    width: 250px;
+    background-color: #fff;
+    display: none;
+}
+header .navbar ul li ul li{
+    width: 100%;
+    border-top: 1px solid rgba(0,0, 0, .1);  
+}
+
+header .navbar ul li ul li:first-child{
+    border-top: 0px;
+}
+
+header .navbar ul li ul li a{
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+header .navbar ul li:focus-within > ul,
+header .navbar ul li:hover > ul{
+    display: initial;
+}
+
+#navbarBtn{
+    font-size: 30px;
+    display: none;
+    cursor: pointer;
+    margin-right: 30px;
+}
+
+.navbarRight{
+    display: flex;
+    align-items: center;
+}
+.navbar-login{
+    display: flex;
+    align-items: center;
+}
+.navbar-login a{
+    font-size: 18px;
+    color: black;   
+    margin-left: 15px;
+}
+.navbar-login svg{
+    font-size: 25px;
+    color: black;
+}
+
+.seacrhBox img {
+    width: 25px;
+}
+.navbarShoppingIcon {
+    position: relative;
+}
+.navbarShoppingIcon  img{
+    width: 30px;
+}
+
+
+
+@media(max-width : 991px){
+    .menu-container{
+        justify-content: flex-start;
+    }
+
+    #navbarBtn{
+        display: initial;
+    }
+
+    header .navbar{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #fafafa;
+        border-top: 1px solid rgba(0,0, 0, .1);
+        display: none;
+    }
+
+    header .navbar ul li{
+        width: 100%;
+        padding: 15px 10px;
+    }
+
+    header .navbar ul li ul{
+        position: relative;
+        margin-left: 20px;
+        width: 100%;
+    }
+
+    header .navbar ul li ul li{
+        background-color: #fff;
+    }
+
+    header .navbar ul li ul li a{
+        padding : 0px;
+    }
+
+    .openMenu{
+        display: initial;
+        transition: .5s;
+    }
+}

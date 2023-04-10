@@ -17,9 +17,8 @@ const Navbar = ({ refetch }) => {
     const [user] = useAuthState(auth);
     const [addToCardProducts, setaddToCardProducts] = useState(0);
     const [webHeading, setWebHeading] = useState({ heading: '', isDispaly: false });
-
-    const [toggleClass, setToggleClass] = useState(false);
-    const [activeSubMenu, setActiveSubMenu] = useState(null);
+    const [isNavOpen, setIsNavOpen] = useState(false);
+    const [activeMenuItem, setActiveMenuItem] = useState(null);
     const mediaSize = 991;
 
     // Get add to card products
@@ -49,25 +48,23 @@ const Navbar = ({ refetch }) => {
         }
     }
 
+    // This code for navbar;
     const toggleNav = () => {
-        setToggleClass(!toggleClass);
+        setIsNavOpen(!isNavOpen);
         document.body.classList.toggle("hidden-scrolling");
     }
 
-    const navMenu = (event) => {
-        // if (event.target.hasAttribute("data-toggle") &&
-        //     window.innerWidth <= mediaSize) {
-        //     // prevent default anchor click behavior
-        //     event.preventDefault();
-        //     const menuItemHasChildren = event.target.parentElement;
+    const handleMenuItemClick  = (event) =>{
+        event.preventDefault();
+        const menuItemHasChildren = event.target.parentElement;
 
-        //     if (menuItemHasChildren.classList.contains("active")) {
+        if( menuItemHasChildren.hasAttribute("data-toggle") &&
+        window.innerWidth <= mediaSize){
 
-        //     }
-        //     else {
-
-        //     }
-        // }
+            if(menuItemHasChildren === activeMenuItem){
+                
+            }
+        }
     }
 
 
@@ -88,10 +85,10 @@ const Navbar = ({ refetch }) => {
                     <Link to='/'><img src={logo} alt="" /></Link>
                 </div>
 
-                <div className={toggleClass ? 'menu-overlay active' : 'menu-overlay'} onClick={toggleNav}>
+                <div className={isNavOpen ? 'menu-overlay active' : 'menu-overlay'} onClick={toggleNav}>
                 </div>
                 {/* <!-- navigation menu start --> */}
-                <nav className={toggleClass ? 'nav-menu open' : 'nav-menu'}>
+                <nav className={isNavOpen ? 'nav-menu open' : 'nav-menu'}>
 
                     <div className="closeNavMenu" onClick={toggleNav}>
                         <img src={close} alt="close" />
@@ -100,7 +97,6 @@ const Navbar = ({ refetch }) => {
                         <li className="menuItem menuitemHasChildren" >
                             <a href="#" 
                             data-toggle="subMenu"
-                            
                             >MEN 
                             <i className="fa-solid fa-angle-right"></i></a>
 
