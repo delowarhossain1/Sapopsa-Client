@@ -11,11 +11,7 @@ import bag from "../../../icons/bag.png";
 import { AiOutlineLogin, AiOutlineUser } from 'react-icons/ai';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-/*
-    <div className={css.navbarTitle}>
-                <marquee>Hello how are you all?</marquee>
-            </div>
-*/
+
 const Navbar = () => {
     const allMenu = useRef();
     const navigate = useNavigate();
@@ -40,6 +36,12 @@ const Navbar = () => {
 
     return (
         <header>
+
+            <div className='navbarTitle'>
+                <marquee>Hello how are you all?</marquee>
+            </div>
+
+
             <div className="menuContainer">
                 <div className='logoAndMenuBtnContainer'>
                     <span onClick={handleMenu} id='navbarBtn'>
@@ -79,7 +81,7 @@ const Navbar = () => {
                     <input type="checkbox" id="check" />
                     <div className="usersNotify box user ">
                         <label htmlFor="check">
-                            <img src={search} alt="" style={{width : '40px', margin: '5px 5px 0px 0px'}}/>
+                            <img src={search} alt="" style={{ width: '40px', margin: '5px 5px 0px 0px' }} />
                         </label>
                     </div>
 

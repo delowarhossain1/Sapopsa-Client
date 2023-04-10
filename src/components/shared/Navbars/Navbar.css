@@ -12,14 +12,10 @@ header{
     right: 0;
     background-color: #fff;
     box-shadow: 0 5px 10px rgba(0,0,0, .1);
-    padding: 0px 5%;
-    /* display: flex;
-    align-items: center;
-    justify-content: space-between; */
     z-index: 1000;
 }
 .menuContainer{
-    padding: 5px 0px;
+    padding: 5px 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -121,6 +117,9 @@ header .navbar ul li:hover > ul{
 
 
 @media(max-width : 991px){
+    .menuContainer{
+        padding: 5px 15px;
+    }
     .menu-container{
         justify-content: flex-start;
     }
