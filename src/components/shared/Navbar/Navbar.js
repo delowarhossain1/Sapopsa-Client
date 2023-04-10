@@ -20,7 +20,8 @@ const Navbar = ({ refetch }) => {
     const [isNavOpen, setIsNavOpen] = useState(false);
     const [activeMenuItem, setActiveMenuItem] = useState(null);
     const mediaSize = 991;
-
+ 
+    
     // Get add to card products
     useEffect(() => {
         const products = getProducts();

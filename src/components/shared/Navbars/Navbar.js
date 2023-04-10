@@ -6,18 +6,21 @@ import { GrClose } from "react-icons/gr"
 import logo from "../../../images/sapopsa.png";
 import search from "../../../icons/search.png";
 import auth from '../../../firebase.init';
-import userIcon from "../../../icons/user.png";
 import bag from "../../../icons/bag.png";
-import { AiOutlineLogin, AiOutlineUser } from 'react-icons/ai';
+import { AiOutlineUser } from 'react-icons/ai';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { getProducts } from '../../../utilites/addToCard';
+import { useQuery } from 'react-query';
+import axios from 'axios';
 
 
-const Navbar = () => {
+const Navbar = ({ refetch }) => {
     const allMenu = useRef();
     const navigate = useNavigate();
     const [user] = useAuthState(auth);
     const [isOpenMenu, setIsOpenMenu] = useState(false);
-
+    const [addToCardProducts, setaddToCardProducts] = useState(0);
+    const [webHeading, setWebHeading] = useState({ heading: '', isDispaly: false });
 
     // Handle menu
     const handleMenu = () => {
@@ -34,13 +37,33 @@ const Navbar = () => {
         }
     }
 
+    // Get add to card products
+    useEffect(() => {
+        const products = getProducts();
+        setaddToCardProducts(products?.length);
+    }, [refetch]);
+
+    // Get web heading
+    const getWebHeading = useQuery('nav-web-heading', () => (
+        axios.get('/api/web-heading')
+            .then(res => setWebHeading(res?.data))
+    ));
+
+    // Get cagories
+    const { data: categories } = useQuery('nav-categories-list', () => (
+        axios.get('/api/categories-list')
+            .then(res => res?.data)
+    ));
+
     return (
         <header>
-
-            <div className='navbarTitle'>
-                <marquee>Hello how are you all?</marquee>
-            </div>
-
+            {/* Website title */}
+            {
+                webHeading?.isDispaly &&
+                <div className='navbarTitle'>
+                    <marquee>{webHeading?.heading}</marquee>
+                </div>
+            }
 
             <div className="menuContainer">
                 <div className='logoAndMenuBtnContainer'>
@@ -58,20 +81,43 @@ const Navbar = () => {
                     <ul>
                         <li><a href="#">MEN</a>
                             <ul>
-                                <li><Link to='/'>Blog</Link></li>
-                                <li><Link to='/'>Services</Link></li>
+                                {
+                                    categories?.men?.map(category => (
+                                        <li
+                                            key={category?._id}
+                                        >
+                                            <Link to={`category/${category.route}`}>{category?.title}</Link>
+                                        </li>
+                                    ))
+                                }
                             </ul>
                         </li>
                         <li><a href="#">WOMEN</a>
                             <ul>
-                                <li><Link to='/'>Blog</Link></li>
-                                <li><Link to='/'>Services +</Link></li>
+                                {
+                                    categories?.women?.map(category => (
+                                        <li
+                                            key={category?._id}
+                                            className='menuItem'
+                                        >
+                                            <Link to={`category/${category.route}`}>{category?.title}</Link>
+                                        </li>
+                                    ))
+                                }
                             </ul>
                         </li>
                         <li><a href="#">SPORTS</a>
                             <ul>
-                                <li><Link to='/'>Blog</Link></li>
-                                <li><Link to='/'>Services +</Link></li>
+                                {
+                                    categories?.sports?.map(category => (
+                                        <li
+                                            key={category?._id}
+                                            className='menuItem'
+                                        >
+                                            <Link to={`category/${category.route}`}>{category?.title}</Link>
+                                        </li>
+                                    ))
+                                }
                             </ul>
                         </li>
                     </ul>

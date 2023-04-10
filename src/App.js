@@ -56,9 +56,7 @@ function App() {
 
   return (
     <div>
-
-      {/* <Navbar refetch={refetchAddToCardProducts} /> */}
-      <Navbar />
+      <Navbar refetch={refetchAddToCardProducts}/>
 
       {/* Page scroll from the begging when route will be change */}
       <ScrollToTop />
