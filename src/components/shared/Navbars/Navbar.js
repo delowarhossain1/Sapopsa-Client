@@ -14,7 +14,7 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 
 
-const Navbar = ({ refetch }) => {
+const Navbar = ({ refetch, isNavbarHeadingOpen}) => {
     const allMenu = useRef();
     const navigate = useNavigate();
     const [user] = useAuthState(auth);
@@ -36,6 +36,11 @@ const Navbar = ({ refetch }) => {
             navigate(`/search/${text}`);
         }
     }
+
+    // Set is navbar heading status;
+    useEffect(()=>{
+        isNavbarHeadingOpen(webHeading?.isDispaly);
+    }, [webHeading, isNavbarHeadingOpen]);
 
     // Get add to card products
     useEffect(() => {
@@ -141,7 +146,7 @@ const Navbar = ({ refetch }) => {
                     </form>
 
                     <div className="navbarShoppingIcon">
-                        <Link to='/add-to-card'><img src={bag} alt="" /><span className="notificaTion">{0}</span></Link>
+                        <Link to='/add-to-card'><img src={bag} alt="" /><span className="notificaTion">{addToCardProducts}</span></Link>
                     </div>
 
 

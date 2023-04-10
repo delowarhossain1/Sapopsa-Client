@@ -12,7 +12,7 @@ import { getProducts } from "../../../utilites/addToCard";
 import { useQuery } from 'react-query';
 import axios from 'axios';
 
-const Navbar = ({ refetch }) => {
+const Navbar = ({ refetch}) => {
     const navigate = useNavigate();
     const [user] = useAuthState(auth);
     const [addToCardProducts, setaddToCardProducts] = useState(0);

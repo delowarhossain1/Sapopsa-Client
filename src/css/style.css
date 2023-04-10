@@ -30,7 +30,7 @@ body.hidden-scrolling {
 
 /* Utilities */
 .margin-top{
-	margin-top: 130px;
+	/* margin-top: 130px; */
 }
 
 
@@ -280,7 +280,7 @@ a {
 /*================================ Menu Header ================================================*/
 .slider {
 	width: 100%;
-	margin-top: 115px;
+	/* margin-top: 115px; */
 }
 
 .slider img {
