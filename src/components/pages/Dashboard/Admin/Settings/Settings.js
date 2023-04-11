@@ -13,6 +13,7 @@ import useModal from './../../../../../hooks/useModal';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { AiOutlineCloseSquare } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 const Settings = () => {
     const shippingArea = useRef();
@@ -108,6 +109,7 @@ const Settings = () => {
                 <div className={css.settingsContainer}>
                     {/* Left side */}
                     <div>
+
                         <div className={css.settingsItem}>
                             <span>Navbar heading</span>
                             <span><strong>:</strong> <SwitchBtn 
@@ -115,6 +117,39 @@ const Settings = () => {
                                 currentStatus = {settings?.isNavbarTitleDisplay}
                                 /></span>
                         </div>
+
+                        <div className={css.settingsItem}>
+                            <span>About us</span>
+                            <span>
+                                <strong>:</strong>
+                                <Link to='about-us'>See more</Link>
+                            </span>
+                        </div>
+
+                        <div className={css.settingsItem}>
+                            <span>Terms</span>
+                            <span>
+                                <strong>:</strong>
+                                <Link to='terms'>See more</Link>
+                            </span>
+                        </div>
+
+                        <div className={css.settingsItem}>
+                            <span>Privacy policy</span>
+                            <span>
+                                <strong>:</strong>
+                                <Link to='privacy-policy'>See more</Link>
+                            </span>
+                        </div>
+
+                        <div className={css.settingsItem}>
+                            <span>Contact us</span>
+                            <span>
+                                <strong>:</strong>
+                                <Link to='contact-us'>See more</Link>
+                            </span>
+                        </div>
+
                     </div>
 
                     {/* right side */}

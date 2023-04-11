@@ -153,6 +153,10 @@ function App() {
             <Route path='manage-categories/add-new-category' element={<AddNewCategori />} />
             <Route path='manage-slider/add-new-slider' element={<AddNewSlider />} />
             <Route path='settings' element={<Settings />} />
+            <Route path='settings/about-us' element={<Settings />} />
+            <Route path='settings/terms' element={<Settings />} />
+            <Route path='settings/privacy-policy' element={<Settings />} />
+            <Route path='settings/contact-us' element={<Settings />} />
 
           </Route>
 
