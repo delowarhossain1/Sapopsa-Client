@@ -62,10 +62,10 @@ const Footer = () => {
                         <div className="sopopsa">
                             <p className="sapopaTile">SAPOPSA</p>
                             <div className="arLink">
-                                <a href="about.html">ABOUT US</a>
-                                <a href="#">TERMS & CONDITIONS</a>
-                                <a href="privecy.html">PRIVACY POLICY</a>
-                                <a href="contact.html">CONTACT US</a>
+                                <Link to='/about-us'>ABOUT US</Link>
+                                <Link to='/terms'>TERMS & CONDITIONS</Link>
+                                <Link to='/privacy-policy'>PRIVACY POLICY</Link>
+                                <Link to='/contact-us'>CONTACT US</Link>
                             </div>
                         </div>
                         <div className="sopopsa">

@@ -561,6 +561,9 @@ table.cartTable {
 .plOrder button:hover{
 	background-color: #1d96888e;
 }
+.categoryCard > img {
+	height: 191px;
+}
 /* ===================== payment ========================= */
 
 .wrapper {
@@ -760,7 +763,6 @@ table.cartTable {
 
 .footer {
 	display: flex;
-	align-items: center;
 	justify-content: space-between;
 	flex-wrap: wrap;
 }

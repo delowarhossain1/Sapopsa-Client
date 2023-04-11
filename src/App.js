@@ -48,6 +48,10 @@ import OrderDetails from './components/pages/Dashboard/Admin/ManageOrders/OrderD
 import ProductsDetails from './components/pages/Dashboard/Admin/ManageProducts/ProductsDetails';
 import Search from './components/pages/Search/Search';
 import ScrollToTop from './components/shared/ScrollToTop/ScrollToTop';
+import AboutUs from './components/pages/AboutUs/AboutUs';
+import TermsAndCondition from './components/pages/TermsAndCondition/TermsAndCondition';
+import PrivacyPolicy from './components/pages/PrivacyPolicy/PrivacyPolicy';
+import ContactUs from './components/pages/ContactUs/ContactUs';
 
 function App() {
   const [isNavbarHeadingOpen, setIsNavbarHeadingOpen] = useState(false);
@@ -74,6 +78,10 @@ function App() {
           <Route path='/product-for/:id' element={<ProductFor />} />
           <Route path='/category/:cty' element={<CategoriesProducts />} />
           <Route path='/search/:text' element={<Search />} />
+          <Route path='/about-us' element={<AboutUs />} />
+          <Route path='/terms' element={<TermsAndCondition />} />
+          <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+          <Route path='/contact-us' element={<ContactUs />} />
 
           <Route path='/checkout' element={
             <RequiredAuth>

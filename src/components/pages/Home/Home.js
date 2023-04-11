@@ -84,7 +84,7 @@ const Home = () => {
                         {
                             categories?.map(category => (
                                 <div
-                                    className="col"
+                                    className="col categoryCard"
                                     style={{ border: '1px solid #ddd', borderRadius: "2px", cursor: 'pointer' }}
                                     onClick={() => navigate(`/category/${category?.route}`)}
                                     key={category?._id}
