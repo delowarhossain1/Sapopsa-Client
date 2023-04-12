@@ -1,11 +1,11 @@
 import React from 'react';
 
-const AboutUs = () => {
+const AboutUs = ({aboutUs = ''}) => {
     return (
         <div className='small-container'>
             <h2>About us</h2>
 
-            <p>hello how are you?</p>
+            <p>{aboutUs}</p>
         </div>
     );
 };

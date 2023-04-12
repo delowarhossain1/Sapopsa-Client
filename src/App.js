@@ -72,11 +72,9 @@ function App() {
     .then(res => setSettings(res?.data))
   ));
 
-  console.log(settings);
-
   if(isLoading) <Loading />
 
-  const {phone, email, navbarTitle, shippingCharge, isNavbarTitleDisplay} = settings;
+  const {phone, email, navbarTitle, shippingCharge, isNavbarTitleDisplay, aboutUs, termsAndCondition} = settings;
 
   return (
     <>
@@ -97,7 +95,7 @@ function App() {
           <Route path='/product-for/:id' element={<ProductFor />} />
           <Route path='/category/:cty' element={<CategoriesProducts />} />
           <Route path='/search/:text' element={<Search />} />
-          <Route path='/about-us' element={<AboutUs />} />
+          <Route path='/about-us' element={<AboutUs aboutUs={aboutUs}/>} />
           <Route path='/terms' element={<TermsAndCondition />} />
           <Route path='/privacy-policy' element={<PrivacyPolicy />} />
           <Route path='/contact-us' element={<ContactUs />} />
@@ -176,8 +174,10 @@ function App() {
 
             <Route path='settings' element={<Settings settingsInfo={{isNavbarTitleDisplay, shippingCharge, refetch}}/>} />
 
-            <Route path='settings/about-us' element={<ManageAboutUs />} />
+            <Route path='settings/about-us' element={<ManageAboutUs aboutus = {{aboutUs, refetch}}/>} />
+
             <Route path='settings/terms' element={<ManageTerms />} />
+
             <Route path='settings/contact-us' element={<ManageContactus />} />
 
             <Route path='settings/navbar-title' element={<ManageHeading 
