@@ -157,3 +157,26 @@
     cursor: pointer;
     width: 30%;
 }
+
+/* Contact info */
+.contactInfoContainer{
+    background-color: #ddd;
+    width: 50%;
+    margin: 0px auto;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.contactInfoContainer form input{
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.contactInfoContainer form button{
+    margin: auto;
+}
+
+.contactInfoContainer > div{
+    margin-bottom: 10px;
+}

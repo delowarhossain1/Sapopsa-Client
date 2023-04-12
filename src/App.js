@@ -174,7 +174,7 @@ function App() {
 
             <Route path='settings/terms' element={<ManageTerms info={{termsAndCondition, refetch}}/>} />
 
-            <Route path='settings/contact-us' element={<ManageContactus />} />
+            <Route path='settings/contact-us' element={<ManageContactus info={{phone, email, refetch}}/>} />
 
             <Route path='settings/navbar-title' element={<ManageHeading 
             headingInfo={{navbarTitle, refetch}}/>} />
