@@ -159,8 +159,6 @@ function App() {
             <Route path='settings' element={<Settings />} />
             <Route path='settings/about-us' element={<ManageAboutUs />} />
             <Route path='settings/terms' element={<ManageTerms />} />
-            <Route path='settings/privacy-policy' element={<ManagePrivacyPolicy />} />
-            <Route path='settings/contact-us' element={<ManageContactus />} />
 
           </Route>
 

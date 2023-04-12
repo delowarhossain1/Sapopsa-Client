@@ -64,8 +64,8 @@ const Footer = () => {
                             <div className="arLink">
                                 <Link to='/about-us'>ABOUT US</Link>
                                 <Link to='/terms'>TERMS & CONDITIONS</Link>
-                                <Link to='/privacy-policy'>PRIVACY POLICY</Link>
-                                <Link to='/contact-us'>CONTACT US</Link>
+                                <sapn>Phone : 017892789521</sapn> <br/>
+                                <sapn>Email : contact@sapopsa.com</sapn>
                             </div>
                         </div>
                         <div className="sopopsa">

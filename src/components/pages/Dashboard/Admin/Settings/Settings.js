@@ -127,26 +127,10 @@ const Settings = () => {
                         </div>
 
                         <div className={css.settingsItem}>
-                            <span>Terms</span>
+                            <span>Terms & Condition</span>
                             <span>
                                 <strong>:</strong>
                                 <Link to='terms'>See more</Link>
-                            </span>
-                        </div>
-
-                        <div className={css.settingsItem}>
-                            <span>Privacy policy</span>
-                            <span>
-                                <strong>:</strong>
-                                <Link to='privacy-policy'>See more</Link>
-                            </span>
-                        </div>
-
-                        <div className={css.settingsItem}>
-                            <span>Contact us</span>
-                            <span>
-                                <strong>:</strong>
-                                <Link to='contact-us'>See more</Link>
                             </span>
                         </div>
 
