@@ -87,3 +87,73 @@
     outline: none;
     font-size: 18px;
 }
+
+/* Terms and condition */
+
+.termsForm{
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.termsForm textarea{
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 100px;
+    margin-bottom: 10px;
+    outline: none;
+    padding: 5px;
+    font-size: 17px;
+}
+
+.termsForm button{
+    padding: 7px 10px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.UpdateBtnContainer{
+    display: flex;
+    justify-content: end;
+}
+
+.UpdateBtnContainer button{
+    margin-bottom: 30px;
+    font-size: 17px;
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.UpdateBtnContainer button svg{
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+.termsList{
+    width: 90%;
+    margin: 100px auto;
+}
+
+.termsList ul {
+    list-style: none;
+}
+
+.termsList ul li {
+    background-color: #ddd;
+    padding: 4px;
+    margin-bottom: 7px;
+    display: flex;
+    align-items: center;
+
+}
+.termsList ul li svg{
+    font-size: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+    width: 30%;
+}

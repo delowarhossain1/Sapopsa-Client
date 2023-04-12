@@ -50,8 +50,6 @@ import Search from './components/pages/Search/Search';
 import ScrollToTop from './components/shared/ScrollToTop/ScrollToTop';
 import AboutUs from './components/pages/AboutUs/AboutUs';
 import TermsAndCondition from './components/pages/TermsAndCondition/TermsAndCondition';
-import PrivacyPolicy from './components/pages/PrivacyPolicy/PrivacyPolicy';
-import ContactUs from './components/pages/ContactUs/ContactUs';
 import ManageAboutUs from './components/pages/Dashboard/Admin/Settings/ManageAboutUs';
 import ManageTerms from './components/pages/Dashboard/Admin/Settings/ManageTerms';
 import { useQuery } from 'react-query';
@@ -96,9 +94,7 @@ function App() {
           <Route path='/category/:cty' element={<CategoriesProducts />} />
           <Route path='/search/:text' element={<Search />} />
           <Route path='/about-us' element={<AboutUs aboutUs={aboutUs}/>} />
-          <Route path='/terms' element={<TermsAndCondition />} />
-          <Route path='/privacy-policy' element={<PrivacyPolicy />} />
-          <Route path='/contact-us' element={<ContactUs />} />
+          <Route path='/terms' element={<TermsAndCondition info={termsAndCondition}/>} />
 
           <Route path='/checkout' element={
             <RequiredAuth>
@@ -176,7 +172,7 @@ function App() {
 
             <Route path='settings/about-us' element={<ManageAboutUs aboutus = {{aboutUs, refetch}}/>} />
 
-            <Route path='settings/terms' element={<ManageTerms />} />
+            <Route path='settings/terms' element={<ManageTerms info={{termsAndCondition, refetch}}/>} />
 
             <Route path='settings/contact-us' element={<ManageContactus />} />
 

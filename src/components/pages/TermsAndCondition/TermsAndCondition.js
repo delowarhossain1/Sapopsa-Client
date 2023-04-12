@@ -1,10 +1,20 @@
 import React from 'react';
 
-const TermsAndCondition = () => {
+const TermsAndCondition = ({info = []}) => {
     return (
-        <div>
-            Terms and condition.
-        </div>
+        <div className='small-container'>
+        <h2>TERMS & CONDITIONS</h2>
+
+        <ul style={{listStyle : 'none'}}> 
+            {
+                info?.map(term => (
+                    <li style={{marginBottom :"15px"}}> 
+                        {term}
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
     );
 };
 
