@@ -7,8 +7,8 @@ const TermsAndCondition = ({info = []}) => {
 
         <ul style={{listStyle : 'none'}}> 
             {
-                info?.map(term => (
-                    <li style={{marginBottom :"15px"}}> 
+                info?.map((term, index) => (
+                    <li style={{marginBottom :"15px"}} key={Math.random() * index}> 
                         {term}
                     </li>
                 ))

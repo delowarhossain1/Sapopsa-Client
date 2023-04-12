@@ -87,7 +87,7 @@ const ManageTerms = ({ info = {} }) => {
             </div>
 
             <form className={css.termsForm} onSubmit={handleTerms}>
-                <textarea name='terms' placeholder='Terms & Conditions / Pricacy Policy' autoFocus></textarea>
+                <textarea name='terms' placeholder='Terms & Conditions / Pricacy Policy' autoFocus required></textarea>
                 <button>Add New</button>
             </form>
 

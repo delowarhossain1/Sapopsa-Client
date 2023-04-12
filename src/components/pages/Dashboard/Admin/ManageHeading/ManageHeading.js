@@ -60,7 +60,7 @@ const ManageHeading = ({headingInfo = {}}) => {
                 <div className={css.headingText}>{navbarTitle}</div>
 
                 <form className={css.form} onSubmit={handleHading}>
-                    <textarea placeholder='Update Heading' name='heading'></textarea>
+                    <textarea placeholder='Update Heading' name='heading' required></textarea>
                     <button type="submit">Update</button>
                 </form>
             </div>

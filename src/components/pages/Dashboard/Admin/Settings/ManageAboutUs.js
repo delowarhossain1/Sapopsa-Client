@@ -74,7 +74,7 @@ const ManageAboutUs = ({ aboutus = {} }) => {
                 </div>
 
                 <form className={css.aboutUsForm} onSubmit={handleAboutUs}>
-                    <textarea placeholder='About us' name='aboutus'></textarea>
+                    <textarea placeholder='About us' name='aboutus' required></textarea>
                     <UpdateBtn />
                 </form>
             </div>
