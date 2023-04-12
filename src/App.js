@@ -173,7 +173,9 @@ function App() {
             <Route path='admins/add-new-admin' element={<AddNewAdmin />} />
             <Route path='manage-categories/add-new-category' element={<AddNewCategori />} />
             <Route path='manage-slider/add-new-slider' element={<AddNewSlider />} />
-            <Route path='settings' element={<Settings />} />
+
+            <Route path='settings' element={<Settings settingsInfo={{isNavbarTitleDisplay, shippingCharge, refetch}}/>} />
+
             <Route path='settings/about-us' element={<ManageAboutUs />} />
             <Route path='settings/terms' element={<ManageTerms />} />
             <Route path='settings/contact-us' element={<ManageContactus />} />

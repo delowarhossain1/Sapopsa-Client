@@ -10,12 +10,12 @@ import Loading from '../../../../shared/Loading/Loading';
 import UpdateBtn from '../../../../shared/Button/UpdateBtn';
 import { GrAddCircle } from "react-icons/gr";
 import useModal from './../../../../../hooks/useModal';
-import { useQuery } from 'react-query';
-import axios from 'axios';
 import { AiOutlineCloseSquare } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 
-const Settings = () => {
+const Settings = ({ settingsInfo = {} }) => {
+    const { isNavbarTitleDisplay, refetch, shippingCharge: shippingInfo } = settingsInfo;
+    const [settingsUpdating, setSettingsUpdating] = useState(false);
     const shippingArea = useRef();
     const shippingCharge = useRef();
     const [isHeadingOn, setIsHeadingOn] = useState(true);
@@ -23,18 +23,9 @@ const Settings = () => {
     const [shippingItems, setShippingItems] = useState([]);
     const { successFullModal, simpleAlertWithConfirmBtn } = useModal();
 
-    // Get all settings
-    const {data:settings, isLoading, refetch} = useQuery(['settings-management', user], 
-    ()=>(
-        axios.get(`/api/settings?email=${user?.email}`, {
-            headers : {auth : `Bearer ${getAccessToken()}`}
-        })
-        .then(res => res.data)
-    ));
-
-    useEffect(()=>{
-        setShippingItems(settings?.shippingCharge || []);
-    }, [settings]);
+    useEffect(() => {
+        setShippingItems(shippingInfo || []);
+    }, [settingsInfo, shippingInfo]);
 
     // Handle shipping items
     const handleShippingItem = () => {
@@ -54,11 +45,11 @@ const Settings = () => {
     // Remove shipping item
     const removeShippingItem = id => {
         const modalText = {
-            text : 'Do you want to remove?',
-            confirmBtn : "Yes."
+            text: 'Do you want to remove?',
+            confirmBtn: "Yes."
         };
 
-        simpleAlertWithConfirmBtn(modalText, ()=>{
+        simpleAlertWithConfirmBtn(modalText, () => {
             const rest = shippingItems?.filter((item, index) => id !== index);
             setShippingItems(rest);
         })
@@ -69,16 +60,19 @@ const Settings = () => {
 
     const handleSettings = () => {
         const alertText = {
-            text : 'Do you want to update settings?',
-            confirmBtn : 'Yes, I want.'
+            text: 'Do you want to update settings?',
+            confirmBtn: 'Yes, I want.'
         }
         simpleAlertWithConfirmBtn(alertText, () => {
+            // update loading status;
+            setSettingsUpdating(true);
+
             const setting = {
-                isNavbarTitleDisplay : isHeadingOn,
+                isNavbarTitleDisplay: isHeadingOn,
                 shippingCharge: shippingItems,
             }
 
-            const url = `/api/settings?email=${user?.email}`;
+            const url = `/api/settings/shipping-navbarTitle-display?email=${user?.email}`;
             fetch(url, {
                 method: 'PATCH',
                 headers: {
@@ -89,6 +83,9 @@ const Settings = () => {
             })
                 .then(res => res.json())
                 .then(res => {
+                    // update loading status;
+                    setSettingsUpdating(false);
+
                     if (res?.modifiedCount > 0) {
                         successFullModal('Settings updated.');
                         refetch();
@@ -98,7 +95,7 @@ const Settings = () => {
     }
 
     // Set loading status.
-    if (userLoading || isLoading) <Loading />;
+    if (userLoading || settingsUpdating) <Loading />;
 
     return (
         <div>
@@ -112,10 +109,10 @@ const Settings = () => {
 
                         <div className={css.settingsItem}>
                             <span>Navbar heading</span>
-                            <span><strong>:</strong> <SwitchBtn 
+                            <span><strong>:</strong> <SwitchBtn
                                 setStatus={isDispaly}
-                                currentStatus = {settings?.isNavbarTitleDisplay}
-                                /></span>
+                                currentStatus={isNavbarTitleDisplay}
+                            /></span>
                         </div>
 
                         <div className={css.settingsItem}>
@@ -162,8 +159,8 @@ const Settings = () => {
                                         <span key={i * Math.random()}>
 
                                             {`${item?.area} - $${item?.charge}`}
-                                            <AiOutlineCloseSquare 
-                                                onClick={()=> removeShippingItem(i)}/>
+                                            <AiOutlineCloseSquare
+                                                onClick={() => removeShippingItem(i)} />
 
                                         </span>
                                     ))

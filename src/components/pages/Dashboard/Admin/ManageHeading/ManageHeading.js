@@ -37,7 +37,7 @@ const ManageHeading = ({headingInfo = {}}) => {
                 .then(res => {
                     // update loading status
                     setTitleUpdateing(false);
-                    
+
                     if (res?.modifiedCount) {
                         refetch();
                         successFullModal();
@@ -48,7 +48,7 @@ const ManageHeading = ({headingInfo = {}}) => {
     }
 
     if (userLoading || titleUpdating) {
-        return <Loading />
+        return <Loading /> 
     }
 
     return (
