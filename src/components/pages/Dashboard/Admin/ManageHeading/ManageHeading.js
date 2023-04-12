@@ -9,31 +9,37 @@ import { getAccessToken } from "../../../../../utilites/setAndGetAccessToken";
 import useModal from './../../../../../hooks/useModal';
 
 const ManageHeading = ({headingInfo = {}}) => {
-    const {navbarTitle, refetch:abc} = headingInfo;
+    const [titleUpdating, setTitleUpdateing] = useState(false);
+    const {navbarTitle, refetch} = headingInfo;
     const { successFullModal } = useModal();
-    const [refetch, setRefetch] = useState(false);
-    const [user, loading] = useAuthState(auth);
+    const [user, userLoading] = useAuthState(auth);
 
     // handle update heading
     const handleHading = (e) => {
+        // Set loading status
+        setTitleUpdateing(true);
+
         e.preventDefault();
         let headingField = e.target.heading;
         let updatedHeading = headingField.value;
 
         if (updatedHeading && user) {
 
-            fetch(`/api/web-heading?email=${user?.email}`, {
+            fetch(`/api/settings/navbar-title?email=${user?.email}`, {
                 method: 'PATCH',
                 headers: {
                     "Content-Type": "application/json",
                     auth: `Bearer ${getAccessToken()}`
                 },
-                body: JSON.stringify({ heading: updatedHeading })
+                body: JSON.stringify({ navbarTitle: updatedHeading })
             })
                 .then(res => res.json())
                 .then(res => {
+                    // update loading status
+                    setTitleUpdateing(false);
+                    
                     if (res?.modifiedCount) {
-                        setRefetch(true);
+                        refetch();
                         successFullModal();
                         headingField.value = ''
                     }
@@ -41,7 +47,7 @@ const ManageHeading = ({headingInfo = {}}) => {
         }
     }
 
-    if (loading) {
+    if (userLoading || titleUpdating) {
         return <Loading />
     }
 
