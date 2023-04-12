@@ -64,10 +64,10 @@ const OrderDetails = () => {
 
                     <div>
                         {products?.map(product => {
-                            const {id, img, price, quantity, size, title, totalPrice, color} = product;
+                            const {_id, img, price, quantity, size, title, totalPrice, color} = product;
 
                             return (
-                                <div className="OrderDescription" key={id}>
+                                <div className="OrderDescription" key={_id}>
                                     <div className="imgDes">
                                         <img src={img} alt="images" />
                                         <div className="imgTitle">{title}</div>

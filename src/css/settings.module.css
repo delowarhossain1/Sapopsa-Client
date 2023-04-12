@@ -70,3 +70,20 @@
 .shippingSetting > div:last-child button svg{
     margin-left: 3px;
 }
+
+
+/* About us  */
+.aboutUsText{
+    margin-bottom: 30px;
+}
+.aboutUsForm  button{
+    margin: 20px auto 0;
+}
+.aboutUsForm textarea{
+    min-width: 100%;
+    max-width: 100%;
+    height: 200px;
+    padding: 5px;
+    outline: none;
+    font-size: 18px;
+}
