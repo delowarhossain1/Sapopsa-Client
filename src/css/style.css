@@ -939,6 +939,7 @@ table.cartTable {
 	.productBtn span {
 		font-size: 12px;
 		font-weight: 600;
+		padding : 4px 6px !important;
 	}
 
 	.myMission {

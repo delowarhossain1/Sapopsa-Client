@@ -52,6 +52,10 @@ import AboutUs from './components/pages/AboutUs/AboutUs';
 import TermsAndCondition from './components/pages/TermsAndCondition/TermsAndCondition';
 import PrivacyPolicy from './components/pages/PrivacyPolicy/PrivacyPolicy';
 import ContactUs from './components/pages/ContactUs/ContactUs';
+import ManageAboutUs from './components/pages/Dashboard/Admin/Settings/ManageAboutUs';
+import ManageTerms from './components/pages/Dashboard/Admin/Settings/ManageTerms';
+import ManagePrivacyPolicy from './components/pages/Dashboard/Admin/Settings/ManagePrivacyPolicy';
+import ManageContactus from './components/pages/Dashboard/Admin/Settings/ManageContactus';
 
 function App() {
   const [isNavbarHeadingOpen, setIsNavbarHeadingOpen] = useState(false);
@@ -153,10 +157,10 @@ function App() {
             <Route path='manage-categories/add-new-category' element={<AddNewCategori />} />
             <Route path='manage-slider/add-new-slider' element={<AddNewSlider />} />
             <Route path='settings' element={<Settings />} />
-            <Route path='settings/about-us' element={<Settings />} />
-            <Route path='settings/terms' element={<Settings />} />
-            <Route path='settings/privacy-policy' element={<Settings />} />
-            <Route path='settings/contact-us' element={<Settings />} />
+            <Route path='settings/about-us' element={<ManageAboutUs />} />
+            <Route path='settings/terms' element={<ManageTerms />} />
+            <Route path='settings/privacy-policy' element={<ManagePrivacyPolicy />} />
+            <Route path='settings/contact-us' element={<ManageContactus />} />
 
           </Route>
 
