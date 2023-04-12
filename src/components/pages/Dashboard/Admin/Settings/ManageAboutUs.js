@@ -5,6 +5,7 @@ import UpdateBtn from '../../../../shared/Button/UpdateBtn';
 import css from "../../../../../css/settings.module.css";
 
 const ManageAboutUs = () => {
+    // const 
     return (
         <div>
             <PageTitle title='Manage about us' />

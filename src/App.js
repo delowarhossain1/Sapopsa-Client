@@ -37,7 +37,7 @@ import Checkout from './components/pages/Checkout/Checkout';
 import Home from './components/pages/Home/Home';
 import Footer from './components/shared/Footer/Footer';
 import { useState } from 'react';
-import Navbar from './components/shared/Navbars/Navbar';
+import Navbar from './components/shared/Navbar/Navbar';
 import AddNewAdmin from './components/pages/Dashboard/Admin/Admins/AddNewAdmin';
 import NotFound from './components/pages/NotFound/NotFound';
 import ProductFor from './components/pages/ProductFor/ProductFor';
@@ -54,8 +54,8 @@ import PrivacyPolicy from './components/pages/PrivacyPolicy/PrivacyPolicy';
 import ContactUs from './components/pages/ContactUs/ContactUs';
 import ManageAboutUs from './components/pages/Dashboard/Admin/Settings/ManageAboutUs';
 import ManageTerms from './components/pages/Dashboard/Admin/Settings/ManageTerms';
-import ManagePrivacyPolicy from './components/pages/Dashboard/Admin/Settings/ManagePrivacyPolicy';
-import ManageContactus from './components/pages/Dashboard/Admin/Settings/ManageContactus';
+
+
 
 function App() {
   const [isNavbarHeadingOpen, setIsNavbarHeadingOpen] = useState(false);
