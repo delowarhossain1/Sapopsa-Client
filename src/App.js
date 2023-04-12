@@ -54,23 +54,38 @@ import PrivacyPolicy from './components/pages/PrivacyPolicy/PrivacyPolicy';
 import ContactUs from './components/pages/ContactUs/ContactUs';
 import ManageAboutUs from './components/pages/Dashboard/Admin/Settings/ManageAboutUs';
 import ManageTerms from './components/pages/Dashboard/Admin/Settings/ManageTerms';
+import { useQuery } from 'react-query';
+import axios from 'axios';
+import Loading from './components/shared/Loading/Loading';
+import ManageContactus from './components/pages/Dashboard/Admin/Settings/ManageContactus';
 
 
 
 function App() {
-  const [isNavbarHeadingOpen, setIsNavbarHeadingOpen] = useState(false);
+  const [settings, setSettings] = useState({});
   const [refetchAddToCardProducts, setRefetchAddToCardProducts] = useState(false);
   const [checkoutInfo, setCheckoutInfo] = useState({});
-  console.log(isNavbarHeadingOpen)
+
+  // website setting 
+  const {isLoading, refetch} = useQuery('settings', ()=>(
+    axios.get('/api/settings')
+    .then(res => setSettings(res?.data))
+  ));
+
+  console.log(settings);
+
+  if(isLoading) <Loading />
+
+  const {phone, email, navbarTitle, shippingCharge, isNavbarTitleDisplay} = settings;
 
   return (
     <>
         <Navbar 
           refetch={refetchAddToCardProducts} 
-          isNavbarHeadingOpen={setIsNavbarHeadingOpen}
+          navbarHeading={{navbarTitle, isNavbarTitleDisplay}}
         />
 
-      <div style={{marginTop : isNavbarHeadingOpen ? '115px' : '70px'}}>
+      <div style={{marginTop : isNavbarTitleDisplay ? '115px' : '70px'}}>
 
         {/* Page scroll from the begging when route will be change */}
         <ScrollToTop />
@@ -89,7 +104,10 @@ function App() {
 
           <Route path='/checkout' element={
             <RequiredAuth>
-              <Checkout setCheckoutInfo={setCheckoutInfo} />
+              <Checkout 
+                setCheckoutInfo={setCheckoutInfo}
+                shippingCharge = {shippingCharge}
+                />
             </RequiredAuth>
           } />
 
@@ -150,7 +168,6 @@ function App() {
             <Route path='manage-products/add-new-product' element={<AddNewProduct />} />
             <Route path='manage-categories' element={<ManageCategories />} />
             <Route path='manage-slider' element={<ManageSlider />} />
-            <Route path='manage-heading' element={<ManageHeading />} />
             <Route path='customers' element={<Customers />} />
             <Route path='admins' element={<Admins />} />
             <Route path='admins/add-new-admin' element={<AddNewAdmin />} />
@@ -159,14 +176,17 @@ function App() {
             <Route path='settings' element={<Settings />} />
             <Route path='settings/about-us' element={<ManageAboutUs />} />
             <Route path='settings/terms' element={<ManageTerms />} />
+            <Route path='settings/contact-us' element={<ManageContactus />} />
+
+            <Route path='settings/navbar-title' element={<ManageHeading 
+            headingInfo={{navbarTitle, refetch}}/>} />
 
           </Route>
 
           <Route path='*' element={<NotFound />} />
-
         </Routes>
 
-        <Footer />
+        <Footer info={{phone, email}}/>
       </div>
     </>
   );

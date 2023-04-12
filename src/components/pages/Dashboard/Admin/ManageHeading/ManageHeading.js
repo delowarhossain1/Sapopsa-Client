@@ -8,21 +8,11 @@ import Loading from '../../../../shared/Loading/Loading';
 import { getAccessToken } from "../../../../../utilites/setAndGetAccessToken";
 import useModal from './../../../../../hooks/useModal';
 
-const ManageHeading = () => {
+const ManageHeading = ({headingInfo = {}}) => {
+    const {navbarTitle, refetch:abc} = headingInfo;
     const { successFullModal } = useModal();
     const [refetch, setRefetch] = useState(false);
     const [user, loading] = useAuthState(auth);
-    const [heading, setHeading] = useState({heading : ''});
-
-    // Get website heading
-    useEffect(() => {
-        fetch('/api/web-heading')
-            .then(res => res.json())
-            .then(res => setHeading(res));
-
-    }, [refetch]);
-
-
 
     // handle update heading
     const handleHading = (e) => {
@@ -61,7 +51,7 @@ const ManageHeading = () => {
             <PageTitle title='manage heading' />
 
             <div className={css.container}>
-                <div className={css.headingText}>{heading?.heading}</div>
+                <div className={css.headingText}>{navbarTitle}</div>
 
                 <form className={css.form} onSubmit={handleHading}>
                     <textarea placeholder='Update Heading' name='heading'></textarea>

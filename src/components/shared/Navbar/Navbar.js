@@ -14,13 +14,13 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 
 
-const Navbar = ({ refetch, isNavbarHeadingOpen}) => {
+const Navbar = ({ refetch, navbarHeading = {}}) => {
     const allMenu = useRef();
     const navigate = useNavigate();
     const [user] = useAuthState(auth);
     const [isOpenMenu, setIsOpenMenu] = useState(false);
     const [addToCardProducts, setaddToCardProducts] = useState(0);
-    const [webHeading, setWebHeading] = useState({ heading: '', isDispaly: false });
+    const {isNavbarTitleDisplay, navbarTitle} = navbarHeading;
 
     // Handle menu
     const handleMenu = () => {
@@ -37,22 +37,12 @@ const Navbar = ({ refetch, isNavbarHeadingOpen}) => {
         }
     }
 
-    // Set is navbar heading status;
-    useEffect(()=>{
-        isNavbarHeadingOpen(webHeading?.isDispaly);
-    }, [webHeading, isNavbarHeadingOpen]);
-
     // Get add to card products
     useEffect(() => {
         const products = getProducts();
         setaddToCardProducts(products?.length);
     }, [refetch]);
 
-    // Get web heading
-    const getWebHeading = useQuery('nav-web-heading', () => (
-        axios.get('/api/web-heading')
-            .then(res => setWebHeading(res?.data))
-    ));
 
     // Get cagories
     const { data: categories } = useQuery('nav-categories-list', () => (
@@ -64,9 +54,9 @@ const Navbar = ({ refetch, isNavbarHeadingOpen}) => {
         <header>
             {/* Website title */}
             {
-                webHeading?.isDispaly &&
+                isNavbarTitleDisplay &&
                 <div className='navbarTitle'>
-                    <marquee>{webHeading?.heading}</marquee>
+                    <marquee>{navbarTitle}</marquee>
                 </div>
             }
 

@@ -18,7 +18,8 @@ import { Link } from 'react-router-dom';
 const date = new Date();
 const year = date.getFullYear();
 
-const Footer = () => {
+const Footer = ({info = {}}) => {
+    const {email, phone} = info;
     // Get cagories
     const { data: categories } = useQuery('nav-categories-list', () => (
         axios.get('/api/categories-list')
@@ -64,8 +65,8 @@ const Footer = () => {
                             <div className="arLink">
                                 <Link to='/about-us'>ABOUT US</Link>
                                 <Link to='/terms'>TERMS & CONDITIONS</Link>
-                                <sapn>Phone : 017892789521</sapn> <br/>
-                                <sapn>Email : contact@sapopsa.com</sapn>
+                                <sapn>Phone : {phone}</sapn> <br/>
+                                <sapn>Email : {email}</sapn>
                             </div>
                         </div>
                         <div className="sopopsa">

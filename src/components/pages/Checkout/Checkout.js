@@ -6,40 +6,28 @@ import PageTitle from '../../shared/PageTitle/PageTitle';
 import css from "../../../css/checkout.module.css";
 import { getProducts } from '../../../utilites/addToCard';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import axios from 'axios';
-import { getAccessToken } from "../../../utilites/setAndGetAccessToken";
 
-const Checkout = ({ setCheckoutInfo }) => {
+const Checkout = ({ setCheckoutInfo, shippingCharge = [{charge :0, area : 'Area'}] }) => {
     const navigate = useNavigate();
     const [user, loading] = useAuthState(auth);
     const [isAgree, setIsAgree] = useState(false);
     const [products, setProducts] = useState([]);
     const [shippingChg, setShippingChg] = useState(0);
     const [shippingArea, setShippingArea] = useState('');
-   
-    // Get settings ( shipping charge );
-    const { data: settings, isLoading, refetch } = useQuery(['settings-management', user],
-        () => (
-            axios.get(`/api/settings?email=${user?.email}`, {
-                headers: { auth: `Bearer ${getAccessToken()}` }
-            })
-                .then(res => res.data)
-        ));
 
     // set product info
     useEffect(() => {
         const storedProducts = getProducts();
         setProducts(storedProducts);
 
-        if (settings) {
+        if (shippingCharge?.length > 0) {
             // Set shipping charge
-            setShippingChg(settings?.shippingCharge[0]['charge'] || 0);
+            setShippingChg(shippingCharge[0]['charge'] || 0);
             // Set shipping area 
-            setShippingArea(settings?.shippingCharge[0]['area'] || '');
+            setShippingArea(shippingCharge[0]['area'] || '');
         }
 
-    }, [settings]);
+    }, [shippingCharge]);
 
     // Set shipping charge
     const handleShippingChrg = (e) =>{
@@ -163,7 +151,7 @@ const Checkout = ({ setCheckoutInfo }) => {
                                                         >
 
                                                         {
-                                                            settings?.shippingCharge?.map((item, i) => {
+                                                            shippingCharge?.map((item, i) => {
                                                                 const { charge, area } = item;
 
                                                                 return (

@@ -119,6 +119,14 @@ const Settings = () => {
                         </div>
 
                         <div className={css.settingsItem}>
+                            <span>Navbar Title</span>
+                            <span>
+                                <strong>:</strong>
+                                <Link to='navbar-title'>See more</Link>
+                            </span>
+                        </div>
+
+                        <div className={css.settingsItem}>
                             <span>About us</span>
                             <span>
                                 <strong>:</strong>
@@ -131,6 +139,14 @@ const Settings = () => {
                             <span>
                                 <strong>:</strong>
                                 <Link to='terms'>See more</Link>
+                            </span>
+                        </div>
+
+                        <div className={css.settingsItem}>
+                            <span>Contact us</span>
+                            <span>
+                                <strong>:</strong>
+                                <Link to='contact-us'>See more</Link>
                             </span>
                         </div>
 

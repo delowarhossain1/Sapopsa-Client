@@ -48,11 +48,6 @@ const Dashboard = ({ children }) => {
             icon: <CgDisplayFullwidth />
         },
         {
-            path: "manage-heading",
-            name: "Heading",
-            icon: <BsCardHeading />
-        },
-        {
             path: "customers",
             name: "Customers",
             icon: <FiUsers />
