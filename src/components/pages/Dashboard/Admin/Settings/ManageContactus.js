@@ -10,7 +10,7 @@ import useModal from '../../../../../hooks/useModal';
 import Loading from '../../../../shared/Loading/Loading';
 
 const ManageContactus = ({ info = {} }) => {
-    const { phone, email, refetch } = info;
+    const { phone, email, offlinePaymentContact, refetch } = info;
     const [user, userLoading] = useAuthState(auth);
     const [updating, setUpdating] = useState(false);
     const {successFullModal} = useModal();
@@ -22,15 +22,19 @@ const ManageContactus = ({ info = {} }) => {
         setUpdating(true);
 
         const phone = event.target.phone;
+        const phone2 = event.target.phone2;
         const email = event.target.email;
+
         const phoneText = phone.value;
+        const phoneText2 = phone2.value;
         const emailText = email.value;
 
-        if (phoneText || emailText) {
+        if (phoneText || emailText || phoneText2) {
             // Contact info;
             const doc = {
                 phone: phoneText || phone,
-                email: emailText || email
+                email: emailText || email,
+                offlinePaymentContact : phoneText2 || offlinePaymentContact
             };
 
 
@@ -49,6 +53,7 @@ const ManageContactus = ({ info = {} }) => {
 
                     // Set empty 
                     phone.value = '';
+                    phone2.value = '';
                     email.value = '';
 
                     if (res?.modifiedCount) {
@@ -71,14 +76,17 @@ const ManageContactus = ({ info = {} }) => {
 
             <div className={css.contactInfoContainer}>
                 <div>
-                    <p>Phone : {phone}</p>
                     <p>Email : {email}</p>
+                    <p>Phone : {phone}</p>
+                    <p>Phone for offline payment: {offlinePaymentContact} </p>
                 </div>
-
+                <br/>
 
                 <form onSubmit={handleContactInfo}>
-                    <input type="tel" name="phone" placeholder='Enter the phone number.' required/>
-                    <input type="email" name="email" placeholder='Enter the email address' required/>
+                    <input type="email" name="email" placeholder='Email address' required/>
+                    <input type="tel" name="phone" placeholder='Phone number.' required/>
+                    <input type="tel" name="phone2" placeholder='Phone for offline payment' required/>
+
                     <UpdateBtn />
                 </form>
             </div>
