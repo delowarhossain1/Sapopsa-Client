@@ -14,13 +14,14 @@ import { AiOutlineCloseSquare } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 
 const Settings = ({ settingsInfo = {} }) => {
-    const { isNavbarTitleDisplay, refetch, shippingCharge: shippingInfo } = settingsInfo;
+    const { isNavbarTitleDisplay, offlinePayment, refetch, shippingCharge: shippingInfo } = settingsInfo;
     const [settingsUpdating, setSettingsUpdating] = useState(false);
     const shippingArea = useRef();
     const shippingCharge = useRef();
-    const [isHeadingOn, setIsHeadingOn] = useState(true);
     const [user, userLoading] = useAuthState(auth);
     const [shippingItems, setShippingItems] = useState([]);
+    const [isHeadingOn, setIsHeadingOn] = useState(true);
+    const [isOfflinePayment, setIsOfflinePayment] = useState(false);
     const { successFullModal, simpleAlertWithConfirmBtn } = useModal();
 
     useEffect(() => {
@@ -57,6 +58,9 @@ const Settings = ({ settingsInfo = {} }) => {
 
     // Display web heading / on or off
     const isDispaly = (isOn) => setIsHeadingOn(isOn);
+
+     // set offlone payment
+     const handleOfflinePayment = (isOn) => setIsOfflinePayment(isOn);
 
     const handleSettings = () => {
         const alertText = {
@@ -112,6 +116,14 @@ const Settings = ({ settingsInfo = {} }) => {
                             <span><strong>:</strong> <SwitchBtn
                                 setStatus={isDispaly}
                                 currentStatus={isNavbarTitleDisplay}
+                            /></span>
+                        </div>
+
+                        <div className={css.settingsItem}>
+                            <span>Offline Payment</span>
+                            <span><strong>:</strong> <SwitchBtn
+                                setStatus={handleOfflinePayment}
+                                currentStatus={offlinePayment}
                             /></span>
                         </div>
 

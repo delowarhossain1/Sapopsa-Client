@@ -6,7 +6,7 @@ import { BsPlusLg } from "react-icons/bs";
 import { FaCheck, FaMinus } from 'react-icons/fa';
 import { addNewProduct } from "../../../utilites/addToCard";
 
-const SingleProductDetails = ({ refetch, reFetchValue }) => {
+const SingleProductDetails = ({ refetch, reFetchValue, isOfflinePayment, offlinePaymentContact}) => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [product, setProduct] = useState({});
@@ -226,7 +226,12 @@ const SingleProductDetails = ({ refetch, reFetchValue }) => {
                                     <div className="filedWrap">
                                         <span className="pricesFiled"> <del>${calPrice + 98}</del> ${calPrice}</span>
                                     </div>
-                                    <button className="buyNow" onClick={addToCardHandeler}>Add To Cart</button>
+
+                                    {isOfflinePayment ? 
+                                        <button className="buyNow">For Order : {offlinePaymentContact}</button>
+                                        :
+                                        <button className="buyNow" onClick={addToCardHandeler}>Add To Cart</button>
+                                    }
 
                                 </div>
                             </div>

@@ -72,7 +72,7 @@ function App() {
 
   if(isLoading) <Loading />
 
-  const {phone, email, navbarTitle, shippingCharge, isNavbarTitleDisplay, aboutUs, termsAndCondition} = settings;
+  const {phone, email, navbarTitle, shippingCharge, isNavbarTitleDisplay, aboutUs, termsAndCondition, offlinePayment, offlinePaymentContact} = settings;
 
   return (
     <>
@@ -121,6 +121,8 @@ function App() {
             <SingleProductDetails
               refetch={setRefetchAddToCardProducts}
               reFetchValue={refetchAddToCardProducts}
+              isOfflinePayment={offlinePayment}
+              offlinePaymentContact={offlinePaymentContact}
             />} />
 
 
