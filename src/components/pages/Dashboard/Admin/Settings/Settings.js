@@ -74,6 +74,7 @@ const Settings = ({ settingsInfo = {} }) => {
             const setting = {
                 isNavbarTitleDisplay: isHeadingOn,
                 shippingCharge: shippingItems,
+                offlinePayment : isOfflinePayment
             }
 
             const url = `/api/settings/shipping-navbarTitle-display?email=${user?.email}`;
