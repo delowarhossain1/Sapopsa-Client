@@ -85,10 +85,16 @@ const Admins = () => {
                                 <th>{admin?.name}</th>
                                 <th>{admin?.email}</th>
                                 <th>
-                                    {! admins?.length === 0 && <button
-                                        className={css.btn} 
-                                        onClick={() => removeAdmin(admin?.email)}
-                                    >Delete Admin</button> }
+                                    {admins?.length === 1 ?
+                                        <button
+                                            className={css.btn}
+                                        >Can't be removed.</button>
+                                        :
+                                        <button
+                                            className={css.btn}
+                                            onClick={() => removeAdmin(admin?.email)}
+                                        >Delete Admin</button>
+                                    }
                                 </th>
                             </tr>
                         ))
