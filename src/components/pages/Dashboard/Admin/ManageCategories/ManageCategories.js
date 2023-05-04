@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import DashboardTitle from '../../DashboardTitle';
 import css from "../../../../../css/ManageCategories.module.css";
 import css2 from "../../../../../css/Table.module.css";
-import { Link } from 'react-router-dom';
+import css3 from "../../../../../css/ManageProduct.module.css";
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../../../firebase.init';
 import Loading from '../../../../shared/Loading/Loading';
@@ -11,9 +12,11 @@ import useModal from './../../../../../hooks/useModal';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 
+
 const ManageCategories = () => {
     const [user, userLoading] = useAuthState(auth);
     const { deleteModal, successFullModal } = useModal();
+    const navigate = useNavigate();
 
     const {data:allCategory, isLoading, refetch} = useQuery(['manage-categories', user], ()=>(
         axios.get(`/api/all-categories?email=${user?.email}`, {
@@ -84,6 +87,11 @@ const ManageCategories = () => {
                                         className={css2.deleteBtn}
                                         onClick={() => deleteCategory(c?._id)}
                                     >Delete</button>
+
+                                    <button
+                                        className={css3.detailsBtn}
+                                        onClick={()=> navigate(`update/${c?._id}`)}
+                                    >Update</button>
                                 </th>
                             </tr>
                         ))

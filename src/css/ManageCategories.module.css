@@ -32,3 +32,27 @@
 .newBtn button a{
     color: black;
 }
+
+
+/* update category */
+
+.updateCategory {
+    background : #ddd;
+    padding : 5px;
+    width: 400px;
+    border-radius: 5px;
+    margin: 20px auto 0;
+}
+
+.updateCategory > label{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.updateCategory input{
+    width: 100%;
+}
+
+.updateCategory button{
+    margin: 10px auto 0;
+}

@@ -56,6 +56,7 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 import Loading from './components/shared/Loading/Loading';
 import ManageContactus from './components/pages/Dashboard/Admin/Settings/ManageContactus';
+import UpdateCategory from './components/pages/Dashboard/Admin/ManageCategories/UpdateCategory';
 
 
 
@@ -163,6 +164,7 @@ function App() {
             <Route path='manage-products/details/:id' element={<ProductsDetails />} />
             <Route path='manage-products/add-new-product' element={<AddNewProduct />} />
             <Route path='manage-categories' element={<ManageCategories />} />
+            <Route path='manage-categories/update/:id' element={<UpdateCategory />} />
             <Route path='manage-slider' element={<ManageSlider />} />
             <Route path='customers' element={<Customers />} />
             <Route path='admins' element={<Admins />} />
