@@ -46,7 +46,7 @@ const UpdateCategory = () => {
         }
     }
 
-    console.log(loading)
+
     // Loading status
     if(userLoading || loading) {
         return <Loading />
