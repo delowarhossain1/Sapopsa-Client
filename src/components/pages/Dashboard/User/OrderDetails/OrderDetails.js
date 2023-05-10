@@ -8,6 +8,7 @@ import axios from 'axios';
 import { getAccessToken } from '../../../../../utilites/setAndGetAccessToken';
 import Loading from "../../../../shared/Loading/Loading";
 import {RxCross2} from "react-icons/rx"
+import EuroSign from './../../../../shared/EuroSign/EuroSign';
 
 const OrderDetails = () => {
     const [user, loading] = useAuthState(auth);
@@ -55,8 +56,8 @@ const OrderDetails = () => {
                         </div>
 
                         <div className="mnage">
-                            <div className="p">
-                                Total: $<span>{total}</span>
+                            <div style={{display : "flex", alignItems : 'center'}}>
+                                Total: <EuroSign price={total} />
                             </div>
                         </div>
                     </div>
@@ -82,7 +83,7 @@ const OrderDetails = () => {
                                     </div>
 
                                     <div>
-                                        <p>Price : ({price}<RxCross2/> {quantity}) ${totalPrice}</p>
+                                        <p style={{display : 'flex', alignItems : 'center'}}>Price : ({price}<RxCross2/> {quantity}) <EuroSign price={totalPrice} /></p>
                                     </div>
                                 </div>
                             )
@@ -112,9 +113,9 @@ const OrderDetails = () => {
 
                                 </div>
                                 <div className="rightSummary">
-                                    <p>${subTotal}</p>
-                                    <p>${dailyveryInfo?.shippingCharge}</p>
-                                    <p>$ {total}</p>
+                                    <p><EuroSign price={subTotal} /> </p>
+                                    <p><EuroSign price={dailyveryInfo?.shippingCharge} /></p>
+                                    <p><EuroSign price={total} /></p>
                                 </div>
                             </div>
                         </div>

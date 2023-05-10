@@ -11,6 +11,7 @@ import Loading from '../../../../shared/Loading/Loading';
 import { AiOutlineShopping, AiOutlineShoppingCart } from 'react-icons/ai';
 import css from "../../../../../css/ManageOrder.module.css";
 import { Link } from 'react-router-dom';
+import EuroSign from './../../../../shared/EuroSign/EuroSign';
 
 const ManageOrders = () => {
     const getSearchText = useRef();
@@ -118,7 +119,7 @@ const ManageOrders = () => {
                                 </th>
                                 <th>{order?.isMultipleOrder ? "Multiple" : "Single"}</th>
                                 <th>{order?.status}</th>
-                                <th>${order?.total}</th>
+                                <th><EuroSign price={order?.total} /></th>
                                 <th>{order?.placed?.date}</th>
                                 <th>{order?.dailyveryInfo?.phone}</th>
                                 <th>{order?.dailyveryInfo?.email}</th>

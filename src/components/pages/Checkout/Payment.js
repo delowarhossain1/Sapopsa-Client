@@ -9,6 +9,7 @@ import auth from './../../../firebase.init';
 import {getAccessToken} from "../../../utilites/setAndGetAccessToken";
 import Loading from '../../shared/Loading/Loading';
 import useModal from './../../../hooks/useModal';
+import EuroSign from '../../shared/EuroSign/EuroSign';
 
 const Payment = ({ checkoutInfo }) => {
     const [loading, setLoading] = useState(false);
@@ -59,9 +60,9 @@ const Payment = ({ checkoutInfo }) => {
                     <div className={css.PaymentContainer}>
                     <div>
                         <h2 className={css.orderSummeryText}>Order Summary</h2>
-                        <span className={css.subTotalText}>Subtotal ({products?.length} Item'(s) and shipping fee included) - ${total}</span>
+                        <span className={css.subTotalText} style={{display : 'flex'}}>Subtotal ({products?.length} Item'(s) and shipping fee included) - <EuroSign price={total} /></span>
 
-                        <h5 className={css.totalAmoutText}>Total Amount : ${total}</h5>
+                        <h5 className={css.totalAmoutText} style={{display : 'flex'}}>Total Amount : <EuroSign price={total} /></h5>
                     </div>
                     
                     <div className={css.paypalBTNS}>

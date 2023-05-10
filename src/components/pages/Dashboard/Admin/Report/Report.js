@@ -17,6 +17,7 @@ import { FaUserCircle } from "react-icons/fa";
 import numberCount from './../../../../../utilites/numberCount';
 import { useQuery } from 'react-query';
 import axios from 'axios';
+import EuroSign from './../../../../shared/EuroSign/EuroSign';
 
 const Report = () => {
     const [user, loading] = useAuthState(auth);
@@ -97,7 +98,7 @@ const Report = () => {
                                             <span>{placed?.date}</span>
                                         </div>
                                         <span>{isMultipleOrder ? "Multiple Items" : "Single Item"}</span>
-                                        <span>${total}</span>
+                                        <span><EuroSign price={total} /></span> 
                                     </div>
                                 )
                             })

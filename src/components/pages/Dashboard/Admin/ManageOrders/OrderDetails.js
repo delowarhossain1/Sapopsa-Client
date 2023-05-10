@@ -10,6 +10,7 @@ import auth from './../../../../../firebase.init';
 import Loading from '../../../../shared/Loading/Loading';
 import useModal from './../../../../../hooks/useModal';
 import UpdateBtn from '../../../../shared/Button/UpdateBtn';
+import EuroSign from './../../../../shared/EuroSign/EuroSign';
 
 const OrderDetails = () => {
     const { id } = useParams();
@@ -86,8 +87,8 @@ const OrderDetails = () => {
 
                         <span className={css.orderStatus}>{status}</span>
 
-                        <div>
-                            <span>Total : ${total}</span>
+                        <div style={{display : 'flex', alignItems : 'center'}}>
+                            Total : <EuroSign price={total} />
                         </div>
                     </div>
                 </div>
@@ -114,10 +115,11 @@ const OrderDetails = () => {
                                                 </p>
                                             </div>
 
-                                            <span>Price : (${price} * {quantity}) ${totalPrice}</span>
+                                            <div style={{display : 'flex', alignItems : 'center'}}>
+                                                Price : ({price} * {quantity})</div>
                                         </div>
                                     </div>
-                                )
+                                )  
                             })
                         }
 
@@ -125,9 +127,11 @@ const OrderDetails = () => {
                         <div className={css.summeryBox}>
                             <div className={css.orderSummery}>
                                 <span>Total Summary</span>
-                                <sapn>Sub total : ${subTotal}</sapn>
-                                <sapn>Shipping Fee : ${dInfo?.shippingCharge}</sapn>
-                                <sapn>Total : ${total}</sapn>
+                                <sapn style={{display : 'flex'}}>Sub total : <EuroSign price={subTotal} /></sapn>
+
+                                <sapn style={{display : 'flex'}}>Shipping Fee : <EuroSign price={dInfo?.shippingCharge} /></sapn>
+
+                                <sapn style={{display : 'flex'}}>Total : <EuroSign price={total} /></sapn>
                             </div>
                         </div>
                     </div>
@@ -146,7 +150,9 @@ const OrderDetails = () => {
                         <div className={css.paymentInfo}>
                             <span>Payment information</span>
                             <span>Account Name : {payment?.name}</span>
-                            <span>Amount : ${payment?.amount}</span>
+
+                            <span style={{display : 'flex'}}>Amount :<EuroSign price={payment?.amount} /></span>
+
                             <span>currency : {payment?.currency}</span>
                             <span>Transaction ID : #{payment?.txn}</span>
                         </div>
