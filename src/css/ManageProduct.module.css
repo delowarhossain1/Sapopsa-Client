@@ -199,3 +199,41 @@ label{
     border-radius: 4px;
     margin-left: 7px;
 }
+
+.priceBox{
+    display: flex;
+}
+
+.priceBox > div > input{
+    width: 150px;
+}
+
+.priceBox > div:first-child{
+    margin-right: 10px;
+}
+
+/* Size chart */
+.sizeChart{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+.sizeChart > div{
+    width: 47%;
+    text-align: center;
+}
+.sizeChart input{
+    margin: 5px;
+    width: 45%;
+}
+
+.sizeChart button{
+    padding: 7px 15px;
+    cursor: pointer;
+    width: 50%;
+    margin-top: 10px;
+}
+
+.sizeChart > div > h4{
+   margin-bottom: 10px;
+}
