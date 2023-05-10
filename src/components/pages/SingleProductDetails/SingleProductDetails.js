@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Loading from '../../shared/Loading/Loading';
 import PageTitle from '../../shared/PageTitle/PageTitle';
-import { BsPlusLg } from "react-icons/bs";
+import { BsCurrencyEuro, BsPlusLg } from "react-icons/bs";
 import { FaCheck, FaMinus } from 'react-icons/fa';
 import { addNewProduct } from "../../../utilites/addToCard";
+import EuroSign from '../../shared/EuroSign/EuroSign';
 
 const SingleProductDetails = ({ refetch, reFetchValue, isOfflinePayment, offlinePaymentContact}) => {
     const { id } = useParams();
@@ -43,7 +44,7 @@ const SingleProductDetails = ({ refetch, reFetchValue, isOfflinePayment, offline
         return <Loading />
     }
 
-    const { _id, img, title, size, price, description, specification, galleryIMG, colors} = product;
+    const { _id, img, title, size, price, description, specification, galleryIMG, colors, sizeChart, regularPrice} = product;
    
     // calculate product base on quantity
     const calPrice = selectedQuantity * price;
@@ -116,63 +117,17 @@ const SingleProductDetails = ({ refetch, reFetchValue, isOfflinePayment, offline
                                         <strong>Size chart - In inches</strong>
                                     </p>
                                     <table cellpadding="5">
-                                        <thead>
-                                            <tr>
-                                                <th>Size</th>
-                                                <th>Chest (Round)</th>
-                                                <th>Length</th>
-                                                <th>Sleeve</th>
-                                            </tr>
-                                        </thead>
                                         <tbody className="singleTable">
-                                            <tr>
-                                                <td>XS</td>
-                                                <td>36</td>
-                                                <td>26</td>
-                                                <td>7.5</td>
-                                            </tr>
-                                            <tr>
-                                                <td>S</td>
-                                                <td>37</td>
-                                                <td>26</td>
-                                                <td>7.75</td>
-                                            </tr>
-                                            <tr>
-                                                <td>M</td>
-                                                <td>39</td>
-                                                <td>27.5</td>
-                                                <td>8.5</td>
-                                            </tr>
-                                            <tr>
-                                                <td>L</td>
-                                                <td>40.5</td>
-                                                <td>28</td>
-                                                <td>8.75</td>
-                                            </tr>
-                                            <tr>
-                                                <td>XL</td>
-                                                <td>43</td>
-                                                <td>29</td>
-                                                <td>9</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2XL</td>
-                                                <td>45</td>
-                                                <td>30</td>
-                                                <td>9.25</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3XL</td>
-                                                <td>47.5</td>
-                                                <td>30.5</td>
-                                                <td>9.5</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4XL</td>
-                                                <td>50</td>
-                                                <td>31</td>
-                                                <td>10</td>
-                                            </tr>
+                                            {
+                                                sizeChart?.map((item, index) =>(
+                                                    <tr key={index * Math.random()}>
+                                                        <td>{item?.label1}</td>
+                                                        <td>{item?.label2}</td>
+                                                        <td>{item?.label3}</td>
+                                                        <td>{item?.label4}</td>
+                                                    </tr>
+                                                ))
+                                            }
                                         </tbody>
                                     </table>
                                     <strong>Choose Size : {selectedSize}</strong>
@@ -224,7 +179,10 @@ const SingleProductDetails = ({ refetch, reFetchValue, isOfflinePayment, offline
                                     </div>
 
                                     <div className="filedWrap">
-                                        <span className="pricesFiled"> <del>${calPrice + 98}</del> ${calPrice}</span>
+                                        <span className="pricesFiled">
+                                            <del><EuroSign price={regularPrice} /></del>
+                                            <EuroSign price={calPrice} />
+                                        </span>
                                     </div>
 
                                     {isOfflinePayment ? 
