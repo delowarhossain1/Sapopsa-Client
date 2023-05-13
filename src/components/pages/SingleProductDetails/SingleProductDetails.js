@@ -180,7 +180,9 @@ const SingleProductDetails = ({ refetch, reFetchValue, isOfflinePayment, offline
 
                                     <div className="filedWrap">
                                         <span className="pricesFiled">
-                                            <del><EuroSign price={regularPrice} /></del>
+                                            <del><EuroSign 
+                                                price={regularPrice * selectedQuantity} 
+                                                /></del>
                                             <EuroSign price={calPrice} />
                                         </span>
                                     </div>

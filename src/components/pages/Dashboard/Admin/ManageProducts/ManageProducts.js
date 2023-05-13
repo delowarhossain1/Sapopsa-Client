@@ -11,6 +11,7 @@ import useModal from './../../../../../hooks/useModal';
 import Loading from '../../../../shared/Loading/Loading';
 import { useQuery } from 'react-query';
 import axios from 'axios';
+import EuroSign from './../../../../shared/EuroSign/EuroSign';
 
 const ManageProducts = () => {
     const navigate = useNavigate();
@@ -81,7 +82,7 @@ const ManageProducts = () => {
                                     <th>
                                         <img src={product?.img} alt="product" className={css2.displayImg} />
                                     </th>
-                                    <th>${product?.price}</th>
+                                    <th><EuroSign price={product?.price} /></th>
                                     <th>{product?.category}</th>
                                     <th>{product?.thisIsFor}</th>
 

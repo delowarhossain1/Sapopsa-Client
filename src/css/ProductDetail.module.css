@@ -88,3 +88,15 @@
     font-size: 20px;
     margin-bottom: 5px;
 }
+
+.ProductEditBtn{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.ProductEditBtn > button{
+    padding: 7px 10px;
+    font-size: 17px;
+    cursor: pointer;
+}

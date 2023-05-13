@@ -6,11 +6,13 @@ import auth from './../../../../../firebase.init';
 import Loading from '../../../../shared/Loading/Loading';
 import css from "../../../../../css/ProductDetail.module.css"
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { CgHashtag } from 'react-icons/cg';
+import { GrEdit } from 'react-icons/gr';
 
 const ProductsDetails = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [loadingStatus, setLoadingStatus] = useState(true);
     const [user, userLoading] = useAuthState(auth);
     const [product, setProduct] = useState({});
@@ -29,12 +31,18 @@ const ProductsDetails = () => {
     // Set loading status
     if (userLoading || loadingStatus) <Loading />;
 
-    const { category, colors, description, galleryIMG, img, price, size, specification, thisIsFor, title } = product;
+    const {_id, category, colors, description, galleryIMG, img, price, size, specification, thisIsFor, title } = product;
 
     return (
         <div>
             <PageTitle title='Product details' />
             <DashboardTitle title="Product Details" />
+
+            <div className={css.ProductEditBtn}>
+                <button
+                    onClick={()=> navigate(`/dashboard/manage-products/details/edit/${_id}`)}
+                >Edit <GrEdit /></button>
+            </div>
 
             <div>
                 {/* Title */}
@@ -45,7 +53,7 @@ const ProductsDetails = () => {
                 <div className={css.productMeta}>
                     <div className={css.images}>
                         <div className={css.displayImg}>
-                            <img src={img} />
+                            <img src={img} alt=''/>
                         </div>
 
                         <div className={css.gallery}>
@@ -54,7 +62,7 @@ const ProductsDetails = () => {
                                     <div
                                         key={index * Math.random()}
                                         className={css.galleryImg}>
-                                        <img src={gImg} />
+                                        <img src={gImg} alt=''/>
                                     </div>
                                 ))
                             }
