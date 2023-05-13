@@ -6,6 +6,7 @@ import PageTitle from '../../shared/PageTitle/PageTitle';
 import css from "../../../css/checkout.module.css";
 import { getProducts } from '../../../utilites/addToCard';
 import { useNavigate } from 'react-router-dom';
+import EuroSign from './../../shared/EuroSign/EuroSign';
 
 const Checkout = ({ setCheckoutInfo, shippingCharge = [{charge :0, area : 'Area'}] }) => {
     const navigate = useNavigate();
@@ -104,7 +105,9 @@ const Checkout = ({ setCheckoutInfo, shippingCharge = [{charge :0, area : 'Area'
 
                                             <div>
                                                 <h4>{product?.title.length > 20 ? product.title.slice(0, 20) + '...' : product?.title}</h4>
-                                                <p>Price : ${product?.price}</p>
+
+                                                <p style={{display : 'flex'}}>Price : <EuroSign price={product?.price} /></p>
+
                                                 <p>Size : {product?.size}</p>
                                                 <p>Qty : {product?.quantity}</p>
                                                 <p className='selectedColorBtn'>
@@ -118,9 +121,11 @@ const Checkout = ({ setCheckoutInfo, shippingCharge = [{charge :0, area : 'Area'
 
 
                                 <div className={css.subTotal}>
-                                    <span>Sub total : ${subTotal}</span>
-                                    <span>Shipping : ${shippingChg} <small>({shippingArea})</small></span>
-                                    <span>Total : ${total}</span>
+                                    <span style={{display : 'flex'}}>Sub total : <EuroSign price={subTotal} /> </span>
+
+                                    <span style={{display : 'flex'}}>Shipping : <EuroSign price={shippingChg} /> <small>({shippingArea})</small></span>
+
+                                    <span style={{display : 'flex'}}>Total : <EuroSign price={total} /> </span>
                                 </div>
                             </div>
 
@@ -160,7 +165,7 @@ const Checkout = ({ setCheckoutInfo, shippingCharge = [{charge :0, area : 'Area'
                                                                         data-area={area}
                                                                         key={i * Math.random()}       
                                                                     >
-                                                                        {`${area} - $${charge}`}
+                                                                        {`${area}  €${charge}`}
                                                                     </option>
                                                                 )
                                                             })

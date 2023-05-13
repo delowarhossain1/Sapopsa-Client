@@ -171,7 +171,7 @@ const Settings = ({ settingsInfo = {} }) => {
                                     shippingItems?.map((item, i) => (
                                         <span key={i * Math.random()}>
 
-                                            {`${item?.area} - $${item?.charge}`}
+                                            {`${item?.area} - €${item?.charge}`}
                                             <AiOutlineCloseSquare
                                                 onClick={() => removeShippingItem(i)} />
 
