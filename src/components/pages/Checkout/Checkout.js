@@ -182,8 +182,7 @@ const Checkout = ({ setCheckoutInfo, shippingCharge = [{charge :0, area : 'Area'
                                                 <input className="tnc-check" style={{ display: 'inline-block', marginRight: '5px' }} type="checkbox" onClick={(e) => setIsAgree(e.target.checked)} />
 
                                                 <span style={{ display: 'inline' }}>I agree to <a href="/terms" target="_blank">Terms &amp;
-                                                    Conditions</a>, <a href="/refund-policy" target="_blank">Refund Policy</a> and <a
-                                                        href="/privacy-policy" target="_blank">Privacy Policy</a> of sapopsa.</span>
+                                                    Conditions</a> of sapopsa.</span>
                                                 <br /><br />
 
 
