@@ -9,6 +9,7 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CgHashtag } from 'react-icons/cg';
 import { GrEdit } from 'react-icons/gr';
+import EuroSign from './../../../../shared/EuroSign/EuroSign';
 
 const ProductsDetails = () => {
     const { id } = useParams();
@@ -31,7 +32,7 @@ const ProductsDetails = () => {
     // Set loading status
     if (userLoading || loadingStatus) <Loading />;
 
-    const {_id, category, colors, description, galleryIMG, img, price, size, specification, thisIsFor, title } = product;
+    const { _id, category, colors, description, galleryIMG, img, price, size, specification, thisIsFor, title, regularPrice, sizeChart } = product;
 
     return (
         <div>
@@ -40,7 +41,7 @@ const ProductsDetails = () => {
 
             <div className={css.ProductEditBtn}>
                 <button
-                    onClick={()=> navigate(`/dashboard/manage-products/details/edit/${_id}`)}
+                    onClick={() => navigate(`/dashboard/manage-products/details/edit/${_id}`)}
                 >Edit <GrEdit /></button>
             </div>
 
@@ -53,7 +54,7 @@ const ProductsDetails = () => {
                 <div className={css.productMeta}>
                     <div className={css.images}>
                         <div className={css.displayImg}>
-                            <img src={img} alt=''/>
+                            <img src={img} alt='' />
                         </div>
 
                         <div className={css.gallery}>
@@ -62,7 +63,7 @@ const ProductsDetails = () => {
                                     <div
                                         key={index * Math.random()}
                                         className={css.galleryImg}>
-                                        <img src={gImg} alt=''/>
+                                        <img src={gImg} alt='' />
                                     </div>
                                 ))
                             }
@@ -71,7 +72,8 @@ const ProductsDetails = () => {
                     <div className={css.metaInfo}>
                         <p>For : {thisIsFor}</p>
                         <p>Category : {category}</p>
-                        <p>Price : ${price}</p>
+                        <p style={{ display: 'flex' }}>Regular Price : <EuroSign price={regularPrice} /></p>
+                        <p style={{ display: 'flex' }}>Price : <EuroSign price={price} /></p>
 
                         <div className={css.size}>
                             <span>Size : </span>
@@ -97,7 +99,7 @@ const ProductsDetails = () => {
                                         <span
                                             key={i * Math.random()}
                                             className={css.colorBtn}
-                                            style={{background : c}}
+                                            style={{ background: c }}
                                         ></span>
                                     ))
                                 }
@@ -120,10 +122,30 @@ const ProductsDetails = () => {
                     </div>
                 </div>
 
+
                 <div className={css.description}>
                     <p>Description : </p>
                     <p>{description}</p>
                 </div>
+
+                <div style={{marginTop : '20px'}}>
+                    <p>Size chart</p>
+                    <table cellpadding="5">
+                        <tbody className="singleTable">
+                            {
+                                sizeChart?.map((item, index) => (
+                                    <tr key={index * Math.random()}>
+                                        <td>{item?.label1}</td>
+                                        <td>{item?.label2}</td>
+                                        <td>{item?.label3}</td>
+                                        <td>{item?.label4}</td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
     );
