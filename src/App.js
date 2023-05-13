@@ -57,6 +57,7 @@ import axios from 'axios';
 import Loading from './components/shared/Loading/Loading';
 import ManageContactus from './components/pages/Dashboard/Admin/Settings/ManageContactus';
 import UpdateCategory from './components/pages/Dashboard/Admin/ManageCategories/UpdateCategory';
+import UpdateProduct from './components/pages/Dashboard/Admin/ManageProducts/UpdateProduct';
 
 
 
@@ -162,7 +163,7 @@ function App() {
             <Route path='manage-orders/order-details/:id' element={<OrderDetails />} />
             <Route path='manage-products' element={<ManageProducts />} />
             <Route path='manage-products/details/:id' element={<ProductsDetails />} />
-            <Route path='manage-products/details/edit/:id' element={<ProductsDetails />} />
+            <Route path='manage-products/details/edit/:id' element={<UpdateProduct />} />
             <Route path='manage-products/add-new-product' element={<AddNewProduct />} />
             <Route path='manage-categories' element={<ManageCategories />} />
             <Route path='manage-categories/update/:id' element={<UpdateCategory />} />

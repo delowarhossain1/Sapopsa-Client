@@ -218,12 +218,12 @@ const AddNewProduct = () => {
                     <div className={css.priceBox}>
                         <div>
                             <label htmlFor="regularPrice">Regular Price</label>
-                            <input type='number' name='regularPrice' id='regularPrice' placeholder='$100' min='1' required autoComplete='off' />
+                            <input type='number' name='regularPrice' id='regularPrice' placeholder='Regular Price' min='1' required autoComplete='off' />
                         </div>
 
                         <div>
                             <label htmlFor="price">Price</label>
-                            <input type='number' name='price' id='price' placeholder='$100' min='1' required autoComplete='off' />
+                            <input type='number' name='price' id='price' placeholder='Price' min='1' required autoComplete='off' />
                         </div>
                     </div>
 
