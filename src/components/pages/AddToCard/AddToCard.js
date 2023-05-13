@@ -44,7 +44,7 @@ const AddToCard = ({refetch, reFetchValue}) => {
                                                 <img width="100px" src={product?.img} alt="product" />
                                                 <div>
                                                     <h3>{product?.title?.length > 30 ? product.title.slice(0, 30) + '..' : product.title}</h3>
-                                                    <p>Price: ${product?.price}</p>
+                                                    <p>Price: €{product?.price}</p>
                                                     <p>Size: {product?.size}</p>
 
                                                     <p className='selectedColorBtn'>
@@ -61,7 +61,7 @@ const AddToCard = ({refetch, reFetchValue}) => {
                                             <span>{product.quantity}</span>
                                         </td>
                                         <td>
-                                            ${product?.totalPrice}
+                                        €{product?.totalPrice}
                                         </td>
                                     </tr>
                                 ))}
@@ -80,7 +80,7 @@ const AddToCard = ({refetch, reFetchValue}) => {
                             <table>
                                 <tbody>
                                     <td>Subtotal</td>
-                                    <td>${totalAmunt}</td>
+                                    <td>€{totalAmunt}</td>
                                 </tbody>
                             </table>
                         </div>
