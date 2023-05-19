@@ -15,17 +15,50 @@ const UpdateProduct = () => {
     const speciRef = useRef();
     const { id } = useParams();
     const navigate = useNavigate();
-    const {successFullModal} = useModal();
+    const { successFullModal } = useModal();
     const [specification, setSpecification] = useState([]);
     const [categories, setCategories] = useState({});
     const [user, isLoading] = useAuthState(auth);
     const [loading, setLoading] = useState(false);
+    const [product, setProduct] = useState({});
+    const [title, setTitle] = useState('');
+    const [thisIsFor, setThisIsFor] = useState('');
+    const [regularPrice, setRegularPrice] = useState(0);
+    const [price, setPrice] = useState(0);
+    const [category, setCategory] = useState('');
+    const [description, setDescription] = useState('');
 
     // Product category list
     useEffect(() => {
         axios.get('/api/categories-list')
             .then(res => setCategories(res?.data));
     }, []);
+
+    // get product
+    useEffect(() => {
+        // Loading status
+        setLoading(true);
+
+        fetch(`/api/get-product/${id}`)
+            .then(res => res.json())
+            .then(res => {
+                setProduct(res);
+                setLoading(false);
+            });
+    }, [id]);
+
+    // Set previous product info;
+    useEffect(() => {
+        const { title, thisIsFor, regularPrice, price, category, description, specification } = product;
+
+        setTitle(title);
+        setThisIsFor(thisIsFor);
+        setRegularPrice(regularPrice);
+        setPrice(price);
+        setCategory(category)
+        setDescription(description);
+        setSpecification(specification)
+    }, [product]);
 
     // Set specification
     const handleSpecification = () => {
@@ -50,12 +83,9 @@ const UpdateProduct = () => {
 
         // info
         const t = e.target;
-        const title = t.title.value;
-        const regularPrice = t.regularPrice.value;
-        const price = t.price.value;
         const thisIsFor = t.thisIsFor.value;
         const category = t.category.value;
-        const description = t.des.value;
+
 
         const data = {
             title,
@@ -63,8 +93,8 @@ const UpdateProduct = () => {
             specification,
             category,
             description,
-            price : Number(price),
-            regularPrice : Number(regularPrice),
+            price: Number(price),
+            regularPrice: Number(regularPrice),
         }
 
         fetch(`/api/product/${id}?email=${user?.email}`, {
@@ -80,9 +110,8 @@ const UpdateProduct = () => {
                 if (res?.modifiedCount > 0) {
                     // update loading status
                     setLoading(false);
-                    
-                    navigate('/dashboard/manage-products');
 
+                    navigate('/dashboard/manage-products');
                     successFullModal();
                 }
             })
@@ -102,7 +131,16 @@ const UpdateProduct = () => {
             <form onSubmit={handleUpdate}>
                 <div className={css.row1}>
                     <label htmlFor="title">Title</label>
-                    <input type='text' id='title' name='title' placeholder='Product Title' />
+
+                    <input
+                        type='text'
+                        id='title'
+                        name='title'
+                        placeholder='Product Title'
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+
                 </div>
 
                 <div className={css.row2}>
@@ -110,12 +148,31 @@ const UpdateProduct = () => {
 
                     <div>
                         <label htmlFor="regularPrice">Regular Price</label>
-                        <input type='number' name='regularPrice' id='regularPrice' placeholder='Regular Price' min='1' autoComplete='off' />
+
+                        <input
+                            type='number'
+                            name='regularPrice'
+                            id='regularPrice'
+                            placeholder='Regular Price'
+                            min='1'
+                            autoComplete='off'
+                            value={regularPrice}
+                            onChange={(e) => setRegularPrice(e.target.value)}
+                        />
                     </div>
 
                     <div>
                         <label htmlFor="price">Price</label>
-                        <input type='number' name='price' id='price' placeholder='Price' min='1' autoComplete='off' />
+                        <input
+                            type='number'
+                            name='price'
+                            id='price'
+                            placeholder='Price'
+                            min='1'
+                            autoComplete='off'
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                        />
                     </div>
 
 
@@ -124,9 +181,23 @@ const UpdateProduct = () => {
                     <div>
                         <label htmlFor="for">For</label>
                         <select id='for' name='thisIsFor'>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="sports">Sports</option>
+                            <option
+                                value="male"
+                                selected={thisIsFor === 'male'}
+                            >Male</option>
+
+                            <option
+                                value="female"
+                                selected={thisIsFor === 'female'}
+                            >Female</option>
+
+                            <option
+                                value="sports"
+                                selected={thisIsFor === 'sports'}
+                            >
+                                Sports
+                            </option>
+
                         </select>
                     </div>
 
@@ -138,8 +209,12 @@ const UpdateProduct = () => {
                                 categories?.men?.map(c => (
                                     <option
                                         key={c?._id}
-                                        value={c?.route}>
+                                        value={c?.route}
+                                        selected={category === c?.route}
+                                    >
+
                                         {c?.title}
+
                                     </option>
                                 ))
                             }
@@ -147,7 +222,9 @@ const UpdateProduct = () => {
                                 categories?.women?.map(c => (
                                     <option
                                         key={c?._id}
-                                        value={c?.route}>
+                                        value={c?.route}
+                                        selected={category === c?.route}
+                                    >
                                         {c?.title}
                                     </option>
                                 ))
@@ -156,7 +233,9 @@ const UpdateProduct = () => {
                                 categories?.sports?.map(c => (
                                     <option
                                         key={c?._id}
-                                        value={c?.route}>
+                                        value={c?.route}
+                                        selected={category === c?.route}
+                                    >
                                         {c?.title}
                                     </option>
                                 ))
@@ -171,7 +250,13 @@ const UpdateProduct = () => {
                 <div className={css.row3}>
                     <div>
                         <label htmlFor="des">Description</label>
-                        <textarea name='des' id='des' placeholder='Description'></textarea>
+                        <textarea
+                            name='des'
+                            id='des'
+                            value={description}
+                            placeholder='Description'
+                            onChange={(e) => setDescription(e.target.value)}
+                        ></textarea>
                     </div>
 
                     <div className={css.specBox}>
