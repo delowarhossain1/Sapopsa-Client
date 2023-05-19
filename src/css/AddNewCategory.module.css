@@ -17,12 +17,17 @@
     margin: 10px 0px;
 }
 
-.form > div > label{
+.form > div > label, .form label{
     color: rgb(77, 54, 54);
     display: block;
     font-size: 14px;
 }
 
+
+
+.form > input{
+    width: 100%;
+}
 .form > div > input, .form > div > select{
     width: 100%;
 }

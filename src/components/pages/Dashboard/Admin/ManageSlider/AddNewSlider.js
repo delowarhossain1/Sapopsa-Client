@@ -70,8 +70,13 @@ const AddNewSlider = () => {
             <div className={css.newCategoryFrom}>
                 <form className={css.form} onSubmit={handleSubmit}>
                     <h4>Add new slider</h4>
-                    <input type="text" placeholder='Slider Title' name="title" required />
-                    <input type='file' onChange={(e) => setSliderImage(e.target.files[0])} required />
+
+                    <label for="title">Title</label>
+                    <input type="text" placeholder='Slider Title' id='title' name="title" required /> <br/><br/>
+
+                    <label for="img">Slider IMG (w1200 &#215; h418) Max size : 150 KB</label>
+                    <input type='file' id='img' onChange={(e) => setSliderImage(e.target.files[0])} required /> <br/><br/>
+
                     <button type='submit'>Submit</button>
                 </form>
             </div>

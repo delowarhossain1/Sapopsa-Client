@@ -79,7 +79,7 @@ const AddNewCategori = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="file">Select category IMG</label>
+                        <label htmlFor="file">Category IMG (w500 &#215; h500) Max size : 100 KB</label>
                         <input type='file' name="avater" onChange={(e) => setFile(e.target.files[0])} id='file' required />
                     </div>
 

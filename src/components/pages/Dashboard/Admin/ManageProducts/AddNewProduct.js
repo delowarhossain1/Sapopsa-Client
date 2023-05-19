@@ -274,12 +274,12 @@ const AddNewProduct = () => {
 
                 <div className={css.row4}>
                     <div>
-                        <label htmlFor="displayIMG">Display IMG</label>
+                        <label htmlFor="displayIMG">Display IMG (w500 &#215; h500) Max size 70 KB</label>
                         <input type="file" id='displayIMG' name="displayIMG" required />
                     </div>
 
                     <div>
-                        <label htmlFor="galleryIMG">Gallery IMG</label>
+                        <label htmlFor="galleryIMG">Gallery IMG (w500 &#215; h500) Max size 70 KB</label>
                         <input type="file" id='galleryIMG' name="galleryIMG" multiple required />
                     </div>
 
